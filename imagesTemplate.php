@@ -6,7 +6,12 @@ require "../dbconfig/dbconnect.php";
 	{
 		global $db;
 		// Database Retrieval of Titles/Filenames
-		$query = "SELECT title, yearCreated, media, filename, buyerID FROM imageData WHERE yearCreated = '$year' AND arrangement > 0 ORDER BY arrangement;";
+		$query = "";
+		if($year===0) {
+			$query = "SELECT title, yearCreated, media, filename, buyerID FROM imageData WHERE isHomePage = true ORDER BY arrangement;";
+		} else {
+			$query = "SELECT title, yearCreated, media, filename, buyerID FROM imageData WHERE yearCreated = '$year' AND arrangement > 0 ORDER BY arrangement;";
+		}
 		$data = mysqli_query($db, $query);
 		if(!$data) {
 			print "Images could not be retrieved.";

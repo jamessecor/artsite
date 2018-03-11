@@ -149,6 +149,7 @@ table td {
 
 /*	margin-right:30%;*/
 	margin-top:1.5em;
+	text-align:center;
 }
 
 
@@ -156,6 +157,7 @@ table td {
 	position:relative;
 	margin:1em 0 0 1em;
 	color:rgba(100,100,150,.8);
+	text-align:center;
 }
 
 .imgButtons {
