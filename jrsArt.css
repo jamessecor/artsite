@@ -1,0 +1,201 @@
+html, body, div, span, h1, h2, h3, h4, h5, h6, footer, header {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+
+* {
+	font-family:"Courier New", Courier, monospace;
+	
+}
+
+body {
+	background-color:#ccc;
+	width:100%;
+	height:100%;
+	font-family:"Courier New", Courier, monospace;
+}
+
+/* Navbar Changes */
+
+.navbar-default,
+.navbar-default .navbar-nav .open .dropdown-toggle,
+.navbar-default .navbar-nav .open .dropdown-menu>li>a,
+.navbar-default .navbar-nav .open .dropdown-menu {
+	background-color: rgba(100,100,150,.8);
+}
+
+/* toggle button */
+#tbut {
+	background-color: #ecc;
+}
+
+.navbar-default .navbar-brand, 
+.navbar-default .navbar-right li.navbar-text,
+.navbar-default .navbar-nav .dropdown-toggle,
+.navbar-default .navbar-nav > li > a,
+.navbar-default .navbar-nav .open .dropdown-toggle,
+.navbar-default .navbar-nav .open .dropdown-menu>li>a,
+.navbar-default .navbar-nav .open .dropdown-menu {
+	color:#ecc;
+}
+
+/*.navbar-default .navbar-header:hover, */
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-nav .dropdown-toggle:hover,
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav .open .dropdown-toggle:hover,
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
+	color:#88d;
+	background-color:#ecc;
+	/*	text-decoration: underline;*/
+}
+
+
+/* End Navbar Changes */
+
+@media screen and (min-width: 480px) {
+	.side-cols { background-color: rgba(180,180,230,.2); }
+}
+
+.side-cols {
+	z-index: -15;
+	position:fixed;
+	background-color: rgba(180,180,230,0);
+	height: 100%;
+}
+
+#right-col { right:0; }
+#left-col { left:0; }
+
+table td {
+	padding: .2em;
+}
+
+/*
+#top {
+	position:fixed;
+	z-index:2;
+	vertical-align:middle;
+	width: 100%;
+	background-color: #ccc;
+	text-align:center;
+	font-size:2.5em;
+	padding: .3em 0 .3em 0;
+	color:rgba(100,100,150,.8);
+	top:0;
+}
+*/
+#foot {
+	position:fixed;
+	color:rgba(100,100,150,.8);
+	right:10px;
+	font-size:14pt;
+	bottom:5px;
+}
+
+#contactHeading {
+	/*margin:1em 0 0 25%;	*/
+	color: #557;
+}
+
+
+#contactForm, #success {
+/*	position:fixed;
+	width:50%;
+	margin-left:10%;
+	margin-top:1em;*/
+	padding:15px 15px 15px 15px;
+	background-color:#d8cccc;
+	border:.5em solid #779;
+	border-radius:1em;
+}
+
+.center-it { text-align:center; }
+
+.errorText {
+	color:#39d;
+}
+
+/*
+.headings {
+	position:fixed;
+	top:100px;
+	border:none;
+	border-radius:10px;
+	background-color:#eee;
+	color:rgba(100,100,150,.8);
+	font-size:14pt;
+	z-index:0;
+}
+*/
+#homeImg {
+	float:right;
+	width:50%;
+	margin-right:25%;
+	margin-top:1em;	
+}
+
+.container {
+	
+	-align: center;
+}
+
+.imgs {
+	/*float:right;*/
+	width:50%;
+
+/*	margin-right:30%;*/
+	margin-top:1.5em;
+}
+
+
+.text {
+	position:relative;
+	margin:1em 0 0 1em;
+	color:rgba(100,100,150,.8);
+}
+
+.imgButtons {
+	position:relative;
+	height:4em;
+	border-radius:1em;
+	border:.5em solid rgba(100,100,150,.8);
+	background-color:#ddd;
+}
+
+td { 
+	font-weight:bold;
+	color: #557;
+}
+
+input[type="submit"], td input, td textarea, #toTop {
+	background-color: #ecc;
+	color: rgba(100,100,200,.9);
+	border:.15em solid #aaa;
+	border-radius:.2em;
+	font-weight:bold;
+}
+	
+input[type="submit"]:hover, button:hover, #toTop:hover {
+	background-color: #aad;
+	color: #22a;
+}
+/*
+#nextImg {
+	top:35%;
+}
+
+#prevImg {
+	bottom:35%;
+}
+*/
+::-webkit-scrollbar {
+	width:6px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #ccc;
+}
