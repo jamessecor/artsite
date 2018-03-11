@@ -10,8 +10,9 @@ include "./imagesTemplate.php";
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 		<?php
-		displayImages(2013);
+		//displayImages(2013);
 		?>
+		test
 		</div>
 	</div>
 </div>
