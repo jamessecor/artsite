@@ -144,12 +144,10 @@ table td {
 }
 
 .imgs {
-	/*float:right;*/
 	width:50%;
-
-/*	margin-right:30%;*/
 	margin-top:1.5em;
 	text-align:center;
+	border-radius:.01em;
 }
 
 
