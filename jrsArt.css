@@ -147,6 +147,9 @@ table td {
 	width:50%;
 	margin-top:1.5em;
 	text-align:center;
+}
+
+.img-responsive {
 	border-radius:.05em;
 }
 

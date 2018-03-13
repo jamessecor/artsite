@@ -26,7 +26,7 @@ require "../dbconfig/dbconnect.php";
 				if($row) {
 					$filepath = "./nomophobiaImages/" . $row['filename'];
 					print "<a href='$filepath'><img class='img-responsive' src='$filepath' alt='Image Loading Error'></a>";
-					print "<div class='text' id='label'>$row[title], $row[yearCreated]<br>$row[media]</div><br><br>";					
+					print "<div class='text' id='label'><strong>$row[title]</strong>, $row[yearCreated]<br>$row[media]</div><br><br>";					
 				}
 			}
 			?>
