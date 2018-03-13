@@ -7,8 +7,12 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, footer, header {
 }
 
 * {
-	font-family:"Courier New", Courier, monospace;
-	
+	font-family:"Courier New", Courier, monospace;	
+}
+
+:root {
+	--nav-background-color:rgba(100,100,150,1);
+	--nav-color: #aaf;
 }
 
 body {
@@ -24,12 +28,12 @@ body {
 .navbar-default .navbar-nav .open .dropdown-toggle,
 .navbar-default .navbar-nav .open .dropdown-menu>li>a,
 .navbar-default .navbar-nav .open .dropdown-menu {
-	background-color: rgba(100,100,150,.8);
+	background-color: var(--nav-background-color);
 }
 
 /* toggle button */
 #tbut {
-	background-color: #ecc;
+	background-color: var(--nav-color);
 }
 
 .navbar-default .navbar-brand, 
@@ -39,7 +43,7 @@ body {
 .navbar-default .navbar-nav .open .dropdown-toggle,
 .navbar-default .navbar-nav .open .dropdown-menu>li>a,
 .navbar-default .navbar-nav .open .dropdown-menu {
-	color:#ecc;
+	color:var(--nav-color);
 }
 
 /*.navbar-default .navbar-header:hover, */
@@ -48,11 +52,16 @@ body {
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav .open .dropdown-toggle:hover,
 .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
-	color:#88d;
-	background-color:#ecc;
-	/*	text-decoration: underline;*/
+	color:var(--nav-background-color);
+	background-color:var(--nav-color);
+	border-radius:5em;
 }
 
+#navbar-art > ul > li.active > a {
+	color:var(--nav-background-color);
+	background-color:var(--nav-color);
+	border-radius:1em;
+}
 
 /* End Navbar Changes */
 
@@ -150,8 +159,10 @@ table td {
 }
 
 .img-responsive {
-	border-radius:.05em;
+	border-radius:.5em;
 }
+
+
 
 
 .text {
