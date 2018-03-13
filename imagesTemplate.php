@@ -24,7 +24,7 @@ require "../dbconfig/dbconnect.php";
 				if($row) {
 					$filepath = "../img/" . $row['filename'];
 					print "<a href='$filepath' target='blank'><img class='img-responsive' src='$filepath' alt='Image Loading Error'></a>";
-					print "<div class='text' id='label'>$row[title], $row[yearCreated]. $row[media]. ";
+					print "<div class='text' id='label'>$row[title], $row[yearCreated]<br>$row[media]";
 					/*
 					// New Code
 					if($row[buyerID]) != NULL) {
