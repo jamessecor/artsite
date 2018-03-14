@@ -186,16 +186,18 @@ td {
 }
 
 input[type="submit"], td input, td textarea, #toTop {
-	background-color: #ecc;
-	color: rgba(100,100,200,.9);
-	border:.15em solid #aaa;
+	background-color: var(--nav-color);
+	color: var(--nav-background-color);
+	border:.1em solid #aaa;
 	border-radius:.2em;
 	font-weight:bold;
+	text-decoration:none;
 }
 	
 input[type="submit"]:hover, button:hover, #toTop:hover {
-	background-color: #aad;
-	color: #22a;
+	background-color: var(--nav-background-color);
+	color: var(--nav-color);
+	text-decoration:none;
 }
 /*
 #nextImg {
