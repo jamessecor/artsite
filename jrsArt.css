@@ -186,8 +186,8 @@ td {
 }
 
 input[type="submit"], td input, td textarea, #toTop {
-	background-color: var(--nav-color);
-	color: var(--nav-background-color);
+	background-color: var(--nav-background-color);
+	color: var(--nav-color);
 	border:.1em solid #aaa;
 	border-radius:.2em;
 	font-weight:bold;
@@ -195,8 +195,8 @@ input[type="submit"], td input, td textarea, #toTop {
 }
 	
 input[type="submit"]:hover, button:hover, #toTop:hover {
-	background-color: var(--nav-background-color);
-	color: var(--nav-color);
+	background-color: var(--nav-color);
+	color: var(--nav-background-color);
 	text-decoration:none;
 }
 /*
