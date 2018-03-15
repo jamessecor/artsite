@@ -68,68 +68,56 @@ if($validation=="Success") {
 	*/
 	
 	// Successful entry
-	print "<div class='row'><div class='col-md-6 col-md-offset-3'";
-	print "<div id='success'>";
-	print "<p>Success!<br><br>Thank you, $name.</p>";
-	print "<p>Your information has been saved.</p>";
-	print "</div></div></div>";
-	//print "</table>";
-	
+	?>
+	<div id='success'>
+		<div class='row'>
+			<div class='col-md-6 col-md-offset-3'>	
+			<table align="center">
+				<tr><td>Success!</td></tr>
+				<tr><td>Thank you, <?php echo $name; ?>.</td></tr>
+				<tr><td>Your information has been saved.</td></tr>
+				</table>
+			</div>
+		</div>
+	</div>	
+	<?php 
 	// Send yourself email
 	$headers = 'From: $email';
-	mail("james.secor@gmail.com", "New Art Contact", $memo, $headers);
+	mail("james.secor@gmail.com", "New Art Contact from $email", $memo, $headers);
 	
 } else {
 
 ?>
-
 <form id='contactForm' action="" method='post'>
-	<!-- Maybe take out
-	<div style='width:50%; margin:auto;'>
-	<div class='form-group'>
-		<label for="name">Name:</label>
-		<input type="text" name="name" class="form-control">
-	</div>
-	<div class='form-group'>
-		<label for="email">Email:</label>
-		<input type="email" name="email" class="form-control">
-	</div>
-	</div>
-	
-	-->
-	<div class="row">
-		<div class="col-md-6 col-md-offset-3">
-	
-	<table>
+<div class="row">
+	<div class="col-md-4 col-md-offset-4">
+	<table align="center" class="full">
+		<tr><td>Name</td></tr>
 		<tr>
-			<td>Name</td>
-			<td><input type='text' name='name' value="<?php echo isset($_POST['name']) ? $_POST['name']: ''; ?>"  required="required"></td>			
+			<td><input type='text' class="full" name='name' value="<?php echo isset($_POST['name']) ? $_POST['name']: ''; ?>"  required="required"></td>			
 		</tr>
 		<tr>
 			<td colspan=2><small class="errorText"><?php echo array_key_exists('name', $errors) ? $errors['name'] : ""; ?></small></td>
 		</tr>
+		<tr><td>Email</td></tr>
 		<tr>
-			<td>Email</td>
-			<td><input type='email' name='email' value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>"required="required"></td>
+			<td><input type='email' class="full" name='email' value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>"required="required"></td>
 		</tr>
 		<tr>
-			<td colspan=2><small class="errorText"><?php echo array_key_exists('email', $errors) ? $errors['email'] : ""; ?></small></td>
+			<td><small class="errorText"><?php echo array_key_exists('email', $errors) ? $errors['email'] : ""; ?></small></td>
+		</tr>
+		<tr><td>Message</td></tr>
+		<tr>
+			<td><textarea rows="4" class="full" name='memo' placeholder='Enter comments here.' ><?php echo isset($_POST['memo']) ? $_POST['memo']: '' ?></textarea></td>
 		</tr>
 		<tr>
-			<td>Message</td>
-			<td><textarea rows="6"  name='memo' placeholder='Enter comments here.' ><?php echo isset($_POST['memo']) ? $_POST['memo']: '' ?></textarea></td>
-		</tr>
-		<tr>
-			<td></td><td colspan="3"><input type='submit' name='submit' value='Submit' formnovalidate></td>
+			<td><input type='submit' name='submit' value='Submit' formnovalidate></td>
 		</tr>
 	</table>
 	
 		</div>
-	</div>
-	
+	</div>	
 </form>
-
-
 <?PHP
 
 }
