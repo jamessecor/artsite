@@ -1,5 +1,5 @@
 <?php
-// IMAGES 2017 PAGE
+// Landing PAGE
 
 include "header.php";
 include "./imagesTemplate.php";

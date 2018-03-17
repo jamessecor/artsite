@@ -114,13 +114,15 @@ body {
 	margin-top:1em;*/
 	padding-top:15px;
 	padding-bottom:15px;
-	background-color:#d8cccc;
+	background-color: #cdbbbb;
 	border:.5em solid #779;
 	border-radius:1em;
 	width:100%;
 }
 
 .center-it { text-align:center; }
+
+.thumbnail { width: 15em; display:block; }
 
 .errorText {
 	color:#39d;
@@ -173,7 +175,7 @@ td {
 	color: #557;
 }
 
-input[type="submit"], td input, td textarea, #toTop {
+input[type="submit"], td input, td textarea, #toTop, select {
 	background-color: var(--nav-background-color);
 	color: var(--nav-color);
 	border:.1em solid #aaa;
@@ -189,6 +191,13 @@ input[type="submit"]:hover, button:hover, #toTop:hover {
 	color: var(--nav-background-color);
 	text-decoration:none;
 }
+
+input[type="text"]:disabled {
+    border: none;
+	background-color: #ddd;
+	color: #eea9b9;
+}
+
 /*
 #nextImg {
 	top:35%;
