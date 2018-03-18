@@ -232,8 +232,6 @@
 				if(!empty($_POST['updateprice'])) {
 					$newPrice = $_POST['updateprice'];
 					$hasPrice = true;
-					// Debugging
-					//$errors['newprice'] = "$newPrice $hasPrice";
 				} 
 										
 				$artworkID = $_POST['artworkid'];
