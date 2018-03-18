@@ -4,8 +4,17 @@ session_start();
 include "checkLogin.php";
 require "../includes/artsiteConfig.php";
 require "../includes/artsiteConnect.php";
+?>
 
+<script>
+$(document).ready(function() {
+	$(".showPeeps").click(function() {
+		$(".peeps").html("<?php getEmailAddr(); ?>");
+	});
+});
+</script>
 
+<?php
 if(isset($_POST['login'])) {
 	// Username
 	if(!empty($_POST['username'])) {
@@ -29,9 +38,6 @@ if(isset($_POST['logout'])) {
 	header('Location: admin.php');
 }
 ?>
-
-	
-
 <div class='container'>
 	<div class='row'>
 		<div class='col-md-8 col-md-offset-2 center-it'>
@@ -42,7 +48,6 @@ if(isset($_POST['logout'])) {
 					// Not Logged In
 					if(!isLoggedIn()) { 
 					?>
-
 					<form id="login" method="post" action="" autocomplete='off'>
 						<table align="center">
 							<tr><td>Username</td></tr>
@@ -57,6 +62,15 @@ if(isset($_POST['logout'])) {
 					} else { 
 					// Logged In
 					include "editartwork.php";
+					?>
+					&nbsp;
+					<div class="row">
+						<div class="col-md-8 col-md-offset-2">						
+							<button class="showPeeps">SHOW emails</button>
+							<div class="peeps"></div>
+						</div>
+					</div>
+					<?php
 					} ?>					
 				</div>
 			</div>	
@@ -69,14 +83,25 @@ if(isset($_POST['logout'])) {
 					<tr><td>&nbsp;</td></tr>
 					<tr>
 						<td>
-							<input type="submit" name="logout" value="Log Out"</button>
+							<input type="submit" name="logout" value="Log Out">
 						</td>
 					</tr>
 				</table>
 			</form>
 		</div>
-	<!-- </div>-->
 </div>
 <?php
 include "footer.php";
+
+
+function getEmailAddr() {
+	global $db;
+	$query = "SELECT c_email FROM contacts;";
+	$result = mysqli_query($db, $query);
+	$emails = "";
+	while($email = mysqli_fetch_array($result))
+		$emails .= "$email[0]; ";
+	
+	echo $emails;
+}
 ?>
