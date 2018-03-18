@@ -241,10 +241,12 @@
 					$isNew = $_POST['isnew'];
 					if(!$isNew) {
 						// Update Query
-						$query = "UPDATE imageData SET title   = '$newTitle', 
-										media       = '$newMedium',
-										yearCreated = '$newYear'";
-						if($hasPrice) $query .= ", price       = '$newPrice' ";												
+						$query = "UPDATE imageData SET 	title       = '$newTitle', 
+														media       = '$newMedium',
+														yearCreated = '$newYear'
+														filename    = '$newFilename'
+														arrangement = '$newArrangement'";
+						if($hasPrice) $query .= ", price = '$newPrice' ";												
 						$query .= "WHERE imgID = $artworkID;";
 					} else {
 						// Insert Query
