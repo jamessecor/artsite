@@ -18,7 +18,7 @@ if(isset($_POST['login'])) {
 	}	
 	
 	// Check them
-	if($username==="jsecor" && $password==="THIS") {
+	if($username==="jsecor" && $password===$adminP) {
 		$_SESSION['username'] = $username;
 	}
 }
