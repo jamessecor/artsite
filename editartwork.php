@@ -139,7 +139,12 @@
 							<tr>
 								<td><input type="text" name="updatefilename" value="<?php echo $isNew ? "" : "$editWork[filename]";?>" <?php echo $disabled; ?>></td>
 							</tr>
-
+							<tr>
+								<th>Arrangement</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="updatearrangement" value="<?php echo $isNew ? "" : "$editWork[arrangement]";?>" <?php echo $disabled; ?>></td>
+							</tr>
 							<tr>
 								<th>Price</th>
 							</tr>
@@ -212,6 +217,15 @@
 				} else {
 					$errors['updatefilename'] = "Enter a filename";						
 				}
+
+				// Validate arrangement
+				if(!empty($_POST['updatearrangement'])) {
+					$newArrangement = $_POST['updatearrangement'];
+					if(strlen($newArrangement) == 0)
+						$errors['updatearrangement'] = "Enter a arrangement";
+				} else {
+					$errors['updatearrangement'] = "Enter a arrangement";						
+				}
 				
 				// Validate Price
 				$hasPrice = false;
@@ -234,9 +248,9 @@
 						$query .= "WHERE imgID = $artworkID;";
 					} else {
 						// Insert Query
-						$query = "INSERT INTO imageData (title, media, yearCreated, filename";
+						$query = "INSERT INTO imageData (title, media, yearCreated, filename, arrangement";
 						if($hasPrice) $query .= ", price";								
-						$query .= ") VALUES ('$newTitle', '$newMedium', '$newYear', '$newFilename'";
+						$query .= ") VALUES ('$newTitle', '$newMedium', '$newYear', '$newFilename', '$newArrangement'";
 						if($hasPrice) $query .= ", '$newPrice'";
 						$query .= ");";
 						
