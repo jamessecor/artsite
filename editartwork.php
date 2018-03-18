@@ -232,6 +232,8 @@
 				if(!empty($_POST['updateprice'])) {
 					$newPrice = $_POST['updateprice'];
 					$hasPrice = true;
+					// Debugging
+					//$errors['newprice'] = "$newPrice $hasPrice";
 				} 
 										
 				$artworkID = $_POST['artworkid'];
@@ -241,13 +243,13 @@
 					$isNew = $_POST['isnew'];
 					if(!$isNew) {
 						// Update Query
-						$query = "UPDATE imageData SET 	title       = '$newTitle', 
-														media       = '$newMedium',
-														yearCreated = '$newYear'
-														filename    = '$newFilename'
+						$query = "UPDATE imageData SET	title = '$newTitle', 
+														media = '$newMedium',
+														yearCreated = '$newYear',
+														filename = '$newFilename',
 														arrangement = '$newArrangement'";
-						if($hasPrice) $query .= ", price = '$newPrice' ";												
-						$query .= "WHERE imgID = $artworkID;";
+						if($hasPrice) $query .= ", price = '$newPrice'";												
+						$query .= " WHERE imgID = $artworkID;";
 					} else {
 						// Insert Query
 						$query = "INSERT INTO imageData (title, media, yearCreated, filename, arrangement";
@@ -259,7 +261,7 @@
 					}
 					$queryResult = mysqli_query($db, $query);
 					if(!$queryResult) {
-						die("Update Error. Unable to access the database.");
+						die("Update Error. Unable to access the database." . mysqli_error($db));
 					} else {
 						?>
 						<table align="center">
