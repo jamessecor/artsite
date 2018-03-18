@@ -2,9 +2,8 @@
 include "header.php";
 session_start();
 include "checkLogin.php";
-echo "TEST";
-require "../../includes/artsiteConfig.php";
-require "../../includes/artsiteConnect.php";
+require "../includes/artsiteConfig.php";
+require "../includes/artsiteConnect.php";
 
 
 if(isset($_POST['login'])) {
