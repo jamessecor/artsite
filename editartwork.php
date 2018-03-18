@@ -222,9 +222,9 @@
 				if(!empty($_POST['updatearrangement'])) {
 					$newArrangement = $_POST['updatearrangement'];
 					if(strlen($newArrangement) == 0)
-						$errors['updatearrangement'] = "Enter a arrangement";
+						$errors['updatearrangement'] = "Enter an arrangement";
 				} else {
-					$errors['updatearrangement'] = "Enter a arrangement";						
+					$errors['updatearrangement'] = "Enter an arrangement";						
 				}
 				
 				// Validate Price
