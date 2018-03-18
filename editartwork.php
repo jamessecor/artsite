@@ -50,11 +50,11 @@
 						while($work = mysqli_fetch_assoc($artworkResult)) {
 							$n = $work['title'];
 							// Correct Updated Artwork for dropdown and display
-							if(isset($_POST['updatework']) && ($n == $_POST['oldtitle'] )) { //|| $show == $_POST['oldshownumber']) {
+							if(isset($_POST['updatework']) && ($n == $_POST['oldtitle'])) {
 								$n = $_POST['updatetitle'];
 							}						
+							
 							// Only display on Dropdown menu if not deleted
-							// TODO: this may need to change or be removed
 							if(!(isset($_POST['submitdeletion']) && $n == $_POST['oldtitle'])) {
 								if(isset($_POST['workSelected']) && $_POST['workSelected'] === $n)
 									print "<option value=\"${n}\" selected>$n</option>";
@@ -228,7 +228,6 @@
 						die("Update Error. Unable to access the database.");
 					} else {
 						?>
-						<hr>
 						<table align="center">
 							<tr>
 								<td>Artwork <?php echo $isNew ? "Inserted" : "Updated"; ?> Successfully!</td>
@@ -266,7 +265,6 @@
 					die("Deletion Failed. Try again or contact label people");
 				else {
 				?>
-					<hr>
 					<table align="center">
 						<tr>
 							<td>Deleted<?php echo " <em>$title</em>"; ?> Successfully!</td>
