@@ -101,7 +101,9 @@
 						if(isset($_POST['deletework']))
 							$disabled="disabled";
 					
-					// Show image					
+					// =========================================================
+					// ==================== EDIT or ADD NEW ====================
+					// =========================================================
 					if(!$isNew) {
 					?>					
 						<div class="col-md-offset-4">
@@ -131,6 +133,13 @@
 							<tr>
 								<td><input type="text" name="updateyear" value="<?php echo $isNew ? "" : "$editWork[yearCreated]";?>" <?php echo $disabled; ?>></td>
 							</tr>
+							<tr>
+								<th>Filename</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="updatefilename" value="<?php echo $isNew ? "" : "$editWork[filename]";?>" <?php echo $disabled; ?>></td>
+							</tr>
+
 							<tr>
 								<th>Price</th>
 							</tr>
@@ -195,6 +204,15 @@
 					$errors['updateyear'] = "Enter a year";						
 				}
 				
+				// Validate filename
+				if(!empty($_POST['updatefilename'])) {
+					$newFilename = $_POST['updatefilename'];
+					if(strlen($newFilename) == 0)
+						$errors['updatefilename'] = "Enter a filename";
+				} else {
+					$errors['updatefilename'] = "Enter a filename";						
+				}
+				
 				// Validate Price
 				$hasPrice = false;
 				if(!empty($_POST['updateprice'])) {
@@ -216,9 +234,9 @@
 						$query .= "WHERE imgID = $artworkID;";
 					} else {
 						// Insert Query
-						$query = "INSERT INTO imageData (title, media, yearCreated";
+						$query = "INSERT INTO imageData (title, media, yearCreated, filename";
 						if($hasPrice) $query .= ", price";								
-						$query .= ") VALUES ('$newTitle', '$newMedium', '$newYear'";
+						$query .= ") VALUES ('$newTitle', '$newMedium', '$newYear', '$newFilename'";
 						if($hasPrice) $query .= ", '$newPrice'";
 						$query .= ");";
 						
