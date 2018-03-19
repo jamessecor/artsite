@@ -4,21 +4,22 @@ session_start();
 include "checkLogin.php";
 require "../includes/artsiteConfig.php";
 require "../includes/artsiteConnect.php";
-?>
 
-<script>
-$(document).ready(function() {
-	$(".showPeeps").click(function() {
-		$(".peeps").html("<?php getEmailAddr(); ?>");
-	});
-});
-</script>
+// Returns an array of email addresses
+function getEmailAddr() {
+	global $db;
+	$query = "SELECT c_email FROM contacts;";
+	$result = mysqli_query($db, $query);
+	$emails = "";
+	while($email = mysqli_fetch_array($result))
+		$emails .= "$email[0]; ";	
+	return $emails;
+}
 
-<?php
 if(isset($_POST['login'])) {
 	// Username
-	if(!empty($_POST['username'])) {
-		$username = addslashes(trim(($_POST['username'])));
+	if(!empty($_POST['artsiteusername'])) {
+		$username = addslashes(trim(($_POST['artsiteusername'])));
 	}
 	
 	// Password
@@ -28,16 +29,23 @@ if(isset($_POST['login'])) {
 	
 	// Check them
 	if($username===$adminU && $password===$adminP) {
-		$_SESSION['username'] = $username;
+		$_SESSION['artsiteusername'] = $username;
 	}
 }
 
 // Log out button
 if(isset($_POST['logout'])) {
-	unset($_SESSION['username']);
-	header('Location: admin.php');
+	logout();	
 }
 ?>
+<script>
+$(document).ready(function() {
+	$(".showPeeps").click(function() {
+		$(".peeps").html("<?php if(isLoggedIn()) echo getEmailAddr(); ?>");
+	});
+});
+</script>
+
 <div class='container'>
 	<div class='row'>
 		<div class='col-md-8 col-md-offset-2 center-it'>
@@ -51,7 +59,7 @@ if(isset($_POST['logout'])) {
 					<form id="login" method="post" action="" autocomplete='off'>
 						<table align="center">
 							<tr><td>Username</td></tr>
-							<tr><td><input type="text" name="username"></td></tr>						
+							<tr><td><input type="text" name="artsiteusername"></td></tr>						
 							<tr><td>Password</td></tr>
 							<tr><td><input type="password" name="password"></td></tr>
 							<tr><td>&nbsp;</td></tr>
@@ -92,16 +100,4 @@ if(isset($_POST['logout'])) {
 </div>
 <?php
 include "footer.php";
-
-
-function getEmailAddr() {
-	global $db;
-	$query = "SELECT c_email FROM contacts;";
-	$result = mysqli_query($db, $query);
-	$emails = "";
-	while($email = mysqli_fetch_array($result))
-		$emails .= "$email[0]; ";
-	
-	echo $emails;
-}
 ?>
