@@ -113,7 +113,18 @@
 					}
 					?>
 					<form id="updateform" method="post" action="">
-						<table align="center">								
+						<table align="center">
+							<?php if($disabled !== "disabled") { ?>
+							<tr>
+								<th>Filename</th>
+							</tr>
+							<tr>
+								<td>
+									<input type='file' name='updatefilename'>
+									<input type="checkbox" name="bypassupload">Bypass Image Upload
+								<?php } ?>
+								</td>
+							</tr>
 							<tr>
 								<th>Title</th>
 							</tr>
@@ -132,12 +143,6 @@
 							</tr>
 							<tr>
 								<td><input type="text" name="updateyear" value="<?php echo $isNew ? "" : "$editWork[yearCreated]";?>" <?php echo $disabled; ?>></td>
-							</tr>
-							<tr>
-								<th>Filename</th>
-							</tr>
-							<tr>
-								<td><input type="text" name="updatefilename" value="<?php echo $isNew ? "" : "$editWork[filename]";?>" <?php echo $disabled; ?>></td>
 							</tr>
 							<tr>
 								<th>Arrangement</th>
@@ -168,9 +173,11 @@
 								<td><input type="submit" value="<?php echo "$value"; ?>" name="<?php echo "$name"; ?>"></td>
 							</tr>
 							<tr>
-								<td><input type="hidden" name="artworkid" value="<?php echo $workID; ?>" display="none">
-								<input type="hidden" name="oldtitle" value="<?php echo $editWork['title']; ?>">
-								<input type="hidden" name="isnew" value="<?php echo $isNew; ?>">
+								<td>
+									<input type="hidden" name="artworkid" value="<?php echo $workID; ?>">
+									<input type="hidden" name="oldtitle" value="<?php echo $editWork['title']; ?>">
+									<input type="hidden" name="oldfilename" value="<?php echo $editWork['filename']; ?>">
+									<input type="hidden" name="isnew" value="<?php echo $isNew; ?>">
 								</td>
 								
 							</tr>
@@ -183,6 +190,21 @@
 				// ===========================================================
 				// ===================== INSERT or UPDATE ====================
 				// ===========================================================
+				// Set bypassUpload if it's set
+				$bypassUpload = isset($_POST['bypassupload']);
+				
+				// If not bypassed
+				if(!$bypassUpload) {
+					// Validate filename
+					print_r($_FILES);
+					if(empty($_FILES['updatefilename'])) {
+						$errors['filename'] = "$_FILES[updatefilename] Please Select a File.";
+					} else {
+						$newFilename = basename($_FILES["updatefilename"]["name"]);
+						$errors['file'] = $newFilename;
+					}
+				}
+								
 				// Validate Title
 				if(!empty($_POST['updatetitle'])) {
 					$newTitle = addslashes(trim($_POST['updatetitle']));
@@ -209,15 +231,6 @@
 					$errors['updateyear'] = "Enter a year";						
 				}
 				
-				// Validate filename
-				if(!empty($_POST['updatefilename'])) {
-					$newFilename = $_POST['updatefilename'];
-					if(strlen($newFilename) == 0)
-						$errors['updatefilename'] = "Enter a filename";
-				} else {
-					$errors['updatefilename'] = "Enter a filename";						
-				}
-
 				// Validate arrangement
 				if(!empty($_POST['updatearrangement'])) {
 					$newArrangement = $_POST['updatearrangement'];
@@ -243,10 +256,15 @@
 						// Update Query
 						$query = "UPDATE imageData SET	title = '$newTitle', 
 														media = '$newMedium',
-														yearCreated = '$newYear',
-														filename = '$newFilename',
+														yearCreated = '$newYear', 
 														arrangement = '$newArrangement'";
+						
+						// Insert new filename unless bypassed
+						if(!$bypassUpload) $query .= ", filename = '$newFilename'";
+						
+						// Insert new price if has price
 						if($hasPrice) $query .= ", price = '$newPrice'";												
+						
 						$query .= " WHERE imgID = $artworkID;";
 					} else {
 						// Insert Query
@@ -261,6 +279,7 @@
 					if(!$queryResult) {
 						die("Update Error. Unable to access the database." . mysqli_error($db));
 					} else {
+						uploadImage($newFilename);
 						?>
 						<table align="center">
 							<tr>
@@ -273,10 +292,15 @@
 							$newTitle = str_replace("\'", "'", $newTitle);
 							$newMedium = str_replace("\'", "'", $newMedium);
 						}
+						// Only show image if uploaded
+						if($bypassUpload) $newFilename = $_POST['oldfilename'];
+						?><table align="center"><tr><td><?php
+						print "<img class='img-responsive center-it thumbnail' src='../img/$newFilename' alt='Image Loading Error'>";
 						print "<p>$newTitle, $newYear</br>$newMedium</br>";
 						if($hasPrice)
 							echo "$newPrice";
 						echo "</p>";
+						?></td></tr></table><?php
 					}
 				} else {
 					print_r($errors);
