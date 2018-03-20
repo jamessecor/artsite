@@ -122,7 +122,7 @@ body {
 
 .center-it { text-align:center; }
 
-.thumbnail { width: 15em; display:block; }
+.thumbnail { width: 15em; display:inline; }
 
 .errorText {
 	color:#39d;
