@@ -102,7 +102,7 @@ if(!$artworkResult) {
 					$disabled="disabled";
 			
 			// =========================================================
-			// ==================== EDIT or ADD NEW ====================
+			// ================ EDIT or ADD NEW Form ===================
 			// =========================================================
 			if(!$isNew) { ?>
 				&nbsp;	
@@ -193,8 +193,8 @@ if(!$artworkResult) {
 		// If not bypassed
 		if(!$bypassUpload) {
 			// Validate filename
-			if(empty($_FILES['updatefilename'])) {
-				$errors['filename'] = "$_FILES[updatefilename] Please Select a File.";
+			if(empty($_FILES['updatefilename']['name'])) {
+				$errors['filename'] = "Please Select a File.";
 			} else {
 				$newFilename = $_FILES["updatefilename"]["name"];
 			}
@@ -244,6 +244,7 @@ if(!$artworkResult) {
 								
 		$artworkID = $_POST['artworkid'];
 		
+		$validUpdate = false;
 		if(count($errors) === 0) {
 			// Upload image if not bypassed
 			if(!$bypassUpload) {
