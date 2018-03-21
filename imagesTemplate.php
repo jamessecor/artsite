@@ -7,11 +7,14 @@ require "../dbconfig/dbconnect.php";
 		global $db;
 		// Database Retrieval of Titles/Filenames
 		$query = "";
+		// For homepage, year = 0
 		if($year===0) {
-			$query = "SELECT title, yearCreated, media, filename, buyerID FROM imageData WHERE isHomePage = true ORDER BY arrangement;";
+			$whereClause = " isHomePage = true ORDER BY arrangement";
 		} else {
-			$query = "SELECT title, yearCreated, media, filename, buyerID FROM imageData WHERE yearCreated = '$year' AND NOT(arrangement = -1) ORDER BY arrangement;";
+			$whereClause = "yearCreated = '$year' AND NOT(arrangement = -1) ORDER BY arrangement";
 		}
+		$query = "SELECT title, yearCreated, media, filename, buyerID, price FROM imageData WHERE " . $whereClause . ";";
+		
 		$data = mysqli_query($db, $query);
 		if(!$data) {
 			print "Images could not be retrieved.";
@@ -23,18 +26,15 @@ require "../dbconfig/dbconnect.php";
 				$row = mysqli_fetch_assoc($data);
 				if($row) {
 					$filepath = "../img/" . $row['filename'];
-					print "<a href='$filepath' target='blank'><img class='img-responsive' src='$filepath' alt='Image Loading Error'></a>";
-					print "<div class='text' id='label'><strong>$row[title]</strong>, $row[yearCreated]<br>$row[media]";
-					/*
-					// New Code
-					if($row[buyerID]) != NULL) {
-						print "sold";
-					} // else {
-						// print "$row[price]";
-					// }
-					// End New Code
-					*/
-					print "</div><br><br>";
+					
+					$price = "";
+					if($row['buyerID'] || $row['price'])
+						$price = $row['buyerID'] ? "sold" : "$$row[price]";
+					print "<div class='priceTag'><a href='$filepath' target='blank'><img class='img-responsive' src='$filepath' alt='Image Loading Error'></a>";
+					print "<div class='text' ><strong>$row[title]</strong>, $row[yearCreated]<br>$row[media]";
+					if($price !== "")
+						print "<span class='priceTagText'>${price}</span>";
+					print "</div></div><br><br>";
 				}
 			}
 			?>
