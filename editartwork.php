@@ -104,9 +104,15 @@ if(!$artworkResult) {
 			// =========================================================
 			// ================ EDIT or ADD NEW Form ===================
 			// =========================================================
-			if(!$isNew) { ?>
+			if(!$isNew) { 
+				$path="";
+				if($editWork['arrangement'] == -1)
+					$path = "../nomophobiaImages/";
+				else
+					$path = "../img/";
+				?>
 				&nbsp;	
-				<div><img class="img-responsive center-it thumbnail" src="../img/<?php echo $imgLocation; ?>" alt="Image Loading Error"></div>				
+				<div><img class="img-responsive center-it thumbnail" src="<?php echo "$path$imgLocation"; ?>" alt="Image Loading Error"></div>				
 			<?php } ?>
 			
 			<form id="updateform" method="post" action="" enctype="multipart/form-data">
