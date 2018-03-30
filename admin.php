@@ -85,7 +85,7 @@ $(document).ready(function() {
 		</div>
 	</div>
 	<!-- <div class='row'>-->
-		<div class='col-md-8 col-md-offset-8 center-it'>
+		<div class='col-md-2 col-md-offset-8 center-it'>
 			<form method="post" action="">
 				<table>
 					<tr><td>&nbsp;</td></tr>
@@ -94,6 +94,7 @@ $(document).ready(function() {
 							<input type="submit" name="logout" value="Log Out">
 						</td>
 					</tr>
+					<tr><td>&nbsp;</td></tr>
 				</table>
 			</form>
 		</div>
