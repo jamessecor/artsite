@@ -17,7 +17,7 @@ $query = "SELECT *
 $artworkResult = mysqli_query($db, $query);
 
 if(!$artworkResult) {
-	die("Connection error. " . mysqli_connect_error());
+	die("Connection error: select query. " . mysqli_connect_error());
 } else { // got artwork
 	// Dropdown showing pieces to edit and edit button
 	?>
@@ -159,6 +159,11 @@ if(!$artworkResult) {
 					<tr>
 						<td><input type="text" name="updateprice" value="<?php echo $isNew ? "" : "$editWork[price]";?>" <?php echo $disabled; ?>></td>
 					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" name="ishomepage" <?php echo $editWork['isHomePage'] ? "Checked" : "" ?>>Put on homepage
+						</td>
+					</tr>
 					<?php 
 					$ok = "	<tr>
 								<td><small class='errorText'>Selecting \"Delete\" will remove this piece from the database.</small></td>
@@ -247,6 +252,10 @@ if(!$artworkResult) {
 			$newPrice = $_POST['updateprice'];
 			$hasPrice = true;
 		} 
+		
+		// Set isHomePage if it's set
+		$isHomePage = isset($_POST['ishomepage']);
+
 								
 		$artworkID = $_POST['artworkid'];
 		
@@ -264,7 +273,8 @@ if(!$artworkResult) {
 				$query = "UPDATE imageData SET	title = '$newTitle', 
 												media = '$newMedium',
 												yearCreated = '$newYear', 
-												arrangement = '$newArrangement'";
+												arrangement = '$newArrangement',
+												isHomePage = '$isHomePage'";
 				
 				// Insert new filename unless bypassed
 				if(!$bypassUpload) $query .= ", filename = '$newFilename'";
@@ -275,9 +285,9 @@ if(!$artworkResult) {
 				$query .= " WHERE imgID = $artworkID;";
 			} else {
 				// Insert Query, filename is required
-				$query = "INSERT INTO imageData (title, media, yearCreated, filename, arrangement";
+				$query = "INSERT INTO imageData (title, media, yearCreated, filename, arrangement, isHomePage";
 				if($hasPrice) $query .= ", price";								
-				$query .= ") VALUES ('$newTitle', '$newMedium', '$newYear', '$newFilename', '$newArrangement'";
+				$query .= ") VALUES ('$newTitle', '$newMedium', '$newYear', '$newFilename', '$newArrangement', '$isHomePage'";
 				if($hasPrice) $query .= ", '$newPrice'";
 				$query .= ");";
 				

@@ -155,11 +155,13 @@ body {
 
 
 
-.text {
+.text, .cv-text{
 	position:relative;
 	margin:0em 1em 0em 1em ;
 	color:rgba(100,100,150,.8);
 }
+
+.text { text-align:center; }
 
 .imgButtons {
 	position:relative;

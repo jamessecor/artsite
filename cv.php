@@ -3,7 +3,7 @@ include "header.php";
 ?>
 <div class="container">
 	<div id='success'>
-		<div class="text">
+		<div class="cv-text">
 			<p>
 				<strong>
 					Education
