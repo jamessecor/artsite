@@ -1,6 +1,6 @@
 <?php
 function uploadFile() {
-	$target_dir = "../img/";
+	$target_dir = "./img/";
 	$target_file = $target_dir . basename($_FILES["updatefilename"]["name"]);
 	$uploadOk = 1;
 	
@@ -70,7 +70,7 @@ function uploadFile() {
 	} else {
 		if (move_uploaded_file($_FILES["updatefilename"]["tmp_name"], $target_file)) {
 			$filename = basename($_FILES["updatefilename"]["name"]);
-			$imgLocation = "../img/" . $filename;			
+			$imgLocation = "./img/" . $filename;			
 		} else {
 			echo "There was an error uploading your file.";
 		}
