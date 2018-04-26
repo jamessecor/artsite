@@ -254,7 +254,7 @@ if(!$artworkResult) {
 		} 
 		
 		// Set isHomePage if it's set
-		$isHomePage = isset($_POST['ishomepage']);
+		$isHomePage = isset($_POST['ishomepage']) ? 1 : 0;
 
 								
 		$artworkID = $_POST['artworkid'];
