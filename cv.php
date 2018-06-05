@@ -21,7 +21,8 @@ include "header.php";
 			</p>
 
 			<p>
-				<em>#nomophobia</em>, Studio Place Arts, Barre, VT, Mar-Apr 2017
+				<em>Untitled</em>, Aldrich Public Library, Barre, VT, April 2018-
+				<br><em>#nomophobia</em>, Studio Place Arts, Barre, VT, Mar-Apr 2017
 				<br><em>In the Cracks</em>, The Blinking Light Gallery, Plainfield, VT, Jan-Feb 2017
 				<br><em>Untitled</em>, The Daily Planet, Burlington, VT, Nov 2016-Jan 2017
 				<br><em>Local Scenery</em>, Greensboro Free Library, Greensboro, VT. March-May 2016
@@ -46,6 +47,16 @@ include "header.php";
 				<br><em>Art Resource Association Group Shows</em>, Montpelier, VT, 2012-2013
 				<br><em>20-30, 2D-3D</em>, Chandler Center for the Arts Gallery, Randolph, VT, 2013
 				<br><em>Senior Show</em>, Houghton House, Geneva, NY, 2010
+			</p>
+			
+			<p>
+				<strong>
+					Residency Participation
+				</strong>
+			</p>
+
+			<p>
+				VT Artists Week, Vermont Studio Center, Johnson, VT, 2018 
 			</p>
 		</div>
 	</div>
