@@ -25,15 +25,20 @@ require "../dbconfig/dbconnect.php";
 			for($i = 0; $i < $numrows; $i++) {
 				$row = mysqli_fetch_assoc($data);
 				if($row) {
+					// TODO: make filepath a parameter so you can use different folders
 					$filepath = "../img/" . $row['filename'];
 					
 					$price = "";
 					if($row['buyerID'] || $row['price'])
 						$price = $row['buyerID'] ? "sold" : "$$row[price]";
 					print "<div class='priceTag'><a href='$filepath' target='blank'><img class='img-responsive' src='$filepath' alt='Image Loading Error'></a>";
-					print "<div class='text' ><strong>$row[title]</strong>, $row[yearCreated]<br>$row[media]";
+					print "<div style='height:.5em'>&nbsp;</div>";
+					// Image Info
+					$info = "<div class='text' ><strong>$row[title]</strong>, $row[yearCreated]<br>$row[media]";
 					if($price !== "")
-						print "<span class='priceTagText'>${price}</span>";
+						$info .= "<br>${price}";
+					print $info;
+
 					print "</div></div><br><br>";
 				}
 			}

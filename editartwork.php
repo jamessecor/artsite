@@ -5,6 +5,7 @@
 $errors = array();
 $selected = "";
 $selectedTitle = ""; 
+$selectedID = 0;
 $selectWork = "";
 $disabled="";
 $validWork=false;
@@ -35,7 +36,7 @@ if(!$artworkResult) {
 					if(!empty($_POST['workSelected'])) {
 						global $selectedTitle;
 						$s = $_POST['workSelected'];
-						$selectedTitle = addslashes(trim($_POST['workSelected']));
+						$selectedID = $_POST['workSelected'];
 					} else {
 						$errors['validwork'] = "Choose a work to edit or delete.";
 					}
@@ -49,6 +50,7 @@ if(!$artworkResult) {
 				
 				while($work = mysqli_fetch_assoc($artworkResult)) {
 					$n = $work['title'];
+					$id = $work['imgID'];
 					// Correct Updated Artwork for dropdown and display
 					if(isset($_POST['updatework']) && ($n == $_POST['oldtitle'])) {
 						$n = $_POST['updatetitle'];
@@ -57,9 +59,9 @@ if(!$artworkResult) {
 					// Only display on Dropdown menu if not deleted
 					if(!(isset($_POST['submitdeletion']) && $n == $_POST['oldtitle'])) {
 						if(isset($_POST['workSelected']) && $_POST['workSelected'] === $n)
-							print "<option value=\"${n}\" selected>$n</option>";
+							print "<option value=\"${id}\" selected>$n</option>";
 						else
-							print "<option value=\"${n}\">$n</option>";
+							print "<option value=\"${id}\">$n</option>";
 					}
 				}
 				?>
@@ -78,14 +80,14 @@ if(!$artworkResult) {
 	<?php 					
 	if($validWork && (isset($_POST['editwork']) || isset($_POST['deletework']))) {
 		// TODO: validate entry
-		// include showNumber in where clause to be sure we have the correct piece
 		$isNew = false;
 		if(isset($_POST['workSelected']) && $_POST['workSelected'] === "newWork") 
 			$isNew = true;
 			
+		
 		$editQuery = "SELECT *
 				  FROM imageData 
-				  WHERE title = '$selectedTitle';";
+				  WHERE imgID = '$selectedID';";
 		
 		$editResult = mysqli_query($db, $editQuery);
 		if(!$editResult) {
@@ -110,6 +112,10 @@ if(!$artworkResult) {
 					$path = "../nomophobiaImages/";
 				else
 					$path = "../img/";
+				
+				// Enable "" in title and media
+				$htmlTitle = htmlentities($editWork['title']);
+				$htmlMedia = htmlentities($editWork['media']);
 				?>
 				&nbsp;	
 				<div><img class="img-responsive center-it thumbnail" src="<?php echo "$path$imgLocation"; ?>" alt="Image Loading Error"></div>				
@@ -132,14 +138,14 @@ if(!$artworkResult) {
 						<th>Title</th>
 					</tr>
 					<tr>
-						<td><input type="text" name="updatetitle" value="<?php echo $isNew ? "" : "$editWork[title]";?>" <?php echo $disabled; ?>></td>
+						<td><input type="text" name="updatetitle" value="<?php echo $isNew ? "" : $htmlTitle;?>" <?php echo $disabled; ?>></td>
 						<td><small class='errorText'><?php echo array_key_exists('updatetitle',$errors) ? $errors['updatetitle'] : ''; ?></small></td>
 					</tr>
 					<tr>
 						<th>Medium</th>
 					</tr>
 					<tr>
-						<td><input type="text" name="updatemedium" value="<?php echo $isNew ? "" : "$editWork[media]";?>" <?php echo $disabled; ?>></td>
+						<td><input type="text" name="updatemedium" value="<?php echo $isNew ? "" : $htmlMedia;?>" <?php echo $disabled; ?>></td>
 					</tr>
 					<tr>
 						<th>Year</th>
