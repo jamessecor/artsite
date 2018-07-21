@@ -193,10 +193,14 @@ input[type="submit"]:hover, button:hover, #toTop:hover {
 	text-decoration:none;
 }
 
-input[type="text"]:disabled {
+input[type="text"]:disabled{
     border: none;
 	background-color: #ddd;
 	color: #eea9b9;
+}
+
+select:disabled {
+	background: solid black;
 }
 
 /*

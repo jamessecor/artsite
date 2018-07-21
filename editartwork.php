@@ -2,6 +2,8 @@
 // editartwork.php
 // author jrs
 // 2018
+include "utility.php";
+
 $errors = array();
 $selected = "";
 $selectedTitle = ""; 
@@ -11,11 +13,7 @@ $disabled="";
 $validWork=false;
 		
 // Get member's artwork info from database
-$query = "SELECT * 
-		  FROM imageData 
-		  
-		  ORDER BY title;";
-$artworkResult = mysqli_query($db, $query);
+$artworkResult = selectQuery($db, "*", "imageData", "1", "title");
 
 if(!$artworkResult) {
 	die("Connection error: select query. " . mysqli_connect_error());
@@ -85,11 +83,7 @@ if(!$artworkResult) {
 			$isNew = true;
 			
 		
-		$editQuery = "SELECT *
-				  FROM imageData 
-				  WHERE imgID = '$selectedID';";
-		
-		$editResult = mysqli_query($db, $editQuery);
+		$editResult = selectQuery($db, "*", "imageData", "imgID = '$selectedID'", "1");
 		if(!$editResult) {
 			die("Database error here.");
 		} else {
@@ -166,8 +160,34 @@ if(!$artworkResult) {
 						<td><input type="text" name="updateprice" value="<?php echo $isNew ? "" : "$editWork[price]";?>" <?php echo $disabled; ?>></td>
 					</tr>
 					<tr>
+						<th>Buyer</th>
+					</tr>
+					<tr>
 						<td>
-							<input type="checkbox" name="ishomepage" <?php echo $editWork['isHomePage'] ? "Checked" : "" ?>>Put on homepage
+							<select name="updatebuyer" <?php echo " $disabled "; ?>>
+							<option value="">Select...</option>
+							<?php 
+							$contactResults = selectQuery($db, "c_id,c_name,c_lastname", "contacts", "1", "c_name");
+							if(!$contactResults) {
+								die("Contacts could not be retrieved");
+							} else {
+								while($contact = mysqli_fetch_assoc($contactResults)) {									
+									$contactID = $contact['c_id'];									
+									$firstname = $contact['c_name'];
+									$lastname = $contact['c_lastname'];
+									if($editWork['buyerID'] === $contactID)
+										echo "<option value='$contactID' selected>$firstname $lastname</option>";
+									else
+										echo "<option value='$contactID'>$firstname $lastname</option>";
+								}
+							}							
+							?>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" name="ishomepage" <?php echo $editWork['isHomePage'] ? "Checked" : ""; echo " $disabled "; ?>>Put on homepage
 						</td>
 					</tr>
 					<?php 
@@ -259,6 +279,13 @@ if(!$artworkResult) {
 			$hasPrice = true;
 		} 
 		
+		// Validate Buyer
+		$hasBuyer = false;
+		if(!empty($_POST['updatebuyer'])) {
+			$newBuyer = $_POST['updatebuyer'];
+			$hasBuyer = true;
+		} 
+		
 		// Set isHomePage if it's set
 		$isHomePage = isset($_POST['ishomepage']) ? 1 : 0;
 
@@ -286,15 +313,20 @@ if(!$artworkResult) {
 				if(!$bypassUpload) $query .= ", filename = '$newFilename'";
 				
 				// Insert new price if has price
-				if($hasPrice) $query .= ", price = '$newPrice'";												
+				if($hasPrice) $query .= ", price = '$newPrice'";	
+
+				// Insert new buyer if has buyer
+				if($hasBuyer) $query .= ", buyerID = '$newBuyer'";
 				
 				$query .= " WHERE imgID = $artworkID;";
 			} else {
 				// Insert Query, filename is required
 				$query = "INSERT INTO imageData (title, media, yearCreated, filename, arrangement, isHomePage";
-				if($hasPrice) $query .= ", price";								
+				if($hasPrice) $query .= ", price";
+				if($hasBuyer) $query .= ", buyerID";
 				$query .= ") VALUES ('$newTitle', '$newMedium', '$newYear', '$newFilename', '$newArrangement', '$isHomePage'";
 				if($hasPrice) $query .= ", '$newPrice'";
+				if($hasBuyer) $query .= ", '$newBuyer'";
 				$query .= ");";
 				
 			}
@@ -321,6 +353,13 @@ if(!$artworkResult) {
 				print "<p>$newTitle, $newYear</br>$newMedium</br>";
 				if($hasPrice)
 					echo "$newPrice";
+				if($hasBuyer) {
+					$nameResult = selectQuery($db, "c_name,c_lastname", "contacts", "c_id = $newBuyer", "1");
+					if($nameResult) {
+						$names = mysqli_fetch_array($nameResult);
+						echo (count($names) > 1) ? "</br>(Purchased by $names[0] $names[1])" : "</br>(Purchased by $names[0])";
+					}					
+				}
 				echo "</p>";
 				?></td></tr></table><?php
 			}
