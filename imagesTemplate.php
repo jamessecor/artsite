@@ -30,7 +30,7 @@ require "../dbconfig/dbconnect.php";
 					
 					$price = "";
 					if($row['buyerID'] || $row['price'])
-						$price = $row['buyerID'] ? "sold" : "$$row[price]";
+						$price = $row['buyerID'] ? "NFS" : "$$row[price]";
 					print "<div class='priceTag'><a href='$filepath' target='blank'><img class='img-responsive' src='$filepath' alt='Image Loading Error'></a>";
 					print "<div style='height:.5em'>&nbsp;</div>";
 					// Image Info
