@@ -121,7 +121,6 @@ $(document).ready(function() {
 			
 		</div>		
 	</div>
-	I'm still yours when animate to open back up
 <!--</div>-->
 
 <?php
