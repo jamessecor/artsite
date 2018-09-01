@@ -70,6 +70,8 @@ $(document).ready(function() {
 					} else { 
 					// Logged In
 					include "editartwork.php";
+					print "<hr>";
+					include "editcontacts.php";
 					?>
 					&nbsp;
 					<div class="row">

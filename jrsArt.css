@@ -23,6 +23,7 @@ body {
 }
 
 /* Navbar Changes */
+.navbar { border:none; border-radius:0; }
 
 .navbar-default,
 .navbar-default .navbar-nav .open .dropdown-toggle,
