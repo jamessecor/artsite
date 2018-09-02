@@ -6,31 +6,53 @@ include "./header.php";
 ?>
 <script src='../jrsArt.js'></script>
 <script language="JavaScript">
+// Initialize balance for balance-amt in navbar
+var balance = 0;
+var receivedDebtMsg = false;
+
+// List of nouns
+var nouns = [ "antique china set", "croquet set", "old tv", "new tv", "golf stuff", "orange gatorade (50 pk)", "wood stove", "coffee table", "grandma's bedframe", "tea set", "ice skates", "beer-making kit", "bureau", "old lamps", "toolkit", "set of wrenches", "speakers" ];
 
 // recursive function to get the next 
 function animateBox(index, color) {
 	var rowId = "#row" + index;
-	// Style and show next box
-	if(index > 0) {
-		
-
-		
-	}
 	var wordsId = "#words" + index;		
+	var itemTextId = "#item-text" + index;
+	var valueTextId = "#value-text" + index;
 	$(rowId).css("display", "block").css("background-color", color); // Very different with "inline-block"
-	$(wordsId).css("font-size", "5em");// height:2em; color:blue;
-	$(wordsId).click(function() {
-		$(this).animate({
+	var randomAmt = Math.ceil(Math.random() * 1000);
+	$(itemTextId).html("Item " + (index + 1) + ": " + nouns[Math.floor(Math.random() * nouns.length)]);
+	$(valueTextId).html("ONLY $" + randomAmt + "!");
+	
+	//=============================
+	// 			Add To Unit
+	// =============================
+	$("#add-to-unit" + index).click(function() {
+		balance = balance - randomAmt;
+		if(balance < 0 && !receivedDebtMsg) {
+			$("#balance-amt").css("border", "3px dotted #ff0")
+			if(!confirm("Uh Oh! You're in debt. Continue Buying?")) {
+				return 0;
+			}
+			receivedDebtMsg = true;
+		} else if(balance < -2000) {
+			
+		}
+		$("#balance-amt").html("Your Balance $" + balance);
+		
+		$(wordsId).animate({
 			opacity: 0.25,
 			left: "+=50",
 			height: "toggle"
 		}, 1000, function() {
 			//$(".navbar.navbar-default").css("background-color", "red");
 			if(index < Math.floor(Math.random() * 20)) {
+			//if(false) {  // Debugging
 				// get the new background-color
-				var currentBorderCss = $(rowId).css("border");			
+				var currentBorderCss = $(rowId).css("border-color");			
 				var newBackgroundColor = currentBorderCss.substring(currentBorderCss.indexOf("rgb"));			
-				animateBox(index + 1, newBackgroundColor);
+				console.log(newBackgroundColor);
+				animateBox(index + 1, "");
 			} else {
 				if(confirm("You've won!!! Want to see your prize? Click cancel to continue buying.")) {
 					$(".winner-images").animate({
@@ -39,28 +61,46 @@ function animateBox(index, color) {
 						left: "+=50",
 						height: "toggle"
 					}, 100, function() {
-						//$(this).css("display", "inline");
+						$("#winner-msg").html("Congratulations! All your storage units are now full! You win.").css("display", "inline");
 					});
 				} else {
 					animateBox(index + 1, newBackgroundColor);
 				}				
 			}
+		});		
+	});
+	
+	// =============================
+	// 			Trash It
+	// =============================
+	$("#trash-it" + index).click(function() {
+		$(wordsId).animate({
+			opacity: 0.25,
+			left: "+=50",
+			height: "toggle"
+		}, 1000, function() {
+			animateBox(index + 1, "");
 		});
 	});
 }
 // End recursive function
-// Begin navbar changes
+
+// navbar color shifts
 function transitionNavbar() {
     $(".navbar.navbar-default").css("background-color", "rgb(" + (Math.random() * 50 + 200) + "," + Math.random() * 30 + "," + (Math.random() * 40 + 100) + ")");
 }
-// end navbar changes
 
-
-$(document).ready(function() {
+// ====================
+// Document ready BEGIN
+// ====================
+$(document).ready(function() {	
+	balance = 1000;
+	$("#balance-amt").html("Your Balance $" + balance).css("border", "3px dotted #4e9").css("padding", "0 10px").css("color", "#ff0").css("right", "8em");
 	$(".navbar").css("margin-bottom", "0").css("border", "none");
-	
+
 	// Hide winner-images
 	$(".winner-images").css("display", "none");
+	$("#winner-msg").css("display", "none");
 	
 	// Navbar color change
 	setInterval(transitionNavbar, 400);
@@ -103,7 +143,12 @@ $(document).ready(function() {
 	for($i = 0; $i < 50; $i++) {
 	?>
 	<div id="row<?php echo $i; ?>" height="5em" class="row flashingRow">
-		<div id="words<?php echo $i; ?>" align="center">[Click to Buy]</div>
+		<div id="words<?php echo $i; ?>" align="center">
+			<div class="sale-text" id="item-text<?php echo $i; ?>"></div>
+			<div class="sale-text" id="value-text<?php echo $i; ?>"></div>		
+			<button class="decision-buttons" id="add-to-unit<?php echo $i; ?>">Add to Storage Unit</button>
+			<button class="decision-buttons" id="trash-it<?php echo $i; ?>">Trash It</button>
+		</div>
 	</div>
 	<?php
 	}
@@ -117,8 +162,7 @@ $(document).ready(function() {
 			}
 			?>
 			<img style="width:100%; position:fixed; top:7em; right:0; z-index:-1;" src="<?php echo $imageSrc; ?>" alt="nope">
-			
-			
+			<div id="winner-msg"></div>
 		</div>		
 	</div>
 <!--</div>-->

@@ -188,6 +188,33 @@ input[type="submit"], td input, td textarea, #toTop, select, .showPeeps {
 	
 ::placeholder { color: var(--nav-color); }
 
+/** As Not Seen Only **/
+.decision-buttons { 
+	background-color: #44f; 
+	color: #fc3; 
+	
+	border: 2px dotted #f00;
+}
+
+#winner-msg {
+	top: 25%;
+	text-align: center;
+	position: absolute;
+	background-color: #ff0;
+	color: #f33;
+	border: 5em solid #f0f;
+	border-radius: 20em;
+	padding: 3em;
+	font-weight: bold;
+	text-align: center;
+}
+
+.sale-text { font-weight: bold; }
+[id^="item-text"] { font-size: 1.5em; color: #0a4; }
+[id^="value-text"] { font-size: 5em; color: #f00; }
+
+/** end As Not Seen Only **/
+
 input[type="submit"]:hover, button:hover, #toTop:hover {
 	background-color: var(--nav-color);
 	color: var(--nav-background-color);

@@ -59,6 +59,7 @@
 				</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
+				<li class="navbar-text" id="balance-amt"></li>
 				<li class="navbar-text">James Secor &copy; 2017</li>
 			</ul>
 			</div>
