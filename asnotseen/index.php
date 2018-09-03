@@ -46,8 +46,8 @@ function animateBox(index, color) {
 			height: "toggle"
 		}, 1000, function() {
 			//$(".navbar.navbar-default").css("background-color", "red");
-			//if(index < Math.floor(Math.random() * 20)) {
-			if(false) {  // Debugging
+			if(index < Math.floor(Math.random() * 20)) {
+			//if(false) {  // Debugging
 				// get the new background-color
 				var currentBorderCss = $(rowId).css("border-color");			
 				var newBackgroundColor = currentBorderCss.substring(currentBorderCss.indexOf("rgb"));			
