@@ -210,9 +210,10 @@ input[type="submit"], td input, td textarea, #toTop, select, .showPeeps {
 }
 
 .sale-text { font-weight: bold; }
-[id^="item-text"] { font-size: 1.5em; color: #0a4; }
+[id^="item-text"] { font-size: 1.5em; color: #257; background-color: rgba(200, 50, 50, .2); }
 [id^="value-text"] { font-size: 5em; color: #f00; }
-
+#balance-amt { color: #364; font-weight: bold; }
+#balance-bar { height:2em; background-color: #5ac; text-align: center; }
 /** end As Not Seen Only **/
 
 input[type="submit"]:hover, button:hover, #toTop:hover {

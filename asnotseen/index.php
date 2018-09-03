@@ -95,7 +95,7 @@ function transitionNavbar() {
 // ====================
 $(document).ready(function() {	
 	balance = 1000;
-	$("#balance-amt").html("Your Balance $" + balance).css("border", "3px dotted #4e9").css("padding", "0 10px").css("color", "#ff0").css("right", "8em");
+	$("#balance-amt").html("Your Balance $" + balance).css("border", "3px dotted #4e9").css("padding", "0 10px");
 	$(".navbar").css("margin-bottom", "0").css("border", "none");
 
 	// Hide winner-images
@@ -138,6 +138,9 @@ $(document).ready(function() {
 
 </script>
 <!--<div class='container'>-->
+	<div id="balance-bar">
+		<span id="balance-amt"></span>
+	</div>
 	<?php 
 	// Create Objects to buy
 	for($i = 0; $i < 50; $i++) {
