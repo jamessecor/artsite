@@ -46,8 +46,8 @@ function animateBox(index, color) {
 			height: "toggle"
 		}, 1000, function() {
 			//$(".navbar.navbar-default").css("background-color", "red");
-			if(index < Math.floor(Math.random() * 20)) {
-			//if(false) {  // Debugging
+			//if(index < Math.floor(Math.random() * 20)) {
+			if(false) {  // Debugging
 				// get the new background-color
 				var currentBorderCss = $(rowId).css("border-color");			
 				var newBackgroundColor = currentBorderCss.substring(currentBorderCss.indexOf("rgb"));			
@@ -61,7 +61,7 @@ function animateBox(index, color) {
 						left: "+=50",
 						height: "toggle"
 					}, 100, function() {
-						$("#winner-msg").html("Congratulations! All your storage units are now full! You win.").css("display", "inline");
+						$("#winner-msg").html("Congratulations! All your storage units are now full! You win.<br><a href=\"https://www.google.com/search?q=storage+units+near+me\" target=\"_blank\">Find Nearby Storage for My Stuff.</a>").css("display", "inline");
 					});
 				} else {
 					animateBox(index + 1, newBackgroundColor);
