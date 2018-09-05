@@ -30,7 +30,7 @@ if(isLoggedIn()) {
 if(isset($_GET['new-position']) && isset($_GET['imgID'])) {
 	$newArrangement = $_GET['new-position'];
 	$imgID = $_GET['imgID'];
-	$updateArrangement = "UPDATE imagedata SET arrangement='$newArrangement' WHERE imgID='$imgID';";
+	$updateArrangement = "UPDATE imageData SET arrangement='$newArrangement' WHERE imgID='$imgID';";
 	$result = mysqli_query($db, $updateArrangement);
 	if(!$result)
 		die("unable to update arrangement");	
