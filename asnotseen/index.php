@@ -69,9 +69,10 @@ function animateBox(index, color) {
 						opacity: 0.25,
 						left: "+=50",
 						height: "toggle"
-					}, 100, function() {
+					}, 400, function() {
 						$("#winner-msg").html("Congratulations! All your storage units are now full! You win.<br><a href=\"https://www.google.com/search?q=storage+units+near+me\" target=\"_blank\">Find Nearby Storage for My Stuff.</a>").css("display", "inline");
 					});
+					return 0;
 				} else {
 					animateBox(index + 1, newBackgroundColor);
 				}				
@@ -105,9 +106,17 @@ function animateBox(index, color) {
 			left: "+=50",
 			height: "toggle"
 		}, 1000, function() {
-			if(!bigMoney && balance > 1000) {	
+			if(!bigMoney && balance > 3000) {	
 				bigMoney = true;
-				if(confirm("You earned over $5000. You Win! Click cancel to continue buying.")) {
+				if(confirm("You earned over $3000. You Win! Click cancel to continue buying.")) {
+					$(".winner-images").animate({
+						display:"inline",
+						opacity: 0.25,
+						left: "+=50",
+						height: "toggle"
+					}, 400, function() {
+						$("#winner-msg").html("Congratulations! All your storage units are now full! You win.<br><a href=\"https://www.google.com/search?q=storage+units+near+me\" target=\"_blank\">Find Nearby Storage for My Stuff.</a>").css("display", "inline");
+					});
 					return 0;
 				} else {
 					animateBox(index + 1, "");
