@@ -9,6 +9,7 @@ include "./header.php";
 // Initialize balance for balance-amt in navbar
 var balance = 0;
 var receivedDebtMsg = false;
+var bigMoney = false;
 
 // List of nouns
 var nouns = [ "antique china set", "croquet set", "old tv", "new tv", "golf stuff", "orange gatorade (50 pk)", "wood stove", "coffee table", "grandma's bedframe", "tea set", "ice skates", "beer-making kit", "bureau", "old lamps", "toolkit", "set of wrenches", "speakers" ];
@@ -19,7 +20,19 @@ function animateBox(index, color) {
 	var wordsId = "#words" + index;		
 	var itemTextId = "#item-text" + index;
 	var valueTextId = "#value-text" + index;
-	$(rowId).css("display", "block").css("background-color", color); // Very different with "inline-block"
+	
+	// open new window
+	var speed = 400;
+	if(index == 0) {
+		speed = 800;
+	}
+	$(rowId).animate({		
+		height:"toggle"		
+	}, speed, function () {
+		// scroll to bottom of page
+		$("html, body").animate({ scrollTop: $(document).height() }, "slow");
+	});
+	//
 	var randomAmt = Math.ceil(Math.random() * 1000);
 	$(itemTextId).html("Item " + (index + 1) + ": " + nouns[Math.floor(Math.random() * nouns.length)]);
 	$(valueTextId).html("ONLY $" + randomAmt + "!");
@@ -48,10 +61,6 @@ function animateBox(index, color) {
 			//$(".navbar.navbar-default").css("background-color", "red");
 			if(index < Math.floor(Math.random() * 20)) {
 			//if(false) {  // Debugging
-				// get the new background-color
-				var currentBorderCss = $(rowId).css("border-color");			
-				var newBackgroundColor = currentBorderCss.substring(currentBorderCss.indexOf("rgb"));			
-				console.log(newBackgroundColor);
 				animateBox(index + 1, "");
 			} else {
 				if(confirm("You've won!!! Want to see your prize? Click cancel to continue buying.")) {
@@ -80,6 +89,32 @@ function animateBox(index, color) {
 			height: "toggle"
 		}, 1000, function() {
 			animateBox(index + 1, "");
+		});
+	});
+	
+	// =============================
+	// 			Sell It
+	// =============================
+	$("#sell-it" + index).click(function() {
+		// update balance
+		balance = balance + randomAmt;
+		$("#balance-amt").html("Your Balance $" + balance);
+
+		$(wordsId).animate({
+			opacity: 0.25,
+			left: "+=50",
+			height: "toggle"
+		}, 1000, function() {
+			if(!bigMoney && balance > 1000) {	
+				bigMoney = true;
+				if(confirm("You earned over $5000. You Win! Click cancel to continue buying.")) {
+					return 0;
+				} else {
+					animateBox(index + 1, "");
+				}
+			} else {
+				animateBox(index + 1, "");
+			}			
 		});
 	});
 }
@@ -118,7 +153,7 @@ $(document).ready(function() {
 	
 	
 	// Call recursive function
-	animateBox(0, "#aaf");
+	animateBox(0, "");
 
 	
 	function onOff() {
@@ -150,6 +185,7 @@ $(document).ready(function() {
 			<div class="sale-text" id="item-text<?php echo $i; ?>"></div>
 			<div class="sale-text" id="value-text<?php echo $i; ?>"></div>		
 			<button class="decision-buttons" id="add-to-unit<?php echo $i; ?>">Add to Storage Unit</button>
+			<button class="decision-buttons" id="sell-it<?php echo $i; ?>">Sell It</button>
 			<button class="decision-buttons" id="trash-it<?php echo $i; ?>">Trash It</button>
 		</div>
 	</div>
