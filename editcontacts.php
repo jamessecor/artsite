@@ -2,7 +2,7 @@
 // editartwork.php
 // author jrs
 // 2018
-include "utility.php";
+//include "utility.php";
 global $db;
 $contactsResultSet = selectQuery($db, "c_id, c_name, c_lastname", "contacts", "1", "1");
 ?>

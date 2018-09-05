@@ -2,7 +2,6 @@
 // editartwork.php
 // author jrs
 // 2018
-include "utility.php";
 
 $errors = array();
 $selected = "";
