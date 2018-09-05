@@ -21,7 +21,8 @@ include "header.php";
 			</p>
 
 			<p>
-				<em>Untitled</em>, Aldrich Public Library, Barre, VT, April 2018-
+				<em>As Not Seen</em>, Art Hop (Site 43), Burlington, VT Sept 2018
+				<br><em>Untitled</em>, Aldrich Public Library, Barre, VT, April 2018-
 				<br><em>#nomophobia</em>, Studio Place Arts, Barre, VT, Mar-Apr 2017
 				<br><em>In the Cracks</em>, The Blinking Light Gallery, Plainfield, VT, Jan-Feb 2017
 				<br><em>Untitled</em>, The Daily Planet, Burlington, VT, Nov 2016-Jan 2017
