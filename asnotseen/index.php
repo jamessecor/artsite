@@ -10,6 +10,7 @@ include "./header.php";
 var balance = 0;
 var receivedDebtMsg = false;
 var bigMoney = false;
+var sales = 0;
 
 // List of nouns
 var nouns = [ "antique china set", "croquet set", "old tv", "new tv", "golf stuff", "orange gatorade (50 pk)", "wood stove", "coffee table", "grandma's bedframe", "tea set", "ice skates", "beer-making kit", "bureau", "old lamps", "toolkit", "set of wrenches", "speakers" ];
@@ -74,7 +75,7 @@ function animateBox(index, color) {
 					});
 					return 0;
 				} else {
-					animateBox(index + 1, newBackgroundColor);
+					animateBox(index + 1, "");
 				}				
 			}
 		});		
@@ -97,9 +98,15 @@ function animateBox(index, color) {
 	// 			Sell It
 	// =============================
 	$("#sell-it" + index).click(function() {
+		sales++;
+		
 		// update balance
-		balance = balance + randomAmt;
-		$("#balance-amt").html("Your Balance $" + balance);
+		if(sales > 5) {
+			$("#balance-amt").html("No one is buying your stuff anymore. Your Balance is still $" + balance);
+		} else {
+			balance = balance + randomAmt;		
+			$("#balance-amt").html("Your Balance $" + balance);
+		}		
 
 		$(wordsId).animate({
 			opacity: 0.25,
