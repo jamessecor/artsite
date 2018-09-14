@@ -13,7 +13,7 @@ require "../dbconfig/dbconnect.php";
 		<div class="col-md-4 col-md-offset-4">
 		<?php
 		// Database Retrieval of Titles/Filenames
-		$query = "SELECT title, yearCreated, media, filename FROM imageData WHERE arrangement = -1;";
+		$query = "SELECT title, yearCreated, media, filename FROM imageData WHERE grouping = 'NOMO';";
 		$data = mysqli_query($db, $query);
 		if(!$data) {
 			print "Images could not be retrieved.";

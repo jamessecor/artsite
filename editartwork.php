@@ -153,6 +153,12 @@ if(!$artworkResult) {
 						<td><input type="text" name="updatearrangement" value="<?php echo $isNew ? "" : "$editWork[arrangement]";?>" <?php echo $disabled; ?>></td>
 					</tr>
 					<tr>
+						<th>Grouping</th>
+					</tr>
+					<tr>
+						<td><input type="text" name="updategrouping" value="<?php echo $isNew ? "" : "$editWork[grouping]";?>" <?php echo $disabled; ?>></td>
+					</tr>
+					<tr>
 						<th>Price</th>
 					</tr>
 					<tr>
@@ -271,6 +277,15 @@ if(!$artworkResult) {
 			$errors['updatearrangement'] = "Enter an arrangement";						
 		}
 		
+		// Validate grouping
+		if(!empty($_POST['updategrouping'])) {
+			$newGrouping = $_POST['updategrouping'];
+			if(strlen($newGrouping) == 0)
+				$errors['updategrouping'] = "Enter a grouping";
+		} else {
+			$errors['updategrouping'] = "Enter a grouping";						
+		}
+		
 		// Validate Price
 		$hasPrice = false;
 		if(!empty($_POST['updateprice'])) {
@@ -306,6 +321,7 @@ if(!$artworkResult) {
 												media = '$newMedium',
 												yearCreated = '$newYear', 
 												arrangement = '$newArrangement',
+												grouping = '$newGrouping',
 												isHomePage = '$isHomePage'";
 				
 				// Insert new filename unless bypassed
@@ -320,10 +336,10 @@ if(!$artworkResult) {
 				$query .= " WHERE imgID = $artworkID;";
 			} else {
 				// Insert Query, filename is required
-				$query = "INSERT INTO imageData (title, media, yearCreated, filename, arrangement, isHomePage";
+				$query = "INSERT INTO imageData (title, media, yearCreated, filename, arrangement, grouping, isHomePage";
 				if($hasPrice) $query .= ", price";
 				if($hasBuyer) $query .= ", buyerID";
-				$query .= ") VALUES ('$newTitle', '$newMedium', '$newYear', '$newFilename', '$newArrangement', '$isHomePage'";
+				$query .= ") VALUES ('$newTitle', '$newMedium', '$newYear', '$newFilename', '$newArrangement', '$newGrouping', '$isHomePage'";
 				if($hasPrice) $query .= ", '$newPrice'";
 				if($hasBuyer) $query .= ", '$newBuyer'";
 				$query .= ");";

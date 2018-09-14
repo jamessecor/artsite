@@ -45,7 +45,7 @@ if(isset($_GET['new-position']) && isset($_GET['imgID'])) {
 		if($year===0) {
 			$whereClause = " isHomePage = true ORDER BY arrangement";
 		} else {
-			$whereClause = "yearCreated = '$year' AND NOT(arrangement = -1) ORDER BY arrangement";
+			$whereClause = "yearCreated = '$year' ORDER BY arrangement";
 		}
 		$query = "SELECT imgID, title, yearCreated, media, filename, buyerID, price, arrangement FROM imageData WHERE " . $whereClause . ";";
 		
