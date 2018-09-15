@@ -36,17 +36,10 @@ if(isset($_GET['new-position']) && isset($_GET['imgID'])) {
 		die("unable to update arrangement");	
 }
 
-	function displayImages($year) 
+	function displayImages($whereClause) 
 	{
 		global $db;
 		// Database Retrieval of Titles/Filenames
-		$query = "";
-		// For homepage, year = 0
-		if($year===0) {
-			$whereClause = " isHomePage = true ORDER BY arrangement";
-		} else {
-			$whereClause = "yearCreated = '$year' ORDER BY arrangement";
-		}
 		$query = "SELECT imgID, title, yearCreated, media, filename, buyerID, price, arrangement FROM imageData WHERE " . $whereClause . ";";
 		
 		$data = mysqli_query($db, $query);
@@ -67,7 +60,7 @@ if(isset($_GET['new-position']) && isset($_GET['imgID'])) {
 						$price = $row['buyerID'] ? "NFS" : "$$row[price]";
 					else
 						$price = "POR";
-					print "<div class='priceTag'><a href='$filepath' target='blank'><img class='img-responsive' src='$filepath' alt='Image Loading Error'></a>";
+					print "<div class='priceTag'><a href='$filepath' target='blank'><img class='img-responsive' src='$filepath' alt='Image Temporarily Unavailable'></a>";
 					print "<div style='height:.5em'>&nbsp;</div>";
 					// Image Info
 					$info = "<div class='text' ><strong>$row[title]</strong>, $row[yearCreated]<br>$row[media]";

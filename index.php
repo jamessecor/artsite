@@ -10,7 +10,7 @@ include "./imagesTemplate.php";
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 		<?php
-		displayImages(0);
+		displayImages(" isHomePage = true ORDER BY arrangement");
 		?>
 		</div>
 	</div>

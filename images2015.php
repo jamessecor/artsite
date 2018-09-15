@@ -10,7 +10,7 @@ include "./imagesTemplate.php";
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 		<?php
-		displayImages(2015);
+		displayImages(" yearCreated = 2015 ORDER BY arrangement");
 		?>
 		</div>
 	</div>
