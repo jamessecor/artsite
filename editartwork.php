@@ -123,7 +123,7 @@ if(!$artworkResult) {
 					<tr>
 						<td>
 							<input type='file' name='updatefilename'>
-							<input type="checkbox" name="bypassupload">Bypass Image Upload							
+							<input type="checkbox" name="bypassupload" <?php echo $isNew ? "" : "checked" ?>>Bypass Image Upload							
 						</td>
 					</tr>
 					<?php } ?>
@@ -277,15 +277,6 @@ if(!$artworkResult) {
 			$errors['updatearrangement'] = "Enter an arrangement";						
 		}
 		
-		// Validate grouping
-		if(!empty($_POST['updategrouping'])) {
-			$newGrouping = $_POST['updategrouping'];
-			if(strlen($newGrouping) == 0)
-				$errors['updategrouping'] = "Enter a grouping";
-		} else {
-			$errors['updategrouping'] = "Enter a grouping";						
-		}
-		
 		// Validate Price
 		$hasPrice = false;
 		if(!empty($_POST['updateprice'])) {
@@ -299,6 +290,13 @@ if(!$artworkResult) {
 			$newBuyer = $_POST['updatebuyer'];
 			$hasBuyer = true;
 		} 
+		
+		// Validate Grouping
+		$hasGrouping = false;
+		if(!empty($_POST['updategrouping'])) {
+			$newGrouping = $_POST['updategrouping'];
+			$hasGrouping = true;
+		}
 		
 		// Set isHomePage if it's set
 		$isHomePage = isset($_POST['ishomepage']) ? 1 : 0;
@@ -321,7 +319,6 @@ if(!$artworkResult) {
 												media = '$newMedium',
 												yearCreated = '$newYear', 
 												arrangement = '$newArrangement',
-												grouping = '$newGrouping',
 												isHomePage = '$isHomePage'";
 				
 				// Insert new filename unless bypassed
@@ -331,17 +328,23 @@ if(!$artworkResult) {
 				if($hasPrice) $query .= ", price = '$newPrice'";	
 
 				// Insert new buyer if has buyer
-				if($hasBuyer) $query .= ", buyerID = '$newBuyer'";
+				if($hasBuyer) $query .= ", buyerID = '$newBuyer'";	
 				
+				// Insert new buyer if has buyer
+				if($hasGrouping) $query .= ", grouping = '$newGrouping'";	
+				
+				// WHERE clause
 				$query .= " WHERE imgID = $artworkID;";
 			} else {
 				// Insert Query, filename is required
-				$query = "INSERT INTO imageData (title, media, yearCreated, filename, arrangement, grouping, isHomePage";
+				$query = "INSERT INTO imageData (title, media, yearCreated, filename, arrangement, isHomePage";
 				if($hasPrice) $query .= ", price";
 				if($hasBuyer) $query .= ", buyerID";
-				$query .= ") VALUES ('$newTitle', '$newMedium', '$newYear', '$newFilename', '$newArrangement', '$newGrouping', '$isHomePage'";
+				if($hasGrouping) $query .= ", grouping";
+				$query .= ") VALUES ('$newTitle', '$newMedium', '$newYear', '$newFilename', '$newArrangement', '$isHomePage'";
 				if($hasPrice) $query .= ", '$newPrice'";
 				if($hasBuyer) $query .= ", '$newBuyer'";
+				if($hasGrouping) $query .= ", '$newGrouping'";
 				$query .= ");";
 				
 			}
