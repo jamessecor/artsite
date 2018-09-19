@@ -156,6 +156,22 @@ if(!$artworkResult) {
 						<th>Grouping</th>
 					</tr>
 					<tr>
+						<td>
+							(Available Groupings: 
+							<?php
+							$groupingsResult = selectQuery($db, "DISTINCT grouping", "imageData", "1", "1");
+							if(!$groupingsResult) {
+								echo ("couldn't find grouping");
+							} else {
+								while($group = mysqli_fetch_array($groupingsResult)) {
+									echo " ${group[0]} ";
+								}
+							}							
+							?>
+							)
+						</td>
+					</tr>
+					<tr>
 						<td><input type="text" name="updategrouping" value="<?php echo $isNew ? "" : "$editWork[grouping]";?>" <?php echo $disabled; ?>></td>
 					</tr>
 					<tr>
@@ -377,6 +393,9 @@ if(!$artworkResult) {
 						$names = mysqli_fetch_array($nameResult);
 						echo (count($names) > 1) ? "</br>(Purchased by $names[0] $names[1])" : "</br>(Purchased by $names[0])";
 					}					
+				}
+				if($hasGrouping) {
+					echo "</br>Grouping: $newGrouping";
 				}
 				echo "</p>";
 				?></td></tr></table><?php
