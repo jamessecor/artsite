@@ -1,8 +1,6 @@
 <?php
 require "../dbconfig/dbparams.php";
 require "../dbconfig/dbconnect.php";
-session_start();
-include "checkLogin.php";
 
 // Not Logged In
 if(isLoggedIn()) { 

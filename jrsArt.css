@@ -210,8 +210,8 @@ input[type="submit"], td input, td textarea, #toTop, select, .showPeeps {
 }
 
 .sale-text { font-weight: bold; }
-[id^="item-text"] { font-size: 1.5em; color: #257; background-color: rgba(200, 50, 50, .2); }
-[id^="value-text"] { font-size: 5em; color: #f00; }
+[id^="item-text"] { font-size: 1.5em; color: #488; background-color: rgba(200, 200, 50, .9); }
+[id^="value-text"] { font-size: 5em; color: #f00; text-shadow: -5px 0 black, 0 5px black, 5px 0 black, 0 -5px black; }
 #balance-amt { color: #364; font-weight: bold; }
 #balance-bar { height:2em; background-color: #5ac; text-align: center; }
 /** end As Not Seen Only **/

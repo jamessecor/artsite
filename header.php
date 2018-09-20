@@ -46,6 +46,7 @@
 						<li><a href="images2014.php"><strong>2014</strong></a></li>						
 						<li><a href="images2013.php"><strong>2013</strong></a></li>						
 						<li><a href="imagesNomophobia.php"><strong>#nomophobia</strong></a></li>
+						<li><a href="imagesAsNotSeen.php"><strong>As Not Seen</strong></a></li>
 					</ul>
 				</li>
 				<li <?php if(strpos($_SERVER['REQUEST_URI'], '/cv.php')) echo "class='active'";?>>
@@ -60,6 +61,14 @@
 				<li>
 					<a href="./asnotseen/index.php"><em><strong>As Not Seen</strong></em></a>
 				</li>
+				<?php 
+				session_start();
+				include "checkLogin.php";
+				if(isLoggedIn()) { ?>
+				<li>
+					<a href="./admin.php"><em><strong>Admin</strong></em></a>
+				</li>
+				<?php } ?>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="navbar-text">James Secor &copy; 2017</li>

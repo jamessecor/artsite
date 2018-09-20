@@ -1,8 +1,6 @@
 <?php
 include "header.php";
-session_start();
 include "utility.php";
-include "checkLogin.php";
 require "../includes/artsiteConfig.php";
 require "../includes/artsiteConnect.php";
 
