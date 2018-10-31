@@ -14,23 +14,23 @@ include "header.php";
 <!-- TEST -->
 <div class="row">
 	<div class="col-md-6 center-it ">
-		<img  class="current-show-img" src="http://jamessecor.com/img/Units%20AL-AP_2018.jpg"  alt="Could not retrieve image"/>
-		<p>
-			<strong><em><big><a href="./asnotseen" target="blank">As Not Seen</a></big></em></strong>
-			<br>November 20 - February 5 (2018-2019)
-			<br><a href="https://sterlingcollege.edu/academics/brown-library/" target="blank">Sterling College's Brown Library</a>
-			<br>N Craftsbury Rd, Craftsbury, VT			
-			<br><small>above: <em><strong>Units AL-AP</strong></em>, 2018. acrylic and collage on paper</small>	
-		</p>
-	</div>
-	<div class="col-md-6 center-it">
 		<img class="current-show-img" src="http://jamessecor.com/img/boston.jpg"  alt="Could not retrieve image"/>
 		<p>
 			<strong><em><big>Driving Up a Chimney</big></em></strong>
+			<br>November 20 - February 5 (2018-2019)
+			<br><a href="https://sterlingcollege.edu/academics/brown-library/" target="blank">Sterling College's Brown Library</a>
+			<br>N Craftsbury Rd, Craftsbury, VT			
+			<br><small>above: <em><strong>At My Wit's End</strong></em>, 2018. acrylic on board</small>	
+		</p>
+	</div>
+	<div class="col-md-6 center-it">
+		<img  class="current-show-img" src="http://jamessecor.com/img/Units%20AL-AP_2018.jpg"  alt="Could not retrieve image"/>
+		<p>
+			<strong><em><big><a href="./asnotseen" target="blank">As Not Seen</a></big></em></strong>		
 			<br>Opens in December. <em>[dates TBD]</em>
 			<br><a href="http://cal-vt.org/index.html" target="blank"> The Center for Arts and Learning</a>
 			<br>46 Barre St, Montpelier, VT			
-			<br><small>above: <em><strong>At My Wit's End</strong></em>, 2018. acrylic on board</small>	
+			<br><small>above: <em><strong>Units AL-AP</strong></em>, 2018. acrylic and collage on paper</small>	
 		</p>
 	</div>
 </div>
