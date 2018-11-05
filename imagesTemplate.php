@@ -58,6 +58,26 @@ if(isset($_GET['new-position']) && isset($_GET['imgID'])) {
 						$price = $row['buyerID'] ? "NFS" : "$$row[price]";
 					else
 						$price = "POR";
+					
+					// Sort out rows / columns
+					if($i % 3 === 0) {
+						print "<div class=\"row img-row\">";
+					}
+					
+					switch($i % 3) {
+						case(0): 
+							print "<div class=\"col-md-4 col-left\">";
+							break;
+						case(1):
+							print "<div class=\"col-md-4 col-middle\">";
+							break;
+						case(2):
+							print "<div class=\"col-md-4 col-right\">";
+							break;
+					}
+					
+					
+					
 					print "<div class='priceTag'><a href='$filepath' target='blank'><img class='img-responsive' src='$filepath' alt='Image Temporarily Unavailable'></a>";
 					print "<div style='height:.5em'>&nbsp;</div>";
 					// Image Info
@@ -79,7 +99,13 @@ if(isset($_GET['new-position']) && isset($_GET['imgID'])) {
 						</form>
 					<?php					
 					}
-					print "</div></div><br><br>";
+					print "</div></div></div>";
+					
+					if($i === $numrows - 1) {
+						print "</div>";
+					} elseif($i % 3 === 2) {
+						print "</div><div class=\"row\">&nbsp;</div>";
+					}
 				}
 			}
 			?>

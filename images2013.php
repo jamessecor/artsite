@@ -7,13 +7,13 @@ include "./imagesTemplate.php";
 <script src='./jrsArt.js'></script>
 
 <div class='container'>
-	<div class="row">
-		<div class="col-md-4 col-md-offset-4">
+	<!--<div class="row">
+		<div class="col-md-4 col-md-offset-4">-->
 		<?php
 		displayImages(" yearCreated = 2013 ORDER BY arrangement");
 		?>
-		</div>
-	</div>
+		<!--</div>
+	</div>-->
 </div>
 
 <?php
