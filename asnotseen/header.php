@@ -55,6 +55,9 @@
 				<li <?php if(strpos($_SERVER['REQUEST_URI'], '/contact.php')) echo "class='active'";?> >
 					<a href="../contact.php"><strong>contact</strong></a>
 				</li>
+				<li <?php if(strpos($_SERVER['REQUEST_URI'], '/shows.php')) echo "class='active'";?> >
+					<a href="../shows.php"><strong>current_shows</strong></a>
+				</li>
 				<li>
 					<a href="http://jamessecor.com/nomophobia" target="_blank"><em><strong>#nomophobia site</strong></em></a>
 				</li>

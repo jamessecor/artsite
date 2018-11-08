@@ -146,7 +146,7 @@ function transitionNavbar() {
 // ====================
 $(document).ready(function() {	
 	balance = 1000;
-	$("#balance-amt").html("Your Balance $" + balance).css("border", "3px dotted #4e9").css("padding", "0 10px");
+	$("#balance-amt").html("Your Balance $" + balance);
 	$(".navbar").css("margin-bottom", "0").css("border", "none");
 
 	// Hide winner-images
@@ -167,9 +167,13 @@ $(document).ready(function() {
 		onOff();
 	});
 	
-	
+	//$("#rules").html("Rules of the games");
 	// Call recursive function
-	animateBox(0, "");
+	$("#start-button").on("click", function() {
+		$("#rules").css("display", "none");
+		animateBox(0,"");
+	});
+	//animateBox(0, "");
 
 	
 	function onOff() {
@@ -191,6 +195,17 @@ $(document).ready(function() {
 <!--<div class='container'>-->
 	<div id="balance-bar">
 		<span id="balance-amt"></span>
+	</div>
+	<div id="rules">
+		<div id="rules-text">			
+			<span class="decision-buttons">
+			Buy! Buy! Buy! Sell! Sell! Sell!<br>
+			</span>
+			Fill up that storage unit!<br>
+			Buy items to put in your unit, or just sell enough to win.<br>
+			But watch out! People may not like what you're selling.<br>
+		</div>
+		<button class="decision-buttons" id="start-button">Click to begin</button>
 	</div>
 	<?php 
 	// Create Objects to buy
