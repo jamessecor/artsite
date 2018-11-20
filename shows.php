@@ -14,7 +14,7 @@ include "header.php";
 <!-- TEST -->
 <div class="row">
 	<div class="col-md-6 center-it ">
-		<img class="current-show-img" src="http://jamessecor.com/img/boston.jpg"  alt="Could not retrieve image"/>
+		<img class="current-show-img" src="http://jamessecor.com/img/AtMyWitsEnd2018.jpg"  alt="Could not retrieve image"/>
 		<p>
 			<strong><em><big>Driving Up a Chimney</big></em></strong>
 			<br>November 20 - February 5 (2018-2019)
