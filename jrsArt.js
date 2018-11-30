@@ -68,6 +68,7 @@ function prevImg() {
 
 
 
+
 /*
 function loading() {
 	// EventListener to heading buttons

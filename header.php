@@ -8,15 +8,55 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link href="jrsArt.css" rel="stylesheet">
+	<!-- jQuery Modal -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 	<script>
 	$(document).ready(function(){
 		$("#imgNav").hover(function(){
 			$(".imgSubnav").toggle();
+		});			
+		
+		
+		// Make left and right arrows work for modal
+		$(document).keydown(function(event) {
+			// Get class modal
+			var ourModalIndex = $(".modal").length - 1;
+			console.log(ourModalIndex);
+			
+			// Get the currently active modal
+			// For some reason, it's at the end
+			var ourModal = $(".modal")[ourModalIndex];
+			console.log(ourModal);
+			
+			// Get our good buddy's id
+			var ourModalId = ourModal.id;
+			console.log("ourModal.id = " + ourModal.id);
+			
+			// Grab that number off the end
+			var ourNum = ourModalId.split("-")[2];
+			console.log(ourModalId.split("-")[2]);
+
+			// Use that id to figure out what left and right do
+			// Get arrows class 			
+			var idToClick = "";
+			console.log(event.which + "pressed");
+			if(event.which == 37 || event.which == 39) {
+				//console.log($(this).attr("id"));
+				if(event.which == 37) {
+					idToClick = "#left-arrow-" + ourNum;
+				} else if(event.which == 39) {
+					idToClick = "#right-arrow-" + ourNum;
+				}				
+				console.log("clicking " + idToClick);
+				$(idToClick).trigger("click");
+			}
 		});
+		
 	});
 	</script>
 </head>
-<body onload='load()'>
+<body>
 	<div id="left-col" class="col-md-1 side-cols"></div>
 	<div id="right-col" class="col-md-1 side-cols"></div>
 	<div id="wrapper">

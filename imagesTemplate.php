@@ -39,7 +39,6 @@ if(isset($_GET['new-position']) && isset($_GET['imgID'])) {
 		global $db;
 		// Database Retrieval of Titles/Filenames
 		$query = "SELECT imgID, title, yearCreated, media, filename, buyerID, price, arrangement FROM imageData WHERE " . $whereClause . ";";
-		
 		$data = mysqli_query($db, $query);
 		if(!$data) {
 			print "Images could not be retrieved.";
@@ -77,8 +76,42 @@ if(isset($_GET['new-position']) && isset($_GET['imgID'])) {
 					}
 					
 					
+					//NEW BEGINS ************************************
+					//print "<div class='priceTag'><a href='$filepath' target='blank'><img class='img-responsive' src='$filepath' alt='Image Temporarily Unavailable'></a>";
 					
-					print "<div class='priceTag'><a href='$filepath' target='blank'><img class='img-responsive' src='$filepath' alt='Image Temporarily Unavailable'></a>";
+					?>	
+					<!--<script>
+					$(document).ready(function() {
+						//$(".modal").data("width.dialog", 500);
+						$("#modal-img0").css( "option", "width", 10000 );
+						var x = $("#modal-img0").css( "option", "width" );
+						console.log(x);
+
+						//if(
+						//$(".arrows").css("display", "none");
+					});
+					</script>
+					-->
+					
+					<div class="priceTag">
+					<div id="modal-img-<?php echo $i;?>" class="modal">
+						<a href="#close-modal" rel="modal:close" class="close-modal ">Close</a>
+						<img class="img-responsive" src="<?php echo $filepath; ?>" alt="Image unavailable"/>
+						<div>&nbsp;</div>
+						<div class="center-it">
+							<a id="left-arrow-<?php echo $i;?>" class="arrows" href="#modal-img-<?php echo $i - 1;?>" rel="modal:open" >&nbsp;&#x25C0;&nbsp;</a>
+							<a id="right-arrow-<?php echo $i;?>" class="arrows" href="#modal-img-<?php echo $i + 1;?>" rel="modal:open" >&nbsp;&#x25B6;&nbsp;</a>
+						</div>
+					</div>
+
+					<!-- Link to open the modal -->
+					<a href="#modal-img-<?php echo $i;?>" rel="modal:open"><img class="img-responsive" src="<?php echo $filepath; ?>" alt="Image unavailable"/></a>
+					
+					
+  
+					<?php
+					// NEW ENDS ************************************
+					
 					print "<div style='height:.5em'>&nbsp;</div>";
 					// Image Info
 					$info = "<div class='text' ><strong>$row[title]</strong>, $row[yearCreated]<br>$row[media]";
