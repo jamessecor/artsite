@@ -164,13 +164,11 @@ body {
 }
 
 /****** MODALS Begin *******/
-div[id^="modal-img"] { background-color:#777; }
+div[id^="modal-img"] { background-color:#777; padding:2em 3em 1em 3em;}
 .arrows { border-radius:5em; color: var(--nav-color); background-color: var(--nav-background-color); border: 2px solid var(--nav-background-color); }
 .arrows:hover { text-decoration:none; color: #77f; }
-.close-modal {  }
 .toggle-left-right { position:absolute; width:10px; height:10px; background-color:#ffffff; }
 .modal { overflow: visible; }
-
 /****** MODALS End *******/
 
 .text, .cv-text{

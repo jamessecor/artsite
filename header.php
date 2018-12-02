@@ -1,5 +1,8 @@
 <!doctype html>
 <html lang="en">
+<?php 
+session_start();
+?>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,36 +23,64 @@
 		
 		// Make left and right arrows work for modal
 		$(document).keydown(function(event) {
-			// Get class modal
-			var ourModalIndex = $(".modal").length - 1;
-			console.log(ourModalIndex);
+			var modalIsVisible = false;
 			
-			// Get the currently active modal
-			// For some reason, it's at the end
-			var ourModal = $(".modal")[ourModalIndex];
-			console.log(ourModal);
+			// Check that the model is visible
+			$(".modal").each(function() {
+				console.log($(this).is(":visible"));
+				if($(this).is(":visible")) {
+					modalIsVisible = true;
+				}
+			});
 			
-			// Get our good buddy's id
-			var ourModalId = ourModal.id;
-			console.log("ourModal.id = " + ourModal.id);
+			if(modalIsVisible) {
 			
-			// Grab that number off the end
-			var ourNum = ourModalId.split("-")[2];
-			console.log(ourModalId.split("-")[2]);
+			
+			
+				// Get class modal
+				var ourModalIndex = $(".modal").length - 1;
+				console.log(ourModalIndex);
+				
+				// Get the currently active modal
+				// For some reason, it's at the end
+				var ourModal = $(".modal")[ourModalIndex];
+				console.log(ourModal);
+				
+				// Get our good buddy's id
+				var ourModalId = ourModal.id;
+				console.log("ourModal.id = " + ourModal.id);
+				
+				// Grab that number off the end
+				var ourNum = ourModalId.split("-")[2];
+				console.log(ourModalId.split("-")[2]);
 
-			// Use that id to figure out what left and right do
-			// Get arrows class 			
-			var idToClick = "";
-			console.log(event.which + "pressed");
-			if(event.which == 37 || event.which == 39) {
-				//console.log($(this).attr("id"));
-				if(event.which == 37) {
-					idToClick = "#left-arrow-" + ourNum;
-				} else if(event.which == 39) {
-					idToClick = "#right-arrow-" + ourNum;
-				}				
-				console.log("clicking " + idToClick);
-				$(idToClick).trigger("click");
+				// Only move if not first or last
+				console.log("length of modal = ");
+				console.log($(".modal").length);
+				if(ourNum !== 0 && ourNum !== $(".modal").length) {
+						
+					// Use that id to figure out what left and right do
+					// Get arrows class 			
+					var idToClick = "";
+					console.log(event.which + "pressed");
+					if(event.which == 37 || event.which == 39) {
+						//console.log($(this).attr("id"));
+						if(event.which == 37) {
+							idToClick = "#left-arrow-" + ourNum;
+						} else if(event.which == 39) {
+							idToClick = "#right-arrow-" + ourNum;
+						}				
+						
+						// Do not click if at the beginning or end to avoid errors
+						var endId = "#right-arrow-" + ($(".modal").length - 1);
+						if(idToClick !== "#left-arrow-0" && idToClick !== endId) {
+							$(idToClick).trigger("click");
+							console.log("clicking " + idToClick);
+						} else {
+							console.log("idToClick = " + idToClick + "...no click");
+						}
+					}
+				}
 			}
 		});
 		
@@ -105,7 +136,6 @@
 					<a href="./asnotseen/index.php"><em><strong>As Not Seen</strong></em></a>
 				</li>
 				<?php 
-				session_start();
 				include "checkLogin.php";
 				if(isLoggedIn()) { ?>
 				<li>
