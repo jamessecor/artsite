@@ -20,23 +20,19 @@ session_start();
 			$(".imgSubnav").toggle();
 		});			
 		
-		
 		// Make left and right arrows work for modal
 		$(document).keydown(function(event) {
 			var modalIsVisible = false;
 			
 			// Check that the model is visible
 			$(".modal").each(function() {
-				console.log($(this).is(":visible"));
 				if($(this).is(":visible")) {
 					modalIsVisible = true;
+					console.log($(this).position());
 				}
 			});
 			
 			if(modalIsVisible) {
-			
-			
-			
 				// Get class modal
 				var ourModalIndex = $(".modal").length - 1;
 				console.log(ourModalIndex);

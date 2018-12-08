@@ -79,36 +79,25 @@ if(isset($_GET['new-position']) && isset($_GET['imgID'])) {
 					//NEW BEGINS ************************************
 					//print "<div class='priceTag'><a href='$filepath' target='blank'><img class='img-responsive' src='$filepath' alt='Image Temporarily Unavailable'></a>";
 					
-					?>	
-					<!--<script>
-					$(document).ready(function() {
-						//$(".modal").data("width.dialog", 500);
-						$("#modal-img0").css( "option", "width", 10000 );
-						var x = $("#modal-img0").css( "option", "width" );
-						console.log(x);
-
-						//if(
-						//$(".arrows").css("display", "none");
-					});
-					</script>
-					-->
-					
+					?>						
 					<div class="priceTag">
 					<div id="modal-img-<?php echo $i;?>" class="modal">
 						<a href="#close-modal" rel="modal:close" class="close-modal ">Close</a>
-						<img class="img-responsive" src="<?php echo $filepath; ?>" alt="Image unavailable"/>
-						<div>&nbsp;</div>
-						<div class="center-it">
+						<img class="img-responsive" id="inner-img-<?php echo $i; ?>" src="<?php echo $filepath; ?>" alt="Image unavailable"/>
+
+						<?php if($i !== 0) { ?>
 							<a id="left-arrow-<?php echo $i;?>" class="arrows" href="#modal-img-<?php echo $i - 1;?>" rel="modal:open" >&nbsp;&#x25C0;&nbsp;</a>
+						<?php } 
+						if($i !== $numrows -1) { ?>
 							<a id="right-arrow-<?php echo $i;?>" class="arrows" href="#modal-img-<?php echo $i + 1;?>" rel="modal:open" >&nbsp;&#x25B6;&nbsp;</a>
-						</div>
+						<?php } ?>
+
 					</div>
 
 					<!-- Link to open the modal -->
+					<!-- This is the image displayed prior to clicking -->
 					<a href="#modal-img-<?php echo $i;?>" rel="modal:open"><img class="img-responsive" src="<?php echo $filepath; ?>" alt="Image unavailable"/></a>
 					
-					
-  
 					<?php
 					// NEW ENDS ************************************
 					
