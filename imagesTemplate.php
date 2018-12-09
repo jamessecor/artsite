@@ -21,17 +21,63 @@ if(isLoggedIn()) {
 		</form>
 	</div>
 
-<?php
-// End logout button
-}
-
-if(isset($_GET['new-position']) && isset($_GET['imgID'])) {
-	$newArrangement = $_GET['new-position'];
-	$imgID = $_GET['imgID'];
-	$updateArrangement = "UPDATE imageData SET arrangement='$newArrangement' WHERE imgID='$imgID';";
-	$result = mysqli_query($db, $updateArrangement);
-	if(!$result)
-		die("unable to update arrangement");	
+	<?php
+	// ================= Process Updates =================
+	// Must be logged in
+	if(isset($_GET['imgID'])) {
+		$updates = array();
+		
+		// Title
+		if(isset($_GET['new-title'])) {
+			$newTitle = mysqli_real_escape_string($db, $_GET['new-title']);
+			$updates[] = " title = '$newTitle'"; 
+		}	
+		
+		// YearCreated
+		if(isset($_GET['new-year'])) {
+			$newYear = mysqli_real_escape_string($db, $_GET['new-year']);
+			$updates[] = " yearCreated = '$newYear'"; 
+		}	
+		
+		// Media
+		if(isset($_GET['new-media'])) {
+			$newMedia = mysqli_real_escape_string($db, $_GET['new-media']);
+			$updates[] = " media = '$newMedia'"; 
+		}	
+		
+		// Price
+		if(isset($_GET['new-price'])) {
+			$newPrice = mysqli_real_escape_string($db, $_GET['new-price']);
+			$updates[] = " price = '$newPrice'"; 
+		}		
+		
+		// Position
+		if(isset($_GET['new-position'])) {
+			$newArrangement = mysqli_real_escape_string($db, $_GET['new-position']);
+			$updates[] = " arrangement = '$newArrangement'";
+		}
+		
+		// Generate Update Statement
+		$imgID = $_GET['imgID'];
+		$updateArrangement = "UPDATE imageData SET ";
+		$first = true;
+		$updateStr = "";
+		foreach($updates as $update) {
+			if($first) {
+				$first = false;
+			} else {
+				$updateArrangement .= ", ";
+			}			
+			$updateArrangement .= $update;
+		}		
+		$updateArrangement .= " WHERE imgID='$imgID';";
+		$result = mysqli_query($db, $updateArrangement);
+		if(!$result)
+			die("unable to update arrangement");	
+		
+		print($updateArrangement);
+	}
+	// ================== End Update Processing ======================
 }
 
 	function displayImages($whereClause) 
@@ -111,13 +157,13 @@ if(isset($_GET['new-position']) && isset($_GET['imgID'])) {
 					?>
 						<br>
 						<form name="update-arrangement" method="get" action="">
-							<table>
-								<tr>
-									<td><input type="text" name="new-position" value="<?php echo $row['arrangement']; ?>" /></td>
-									<td><input type="hidden" name="imgID" value="<?php echo $row['imgID']; ?>" /></td>
-									<td><input type="submit" value="Update" /></td>
-								</tr>
-							</table>
+							<input type="text" name="new-title" value="<?php echo $row['title']; ?>" />
+							<input type="text" name="new-year" value="<?php echo $row['yearCreated']; ?>" />
+							<input type="text" name="new-medium" value="<?php echo $row['media']; ?>" />
+							<input type="text" name="new-price" value="<?php echo $row['price']; ?>" />
+							<input type="text" name="new-position" value="<?php echo $row['arrangement']; ?>" />
+							<input type="hidden" name="imgID" value="<?php echo $row['imgID']; ?>" />
+							<input type="submit" value="Update" />								
 						</form>
 					<?php					
 					}
