@@ -14,22 +14,13 @@ session_start();
 	<!-- jQuery Modal -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-	<script src='https://www.google.com/recaptcha/api.js?render=6LexAIAUAAAAAHKngRCYkr3Kzb6AHWFcS0E-l7Rg'></script>
+	<script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 	<script>
 	$(document).ready(function(){
 		$("#imgNav").hover(function(){
 			$(".imgSubnav").toggle();
 		});			
-
-		// recaptcha code begin
-		grecaptcha.ready(function() {
-			grecaptcha.execute('6LexAIAUAAAAAHKngRCYkr3Kzb6AHWFcS0E-l7Rg', {action: 'action_name'})
-			.then(function(token) {
-			// Verify the token on the server.
-			});
-		});
-		// recaptcha code end
 		
 		// Make left and right arrows work for modal
 		$(document).keydown(function(event) {
