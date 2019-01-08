@@ -113,6 +113,7 @@ if($validation=="Success") {
 			<td><textarea rows="4" class="full" name='memo' placeholder='Enter comments here.' ><?php echo isset($_POST['memo']) ? $_POST['memo']: '' ?></textarea></td>
 		</tr>
 		<tr><td><div class="g-recaptcha" data-sitekey="6LcZnoQUAAAAABN4yNqWK9PTKzdLHkvqMgquBnH1"></div></td></tr>
+		<tr><td style="height:.25em;"></td></tr>
 		<tr>
 			<td><small class="errorText"><?php echo array_key_exists('g-recaptcha-response', $errors) ? $errors['g-recaptcha-response'] : ""; ?></small></td>
 		</tr>

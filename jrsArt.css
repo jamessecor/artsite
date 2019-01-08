@@ -12,12 +12,15 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, footer, header {
 
 /******** Change these to change navbar colors ********/
 :root {
-	--nav-background-color:rgba(100,100,150,1);
-	--nav-color: #aaf;
+	--nav-background-color:rgba(80,80,120,1);
+	--nav-color: rgb(170,170,200);
+	--form-background: rgba(190,211,244,.3);
+	--form-border: rgb(100,100,120); /*#779;*/
+	--page-background: rgb(200,200,200);
 }
 
 body {
-	background-color:#ccc;
+	background-color:var(--page-background);
 	width:100%;
 	height:100%;
 	font-family:"Courier New", Courier, monospace;
@@ -125,8 +128,8 @@ body {
 	margin-top:1em;*/
 	padding-top:15px;
 	padding-bottom:15px;
-	background-color: #cdbbbb;
-	border:.5em solid #779;
+	background-color: var(--form-background);
+	border:.5em solid var(--form-border);
 	border-radius:1em;
 	width:100%;
 }
@@ -191,7 +194,7 @@ a[id^="right-arrow"] { right:0; text-align:right; }
 .text, .cv-text{
 	position:relative;
 	margin:0em 1em 0em 1em ;
-	color:rgba(100,100,150,.8);
+	color:var(--nav-background-color);
 }
 
 .text { text-align:center; }
@@ -206,13 +209,13 @@ a[id^="right-arrow"] { right:0; text-align:right; }
 
 td { 
 	font-weight:bold;
-	color: #557;
+	color: var(--nav-background-color);
 }
 
 input[type="submit"], td input, td textarea, #toTop, select, .showPeeps {
 	background-color: var(--nav-background-color);
 	color: var(--nav-color);
-	border:.1em solid #aaa;
+	border:.1em solid var(--nav-background-color);
 	border-radius:.2em;
 	font-weight:bold;
 	text-decoration:none;
