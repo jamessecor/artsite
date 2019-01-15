@@ -212,7 +212,7 @@ td {
 	color: var(--nav-background-color);
 }
 
-input[type="submit"], td input, td textarea, #toTop, select, .showPeeps {
+input[type="submit"], td input, td textarea, #toTop, select, .showPeeps, .press-links {
 	background-color: var(--nav-background-color);
 	color: var(--nav-color);
 	border:.1em solid var(--nav-background-color);
@@ -253,7 +253,7 @@ input[type="submit"], td input, td textarea, #toTop, select, .showPeeps {
 #rules-text { background-color:#fc3; color:#00a; font-weight:bold; }
 /** end As Not Seen Only **/
 
-input[type="submit"]:hover, button:hover, #toTop:hover {
+input[type="submit"]:hover, button:hover, #toTop:hover, .press-links:hover {
 	background-color: var(--nav-color);
 	color: var(--nav-background-color);
 	text-decoration:none;
