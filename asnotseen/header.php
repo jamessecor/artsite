@@ -39,6 +39,7 @@
 					<a class='dropdown-toggle' data-toggle="dropdown"><strong>images
 					<span class="caret"></span></strong></a>
 					<ul class="dropdown-menu">
+						<li><a href="../images2019.php"><strong>2019</strong></a></li>
 						<li><a href="../images2018.php"><strong>2018</strong></a></li>
 						<li><a href="../images2017.php"><strong>2017</strong></a></li>
 						<li><a href="../images2016.php"><strong>2016</strong></a></li>
@@ -54,9 +55,6 @@
 				</li>
 				<li <?php if(strpos($_SERVER['REQUEST_URI'], '/contact.php')) echo "class='active'";?> >
 					<a href="../contact.php"><strong>contact</strong></a>
-				</li>
-				<li <?php if(strpos($_SERVER['REQUEST_URI'], '/shows.php')) echo "class='active'";?> >
-					<a href="../shows.php"><strong>current_shows</strong></a>
 				</li>
 				<li>
 					<a href="http://jamessecor.com/nomophobia" target="_blank"><em><strong>#nomophobia site</strong></em></a>

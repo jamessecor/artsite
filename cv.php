@@ -11,8 +11,8 @@ include "header.php";
 			</p>
 
 			<p>
-				<em>As Not Seen</em>, Center for Arts and Learning, Montpelier, VT Dec 2018-
-				<br><em>Driving Up a Chimney</em>, Brown Library, Craftsbury, VT, Nov 2018-
+				<em>As Not Seen</em>, Center for Arts and Learning, Montpelier, VT Dec 2018-Jan 2019
+				<br><em>Driving Up a Chimney</em>, Brown Library, Craftsbury, VT, Nov 2018-Jan 2019
 				<br><em>As Not Seen</em>, Art Hop (Site 43), Burlington, VT Sept 2018
 				<br><em>Untitled</em>, Aldrich Public Library, Barre, VT, April 2018-
 				<br><em>#nomophobia</em>, Studio Place Arts, Barre, VT, Mar-Apr 2017
