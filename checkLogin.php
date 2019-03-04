@@ -8,6 +8,5 @@ function isLoggedIn() {
 
 function logout() {
 	unset($_SESSION['artsiteusername']);
-	header('Location: admin.php');
 }
 ?>

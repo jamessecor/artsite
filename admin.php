@@ -24,10 +24,15 @@ if(isset($_POST['login'])) {
 	// Password
 	if(!empty($_POST['password'])) {
 		$password = addslashes(trim(($_POST['password'])));
+		/* Debugging Password Hash
+		echo password_hash($password, PASSWORD_DEFAULT);
+		echo "<br>";		
+		die();
+		*/
 	}	
 	
 	// Check them
-	if($username===$adminU && $password===$adminP) {
+	if($username===$adminU && password_verify($password, $adminP)) {
 		$_SESSION['artsiteusername'] = $username;
 	}
 }
