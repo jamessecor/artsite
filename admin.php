@@ -25,9 +25,10 @@ if(isset($_POST['login'])) {
 	if(!empty($_POST['password'])) {
 		$password = addslashes(trim(($_POST['password'])));
 		/* Debugging Password Hash
-		echo password_hash($password, PASSWORD_DEFAULT);
-		echo "<br>";		
-		die();
+			echo $password . "<br>";
+			echo password_hash($password, PASSWORD_DEFAULT);
+			echo "<br>";		
+			die();
 		*/
 	}	
 	
