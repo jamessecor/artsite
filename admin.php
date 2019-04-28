@@ -37,7 +37,6 @@ if(isset($_POST['login'])) {
 		$_SESSION['artsiteusername'] = $username;
 	}
 }
-
 // Log out button
 if(isset($_POST['logout'])) {
 	logout();	
