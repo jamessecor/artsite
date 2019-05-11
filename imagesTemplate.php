@@ -61,7 +61,11 @@ if(isLoggedIn()) {
 		// Buyer
 		if(isset($_GET['new-buyer'])) {
 			$newBuyer = mysqli_real_escape_string($db, $_GET['new-buyer']);
-			$updates[] = " buyerID = '$newBuyer'";
+			if($newBuyer === "") {
+				$updates[] = " buyerID = NULL";		
+			} else {
+				$updates[] = " buyerID = '$newBuyer'";		
+			}			
 		}
 		
 		// Generate Update Statement
