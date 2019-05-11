@@ -1,6 +1,7 @@
 <?php
 require "../dbconfig/dbparams.php";
 require "../dbconfig/dbconnect.php";
+include "./utility.php";
 
 // Not Logged In
 if(isLoggedIn()) { 
@@ -55,6 +56,12 @@ if(isLoggedIn()) {
 		if(isset($_GET['new-position'])) {
 			$newArrangement = mysqli_real_escape_string($db, $_GET['new-position']);
 			$updates[] = " arrangement = '$newArrangement'";
+		}
+		
+		// Buyer
+		if(isset($_GET['new-buyer'])) {
+			$newBuyer = mysqli_real_escape_string($db, $_GET['new-buyer']);
+			$updates[] = " buyerID = '$newBuyer'";
 		}
 		
 		// Generate Update Statement
@@ -154,6 +161,7 @@ if(isLoggedIn()) {
 						$info .= "<br>${price}";
 					print $info;
 					if(isLoggedIn()) {
+						$peeps = selectQuery($db, "c_id,c_name,c_lastname", "contacts", "1", "1");								
 					?>
 						<br>
 						<form name="update-arrangement" method="get" action="">
@@ -162,10 +170,24 @@ if(isLoggedIn()) {
 							<input type="text" name="new-medium" value="<?php echo $row['media']; ?>" />
 							<input type="text" name="new-price" value="<?php echo $row['price']; ?>" />
 							<input type="text" name="new-position" value="<?php echo $row['arrangement']; ?>" />
+							<select name="new-buyer">
+								<option value="">Select...</option>
+							<?php 
+								if($peeps) {									
+									while($peep = mysqli_fetch_assoc($peeps)) {										
+										$selected = "";										
+										if($peep['c_id'] === $row['buyerID']) {
+											$selected = "selected";
+										}
+										echo "<option value=\"$peep[c_id]\" $selected >$peep[c_name] $peep[c_lastname]</option>";
+									}
+								}								
+							?>
+							</select>
 							<input type="hidden" name="imgID" value="<?php echo $row['imgID']; ?>" />
 							<input type="submit" value="Update" />								
 						</form>
-					<?php					
+					<?php
 					}
 					print "</div></div></div>";
 					
