@@ -136,21 +136,24 @@ if(isLoggedIn()) {
 					//NEW BEGINS ************************************
 					//print "<div class='priceTag'><a href='$filepath' target='blank'><img class='img-responsive' src='$filepath' alt='Image Temporarily Unavailable'></a>";
 					
-					?>						
+					?>		
+					
 					<div class="priceTag">
 					<div id="modal-img-<?php echo $i;?>" class="modal">
 						<a href="#close-modal" rel="modal:close" class="close-modal ">Close</a>
 						<img class="img-responsive" id="inner-img-<?php echo $i; ?>" src="<?php echo $filepath; ?>" alt="Image unavailable"/>
 
 						<?php if($i !== 0) { ?>
-							<a id="left-arrow-<?php echo $i;?>" class="arrows" href="#modal-img-<?php echo $i - 1;?>" rel="modal:open" >&nbsp;&#x25C0;&nbsp;</a>
+							<a id="left-arrow-<?php echo $i;?>" class="arrows" href="#modal-img-<?php echo $i - 1;?>" rel="modal:open" >&nbsp;</a>
+							<a id="real-arrow-left" class="real-arrows" href="#modal-img-<?php echo $i - 1;?>" rel="modal:open">&#x25C0;</a>
 						<?php } 
 						if($i !== $numrows -1) { ?>
-							<a id="right-arrow-<?php echo $i;?>" class="arrows" href="#modal-img-<?php echo $i + 1;?>" rel="modal:open" >&nbsp;&#x25B6;&nbsp;</a>
+							<a id="right-arrow-<?php echo $i;?>" class="arrows" href="#modal-img-<?php echo $i + 1;?>" rel="modal:open" >&nbsp;</a>
+							<a id="real-arrow-right" class="real-arrows" href="#modal-img-<?php echo $i + 1;?>" rel="modal:open">&#x25B6;</a>
 						<?php } ?>
 
 					</div>
-
+					
 					<!-- Link to open the modal -->
 					<!-- This is the image displayed prior to clicking -->
 					<a href="#modal-img-<?php echo $i;?>" rel="modal:open"><img class="img-responsive" src="<?php echo $filepath; ?>" alt="Image unavailable"/></a>

@@ -22,15 +22,34 @@ session_start();
 			$(".imgSubnav").toggle();
 		});			
 		
+		// Make arrows light up when hovering
+		$(".arrows").each(function() {
+			var side = $(this).attr("id").split("-")[0];
+			var thisElem = $(this)[0];			
+			if(side === "left") {				
+				$(this).hover(function() {
+					$("a#real-arrow-left").css("color","#77f");					
+				}, function() {
+					$("a#real-arrow-left").css("color","rgba(30,30,70,.2)"); 		
+				});			
+			} else if(side === "right") {
+				$(this).hover(function() {
+					$("a#real-arrow-right").css("color","#77f");
+				}, function() {
+					$("a#real-arrow-right").css("color","rgba(30,30,70,.2)"); 		
+				});			
+			}			
+		});
+
 		// Make left and right arrows work for modal
 		$(document).keydown(function(event) {
 			var modalIsVisible = false;
 			
-			// Check that the model is visible
+			// Check that the modal is visible
 			$(".modal").each(function() {
 				if($(this).is(":visible")) {
 					modalIsVisible = true;
-					console.log($(this).position());
+					//console.log($(this).position());
 				}
 			});
 			
