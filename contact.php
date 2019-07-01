@@ -77,16 +77,15 @@ if($validation=="Success") {
 			<table align="center">
 				<tr><td>Success!</td></tr>
 				<tr><td>Thank you, <?php echo $name; ?>.</td></tr>
-				<tr><td>Your information has been saved. Your message, sent.</td></tr>
-				<tr><td>Here's what you wrote:</td></tr>
-				<tr><td><?php echo $memo; ?></td></tr>
+				<tr><td>Your message has been sent.</td></tr>
 				</table>
 			</div>
 		</div>
 	</div>	
 	<?php 
 	// Send yourself email
-	$headers = "From: $email";
+	$headers = "From: james@jamessecor.com" . "\r\n" 
+		. "Cc: $email" . "\r\n";
 	mail("james.secor@gmail.com", "New Art Contact from $email", $memo, $headers);
 	
 } else {
