@@ -63,13 +63,12 @@ include "header.php";
 				<strong>
 					&#x25B6; Press
 				</strong>
+			</p>			
+			<p>
+				<a class="press-links" href="./press/as-not-seen.pdf" target="_blank">&nbsp;As Not Seen: Review&nbsp;</a>
+				<br/><a class="press-links" href="./press/7_best_2017__7Days.pdf" target="_blank">&nbsp;Our Seven Favorite Vermont Art Shows of 2017&nbsp;</a>
+				<br/><a class="press-links" href="./press/nomophobia_MegBrazill.pdf" target="_blank">&nbsp;Art Review: James Secor, Studio Place Arts&nbsp;</a>			
 			</p>
-			<ul>
-			<li><strong>As Not Seen: Review</strong> <a class="press-links" href="./press/as-not-seen.pdf" target="_blank">View</a></li>
-			<li><strong>Our Seven Favorite Vermont Art Shows of 2017</strong> <a class="press-links" href="./press/7_best_2017__7Days.pdf" target="_blank">View</a></li>
-			<li><strong>Art Review: James Secor, Studio Place Arts</strong> <a class="press-links" href="./press/nomophobia_MegBrazill.pdf" target="_blank">View</a></li>
-			
-			</ul>
 		</div>
 	</div>
 	&nbsp;
