@@ -30,7 +30,8 @@ include "header.php";
 			</p>
 
 			<p>
-				<em>Summer Juried Show</em>, T.W. Wood Gallery, Montpelier, VT, 2017
+				<em>Contemporary American Regionalism: Vermont Perspectives</em>, Southern Vermont Art Center, Manchester, VT, 2019
+				<br><em>Summer Juried Show</em>, T.W. Wood Gallery, Montpelier, VT, 2017
 				<br><em>Encountering Yellow</em>, Studio Place Arts, Barre, VT, 2016
 				<br><em>Ongoing Member Shows</em>, The Front, Montpelier, VT, 2015-2017
 				<br><em>CELEBRATE!</em>, Studio Place Arts, Barre, VT, 2015 &amp; 2016
@@ -66,8 +67,18 @@ include "header.php";
 			</p>			
 			<p>
 				<a class="press-links" href="./press/as-not-seen.pdf" target="_blank">&nbsp;As Not Seen: Review&nbsp;</a>
+				<br/><a class="press-links" href="./press/artistToWatch.jpg" target="_blank">&nbsp;Artist to Watch, Vermont Art Guide #3&nbsp;</a>
+				<br/><a class="press-links" href="./press/companions.jpg" target="_blank">&nbsp;Companions, Vermont Art Guide #3&nbsp;</a>
 				<br/><a class="press-links" href="./press/7_best_2017__7Days.pdf" target="_blank">&nbsp;Our Seven Favorite Vermont Art Shows of 2017&nbsp;</a>
 				<br/><a class="press-links" href="./press/nomophobia_MegBrazill.pdf" target="_blank">&nbsp;Art Review: James Secor, Studio Place Arts&nbsp;</a>			
+			</p>
+			<p>
+				<strong>
+					&#x25B6; Links
+				</strong>
+			</p>			
+			<p>
+				<a class="press-links" href="https://shop.kasinihouseartshop.com/product/vermont-art-guide-3" target="_blank">&nbsp;Where to get your own Vermont Art Guide&nbsp;</a>
 			</p>
 		</div>
 	</div>
