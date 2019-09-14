@@ -68,6 +68,12 @@ if(isLoggedIn()) {
 			}			
 		}
 		
+		// Sale Date
+		if(isset($_GET['new-saleDate'])) {
+			$newSaleDate = mysqli_real_escape_string($db, $_GET['new-saleDate']);
+			$updates[] = " saleDate = '$newSaleDate'";
+		}
+
 		// Generate Update Statement
 		$imgID = $_GET['imgID'];
 		$updateArrangement = "UPDATE imageData SET ";
@@ -95,7 +101,7 @@ if(isLoggedIn()) {
 	{
 		global $db;
 		// Database Retrieval of Titles/Filenames
-		$query = "SELECT imgID, title, yearCreated, media, filename, buyerID, price, arrangement FROM imageData WHERE " . $whereClause . ";";
+		$query = "SELECT imgID, title, yearCreated, media, filename, buyerID, price, saleDate, arrangement FROM imageData WHERE " . $whereClause . ";";
 		$data = mysqli_query($db, $query);
 		if(!$data) {
 			print "Images could not be retrieved.";
@@ -191,6 +197,7 @@ if(isLoggedIn()) {
 								}								
 							?>
 							</select>
+							<input type="date" name="new-saleDate" value="<?php echo $row['saleDate']; ?>" />
 							<input type="hidden" name="imgID" value="<?php echo $row['imgID']; ?>" />
 							<input type="submit" value="Update" />								
 						</form>

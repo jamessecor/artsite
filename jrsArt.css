@@ -218,7 +218,7 @@ td {
 	color: var(--nav-background-color);
 }
 
-input[type="submit"], td input, td textarea, #toTop, select, .showPeeps, .press-links {
+input[type="submit"], td input, td textarea, #toTop, select, .showPeeps, .showSales, .press-links, input {
 	background-color: var(--nav-background-color);
 	color: var(--nav-color);
 	border:.1em solid var(--nav-background-color);
