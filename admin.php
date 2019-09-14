@@ -43,7 +43,7 @@ function getEmailAddr() {
 	return $emails;
 }
 
-function getSales($year) {
+function getSales() {
 	$sales = "";
 	if(isLoggedIn()) {
 		global $db;
@@ -65,15 +65,15 @@ function getSales($year) {
 ?>
 <script>
 function updateSales() {
-	// Sales
 	var totalSales = 0;
-	// TODO: make user entry year and get sales per year
-	var sales = '<?php echo getSales($_GET['saleYear']); ?>';
-	// This is each sale
+	var sales = '<?php echo getSales(); ?>';
+	
+	// This is an array of individual sales
 	var salesSplit = sales.split("___");
 	var titles = new Array(salesSplit.length);
 	var prices = new Array(salesSplit.length);	
 	var salesString = "";
+	
 	// length - 1 because the last element is empty
 	for(var i = 0; i < salesSplit.length - 1; i++) {
 		var titlePriceArray = salesSplit[i].split("__");
@@ -81,10 +81,10 @@ function updateSales() {
 		titles[i] = titlePriceArray[0];
 		prices[i] = titlePriceArray[1];
 		salesString += titles[i] + ": " + prices[i] + "<br>";
-		//console.log(i + "   " + titlePriceArray[1] + "   " + totalSales);
 	}
-	salesString += "Total " + "<?php echo $_GET['saleYear']; ?>" + ": " + totalSales;
-	//$(".sales").html(year + ": " + totalSales);	
+	salesString += "Total: " + totalSales + "<br>";
+	var taxesDue = totalSales * .06;
+	salesString += "Taxes Due: " + taxesDue;
 	$(".sales").html(salesString);
 }
 $(document).ready(function() {
@@ -140,15 +140,9 @@ $(document).ready(function() {
 							<div style="display:none;" class="peeps"></div>
 						</div>
 						<div class="col-md-6 col-md">						
-							<!--
-								ALTER TABLE imagedata ADD (
-									saleDate date
-								);
-							-->
 							<form method="get" name="saleYearForm"> 
-								<input type="date" name="periodBegin" value="<?php if(isset($_GET['periodBegin'])) echo $_GET['periodBegin']; ?>"/>
-								<input type="date" name="periodEnd" value="<?php if(isset($_GET['periodEnd'])) echo $_GET['periodEnd']; ?>"/>
-								<input name="saleYear" value="<?php if(isset($_GET['saleYear'])) echo $_GET['saleYear']; ?>" placeholder="2020" type="text"/>
+								<div>Period Beginning<br><input type="date" name="periodBegin" value="<?php if(isset($_GET['periodBegin'])) echo $_GET['periodBegin']; ?>"/></div>
+								<div>Period Ending<br><input type="date" name="periodEnd" value="<?php if(isset($_GET['periodEnd'])) echo $_GET['periodEnd']; ?>"/></div>
 								<input type="submit" class="showSales" value="Show Sales"/>
 							</form>
 							<div class="sales"></div>
@@ -157,7 +151,7 @@ $(document).ready(function() {
 					<?php
 					} ?>					
 				</div>
-			</div><!-- End success -->	
+			</div>
 		</div>
 	</div>
 	<!-- <div class='row'>-->
