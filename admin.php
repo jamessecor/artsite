@@ -45,7 +45,7 @@ function getEmailAddr() {
 
 function getSales() {
 	$sales = "";
-	if(isLoggedIn()) {
+	if(isLoggedIn() && isset($_GET['periodBegin'])) {
 		global $db;
 		$query = "SELECT price, title 
 					FROM imageData 
@@ -53,7 +53,6 @@ function getSales() {
 						and saleDate between '$_GET[periodBegin]' and '$_GET[periodEnd]' 
 					";
 		$result = mysqli_query($db, $query);
-		$sales = "";	
 		while($sale = mysqli_fetch_assoc($result)) {
 			if($sale['title'] != null && $sale['price'] != null) {
 				$sales .= "$sale[title]__$sale[price]___";			
@@ -61,6 +60,25 @@ function getSales() {
 		}
 	}
 	return $sales;
+}
+
+function getExpenses() {
+	$expenses = "";
+	if(isLoggedIn()) {
+		global $db;
+		$query = "SELECT expenseDesc, cost, expenseDate FROM expenses";
+		if(isset($_GET['periodBegin']) && isset($_GET['periodEnd'])) {
+			$query .= " WHERE expenseDate between '$_GET[periodBegin]' and '$_GET[periodEnd]'"; 
+		}
+		$query .= ";";
+		$result = mysqli_query($db, $query);
+		while($expense = mysqli_fetch_assoc($result)) {
+			if($expense['expenseDesc'] != null && $expense['cost'] != null && $expense['expenseDate'] != null) {
+				$expenses .= "$expenses[expenseDesc]__$expenses[cost]__$expenses[expenseDate]___";			
+			}		
+		}
+	}
+	return $expenses;
 }
 ?>
 <script>
@@ -87,9 +105,34 @@ function updateSales() {
 	salesString += "Taxes Due: " + taxesDue;
 	$(".sales").html(salesString);
 }
+
+function updateExpenses() {
+	var expenses = "<?php echo getExpenses(); ?>";
+	// This is an array of individual sales
+	var expensesSplit = expenses.split("___");
+	var descs = new Array(expensesSplit.length);
+	var costs = new Array(expensesSplit.length);	
+	var dates = new Array(expensesSplit.length);	
+	var expensesString = "";
+
+	// length - 1 because the last element is empty
+	for(var i = 0; i < expensesSplit.length - 1; i++) {
+		var descCostDateArray = expensesSplit[i].split("__");
+		totalExpenses += parseInt(descCostDateArray[1]);
+		descs[i] = descCostDateArray[0];
+		costs[i] = descCostDateArray[1];
+		dates[i] = descCostDateArray[2];
+		salesString += descs[i] + "; " + costs[i] + "; " + dates[i] + "<br>";
+	}
+	salesString += "Total: " + totalExpenses + "<br>";
+	$("#expenses").html(expensesString);
+}
 $(document).ready(function() {
 	// Sales
 	updateSales();
+	
+	// Expenses
+	updateExpenses();
 
 	// Emails
 	$(".peeps").html("<?php echo getEmailAddr(); ?>");
@@ -108,49 +151,67 @@ $(document).ready(function() {
 
 <div class='container'>
 	<div class='row'>
-		<div class='col-md-8 col-md-offset-2 center-it'>
-			<h1 id='contactHeading'><strong>Admin Page</strong></h1>
-			<div id='success'>
-				<div class='row'>
-					<?php 
-					// Not Logged In
-					if(!isLoggedIn()) { 
-					?>
-					<form id="login" method="post" action="" autocomplete='off'>
-						<table align="center">
-							<tr><td>Username</td></tr>
-							<tr><td><input type="text" name="artsiteusername"></td></tr>						
-							<tr><td>Password</td></tr>
-							<tr><td><input type="password" name="password"></td></tr>
-							<tr><td>&nbsp;</td></tr>
-							<tr><td><input type="submit" name="login" value="Log In"></td></tr>							
-						</table>
-					</form>
-					<?php 
-					} else { 
-					// Logged In
-					include "editartwork.php";
-					print "<hr>";
-					include "editcontacts.php";
-					?>
-					&nbsp;
-					<div class="row">
-						<div class="col-md-4 col-md-offset-2">						
-							<button class="showPeeps">SHOW emails</button>
-							<div style="display:none;" class="peeps"></div>
-						</div>
-						<div class="col-md-6 col-md">						
-							<form method="get" name="saleYearForm"> 
-								<div>Period Beginning<br><input type="date" name="periodBegin" value="<?php if(isset($_GET['periodBegin'])) echo $_GET['periodBegin']; ?>"/></div>
-								<div>Period Ending<br><input type="date" name="periodEnd" value="<?php if(isset($_GET['periodEnd'])) echo $_GET['periodEnd']; ?>"/></div>
-								<input type="submit" class="showSales" value="Show Sales"/>
-							</form>
-							<div class="sales"></div>
-						</div>
+		<h1 id='contactHeading' class="center-it"><strong>Admin Page</strong></h1>
+		<div id='success'>
+			<div class='row'>
+				<?php 
+				// Not Logged In
+				if(!isLoggedIn()) { 
+				?>
+				<form id="login" method="post" action="" autocomplete='off'>
+					<table align="center">
+						<tr><td>Username</td></tr>
+						<tr><td><input type="text" name="artsiteusername"></td></tr>						
+						<tr><td>Password</td></tr>
+						<tr><td><input type="password" name="password"></td></tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr><td><input type="submit" name="login" value="Log In"></td></tr>							
+					</table>
+				</form>
+				<?php 
+				} else { 
+				// Logged In
+				include "editartwork.php";
+				print "<hr>";
+				//include "editcontacts.php";
+				?>
+				&nbsp;
+				<div class="row">
+					<div class="col-md-3 col-md-offset-1">						
+						<button class="showPeeps">SHOW emails</button>
+						<div style="display:none;" class="peeps"></div>
 					</div>
-					<?php
-					} ?>					
+					<!-- Sales -->
+					<div class="col-md-3">						
+						<div><strong>sales</strong></div>
+						<form method="get" name="saleYearForm"> 
+							<div>Period Beginning<br><input type="date" name="periodBegin" value="<?php if(isset($_GET['periodBegin'])) echo $_GET['periodBegin']; ?>"/></div>
+							<div>Period Ending<br><input type="date" name="periodEnd" value="<?php if(isset($_GET['periodEnd'])) echo $_GET['periodEnd']; ?>"/></div>
+							<br><input type="submit" class="showSales" value="Show Sales"/>
+						</form>
+						<div class="sales"></div>
+					</div>
+					<div class="col">
+						<!--
+							create table expenses (
+								expenseId int not null AUTO_INCREMENT,
+								expenseDesc varchar(150) not null,
+								cost double not null,
+								expenseDate date not null,
+								PRIMARY KEY(expenseId)
+							);
+						-->
+						<div><strong>expenses</strong></div>
+						<form method="get" name="expensesForm">
+							<input type="text" name="expense-description" placeholder="Drawing Board supplies"/>
+							<input type="text" name="expense-amount" placeholder="13.75"/>
+							<input type="submit" name="add-expense" value="Add"/>
+						</form>
+						<div id="expenses"></div>
+					</div>
 				</div>
+				<?php
+				} ?>					
 			</div>
 		</div>
 	</div>
