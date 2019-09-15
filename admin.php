@@ -23,6 +23,7 @@ if(isset($_POST['login'])) {
 	}	
 	
 	// Check them
+	//if($username===$adminU) { // For local testing
 	if($username===$adminU && password_verify($password, $adminP)) {
 		$_SESSION['artsiteusername'] = $username;
 	}
@@ -32,53 +33,16 @@ if(isset($_POST['logout'])) {
 	logout();	
 }
 
-// Returns an array of email addresses
-function getEmailAddr() {
-	global $db;
-	$query = "SELECT c_email FROM contacts;";
-	$result = mysqli_query($db, $query);
-	$emails = "";
-	while($email = mysqli_fetch_array($result))
-		$emails .= "$email[0]; ";	
-	return $emails;
-}
-
-function getSales() {
-	$sales = "";
-	if(isLoggedIn() && isset($_GET['periodBegin'])) {
-		global $db;
-		$query = "SELECT price, title 
-					FROM imageData 
-					WHERE buyerID is not null 
-						and saleDate between '$_GET[periodBegin]' and '$_GET[periodEnd]' 
-					";
-		$result = mysqli_query($db, $query);
-		while($sale = mysqli_fetch_assoc($result)) {
-			if($sale['title'] != null && $sale['price'] != null) {
-				$sales .= "$sale[title]__$sale[price]___";			
-			}		
-		}
+// Add Expense
+if(isset($_GET['add-expense']) && $_GET['add-expense'] == 'Add') {
+	if(isset($_GET['expense-description']) && $_GET['expense-description'] != "" &&
+			isset($_GET['expense-amount']) && $_GET['expense-amount'] != "" && 
+			isset($_GET['expense-date']) && $_GET['expense-date'] != "") {	
+		$desc = addslashes($_GET['expense-description']);
+		$cost = addslashes($_GET['expense-amount']);
+		$eDate = addslashes($_GET['expense-date']);
+		addExpense($desc, $cost, $eDate);
 	}
-	return $sales;
-}
-
-function getExpenses() {
-	$expenses = "";
-	if(isLoggedIn()) {
-		global $db;
-		$query = "SELECT expenseDesc, cost, expenseDate FROM expenses";
-		if(isset($_GET['periodBegin']) && isset($_GET['periodEnd'])) {
-			$query .= " WHERE expenseDate between '$_GET[periodBegin]' and '$_GET[periodEnd]'"; 
-		}
-		$query .= ";";
-		$result = mysqli_query($db, $query);
-		while($expense = mysqli_fetch_assoc($result)) {
-			if($expense['expenseDesc'] != null && $expense['cost'] != null && $expense['expenseDate'] != null) {
-				$expenses .= "$expenses[expenseDesc]__$expenses[cost]__$expenses[expenseDate]___";			
-			}		
-		}
-	}
-	return $expenses;
 }
 ?>
 <script>
@@ -107,7 +71,8 @@ function updateSales() {
 }
 
 function updateExpenses() {
-	var expenses = "<?php echo getExpenses(); ?>";
+	var expenses = '<?php echo getExpenses(); ?>';
+	var totalExpenses = 0;
 	// This is an array of individual sales
 	var expensesSplit = expenses.split("___");
 	var descs = new Array(expensesSplit.length);
@@ -122,9 +87,9 @@ function updateExpenses() {
 		descs[i] = descCostDateArray[0];
 		costs[i] = descCostDateArray[1];
 		dates[i] = descCostDateArray[2];
-		salesString += descs[i] + "; " + costs[i] + "; " + dates[i] + "<br>";
+		expensesString += descs[i] + "; " + costs[i] + "; " + dates[i] + "<br>";
 	}
-	salesString += "Total: " + totalExpenses + "<br>";
+	expensesString += "Total: " + totalExpenses + "<br>";
 	$("#expenses").html(expensesString);
 }
 $(document).ready(function() {
@@ -178,6 +143,7 @@ $(document).ready(function() {
 				&nbsp;
 				<div class="row">
 					<div class="col-md-3 col-md-offset-1">						
+						<div><strong>emails</strong></div>
 						<button class="showPeeps">SHOW emails</button>
 						<div style="display:none;" class="peeps"></div>
 					</div>
@@ -191,7 +157,7 @@ $(document).ready(function() {
 						</form>
 						<div class="sales"></div>
 					</div>
-					<div class="col">
+					<div class="col-md-5">
 						<!--
 							create table expenses (
 								expenseId int not null AUTO_INCREMENT,
@@ -205,6 +171,10 @@ $(document).ready(function() {
 						<form method="get" name="expensesForm">
 							<input type="text" name="expense-description" placeholder="Drawing Board supplies"/>
 							<input type="text" name="expense-amount" placeholder="13.75"/>
+							<div>&nbsp;</div>
+							<input type="date" name="expense-date" value="<?php echo date("Y-m-d"); ?>"/>
+							<input type="hidden" name="periodBegin" value="<?php if(isset($_GET['periodBegin'])) echo $_GET['periodBegin']; ?>"/>
+							<input type="hidden" name="periodEnd" value="<?php if(isset($_GET['periodEnd'])) echo $_GET['periodEnd']; ?>"/>
 							<input type="submit" name="add-expense" value="Add"/>
 						</form>
 						<div id="expenses"></div>
