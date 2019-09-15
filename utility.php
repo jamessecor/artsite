@@ -20,15 +20,17 @@ function getSales() {
 	$sales = "";
 	if(isLoggedIn() && isset($_GET['periodBegin'])) {
 		global $db;
-		$query = "SELECT price, title 
-					FROM imageData 
+		$query = "SELECT price, title, c_name, c_lastname
+					FROM imageData i
+					INNER JOIN contacts c
+						ON i.buyerID = c.c_id
 					WHERE buyerID is not null 
 						and saleDate between '$_GET[periodBegin]' and '$_GET[periodEnd]' 
 					";
 		$result = mysqli_query($db, $query);
 		while($sale = mysqli_fetch_assoc($result)) {
 			if($sale['title'] != null && $sale['price'] != null) {
-				$sales .= "$sale[title]__$sale[price]___";			
+				$sales .= "$sale[title]__$sale[price]__$sale[c_name] $sale[c_lastname]___";			
 			}		
 		}
 	}

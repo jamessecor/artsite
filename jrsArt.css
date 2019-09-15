@@ -227,7 +227,7 @@ input[type="submit"], td input, td textarea, #toTop, select, .showPeeps, .showSa
 	text-decoration:none;
 }
 	
-::placeholder { color: var(--nav-color); }
+::placeholder { color: rgba(250,200,200,.8); font-size:small; font-style:italic; font-weight: 100; }
 
 /** As Not Seen Only **/
 .decision-buttons { 
