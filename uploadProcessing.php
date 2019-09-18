@@ -1,6 +1,5 @@
 <?php
-function uploadFile() {
-	$target_dir = "./img/";
+function uploadFile($target_dir) {
 	$target_file = $target_dir . basename($_FILES["updatefilename"]["name"]);
 	$uploadOk = 1;
 	

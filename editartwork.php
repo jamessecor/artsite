@@ -325,7 +325,8 @@ if(!$artworkResult) {
 			// Upload image if not bypassed
 			if(!$bypassUpload) {
 				include "uploadProcessing.php";
-				uploadFile();
+				$target_dir = "./img/";
+				uploadFile($target_dir);
 			}
 			$query = "";
 			$isNew = $_POST['isnew'];

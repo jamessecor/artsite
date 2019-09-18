@@ -77,21 +77,34 @@ function updateExpenses() {
 	var totalExpenses = 0;
 	// This is an array of individual sales
 	var expensesSplit = expenses.split("___");
+	var ids = new Array(expensesSplit.length);	
 	var descs = new Array(expensesSplit.length);
 	var costs = new Array(expensesSplit.length);	
 	var dates = new Array(expensesSplit.length);	
 	var expensesString = "";
-
+	<?php
+	// Add receipt img
+	if(isset($_GET['expenseId'])) {
+		echo "var formExpenseId = " . $_GET['expenseId'] . ";";
+		echo "console.log(formExpenseId);";
+	}
+	?>
 	// length - 1 because the last element is empty
 	for(var i = 0; i < expensesSplit.length - 1; i++) {
 		var descCostDateArray = expensesSplit[i].split("__");
-		totalExpenses += parseInt(descCostDateArray[1]);
-		descs[i] = descCostDateArray[0];
-		costs[i] = descCostDateArray[1];
-		dates[i] = descCostDateArray[2];
-		expensesString += descs[i] + "; " + costs[i] + "; " + dates[i] + "<br>";
+		totalExpenses += parseFloat(descCostDateArray[2]);
+		ids[i] = descCostDateArray[0];
+		descs[i] = descCostDateArray[1];
+		costs[i] = descCostDateArray[2];
+		dates[i] = descCostDateArray[3];
+		if(i==0) {
+			expensesString += "<tr><th>Desc</th><th>Amount</th><th>Date</th></tr>";	
+		}		
+		// Add "Add Image" Button
+		expensesString += "<tr><td><a href='#expense-modal-" + i + "' rel='modal:open'>" + descs[i] + "</a></td><td>" + costs[i] + "</td><td>" + dates[i] + "</td></tr>";
 	}
-	expensesString += "Total: " + totalExpenses + "<br>";
+	expensesString += "<tr><td>Total</td><td>" + Math.round(totalExpenses*100)/100 + "</td></tr>";
+	expensesString = "<table>" + expensesString + "</table>";
 	$("#expenses").html(expensesString);
 }
 $(document).ready(function() {
@@ -180,7 +193,27 @@ $(document).ready(function() {
 							<input type="submit" name="add-expense" value="Add"/>
 						</form>
 						<div id="expenses"></div>
-					</div>
+					</div>					
+				</div>
+				<div class='row'>
+				<?php
+				$expenses = getExpenses();
+				$exSplit = explode("___", $expenses);
+				for($i = 0; $i < count($exSplit) - 1; $i++) { ?>
+					<div id="<?php echo "expense-modal-$i";?>" class="modal">
+						<a href="#close-modal" rel="modal:close" class="close-modal ">Close</a>
+						Add Receipt Image
+						<?php 
+						$exData = explode("__", $exSplit[$i]);
+						echo "$exData[1] $exData[2] $exData[3]";
+						?>
+						<form name='add-expense-image' method='get'>
+							<input type="file" name="receipt-file"/>
+							<input type="submit" name="submit-receipt" value="submit receipt"/>
+						</form>
+					</div>	
+				<?php } ?>
+					
 				</div>
 				<?php
 				} ?>					

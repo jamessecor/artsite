@@ -41,7 +41,7 @@ function getExpenses() {
 	$expenses = "";
 	if(isLoggedIn()) {
 		global $db;
-		$query = "SELECT expenseDesc, cost, expenseDate FROM expenses";
+		$query = "SELECT expenseId, expenseDesc, cost, expenseDate FROM expenses";
 		// Add date range if dates are set
 		if(isset($_GET['periodBegin']) && $_GET['periodBegin'] != "" && isset($_GET['periodEnd']) && $_GET['periodEnd'] != "") {
 			$query .= " WHERE expenseDate between '$_GET[periodBegin]' and '$_GET[periodEnd]'"; 
@@ -50,7 +50,7 @@ function getExpenses() {
 		$result = mysqli_query($db, $query);
 		while($expense = mysqli_fetch_assoc($result)) {
 			if($expense['expenseDesc'] != null && $expense['cost'] != null && $expense['expenseDate'] != null) {
-				$expenses .= "$expense[expenseDesc]__$expense[cost]__$expense[expenseDate]___";
+				$expenses .= "$expense[expenseId]__$expense[expenseDesc]__$expense[cost]__$expense[expenseDate]___";
 			}		
 		}
 	}
