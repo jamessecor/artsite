@@ -69,7 +69,7 @@ if(isLoggedIn()) {
 		}
 		
 		// Sale Date
-		if(isset($_GET['new-saleDate'])) {
+		if(!empty($_GET['new-saleDate'])) {
 			$newSaleDate = mysqli_real_escape_string($db, $_GET['new-saleDate']);
 			$updates[] = " saleDate = '$newSaleDate'";
 		}
