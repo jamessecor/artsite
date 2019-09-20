@@ -102,9 +102,9 @@ if(!$artworkResult) {
 			if(!$isNew) { 
 				$path="";
 				if($editWork['arrangement'] == -1)
-					$path = "../nomophobiaImages/";
+					$path = "./nomophobiaImages/";
 				else
-					$path = "../img/";
+					$path = "./img/";
 				
 				// Enable "" in title and media
 				$htmlTitle = htmlentities($editWork['title']);
@@ -326,7 +326,7 @@ if(!$artworkResult) {
 			if(!$bypassUpload) {
 				include "uploadProcessing.php";
 				$target_dir = "./img/";
-				uploadFile($target_dir);
+				uploadFile($target_dir, "updatefilename");
 			}
 			$query = "";
 			$isNew = $_POST['isnew'];
@@ -384,7 +384,7 @@ if(!$artworkResult) {
 				// Only show image if uploaded
 				if($bypassUpload) $newFilename = $_POST['oldfilename'];
 				?><table align="center"><tr><td><?php
-				print "<img class='img-responsive center-it thumbnail' src='../img/$newFilename' alt='Image Loading Error'>";
+				print "<img class='img-responsive center-it thumbnail' src='./img/$newFilename' alt='Image Loading Error'>";
 				print "<p>$newTitle, $newYear</br>$newMedium</br>";
 				if($hasPrice)
 					echo "$newPrice";

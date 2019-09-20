@@ -113,7 +113,7 @@ if(isLoggedIn()) {
 				$row = mysqli_fetch_assoc($data);
 				if($row) {
 					// TODO: make filepath a parameter so you can use different folders
-					$filepath = "../img/" . $row['filename'];
+					$filepath = "./img/" . $row['filename'];
 					
 					$price = "";
 					if($row['buyerID'] || $row['price'])

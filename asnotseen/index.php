@@ -226,7 +226,7 @@ $(document).ready(function() {
 	<div class="row">
 		<div class="col-md">
 			<?php 
-			$imageSrc = "../../img/mcD.jpg";
+			$imageSrc = "../img/mcD.jpg";
 			for($i = 0; $i < 30; $i++){
 				echo "<img class=\"winner-images\" style=\"width:20%; position:absolute; top:${i}em; right:${i}em\" src=\"$imageSrc\" alt=\"Buy NOW!\">";
 			}

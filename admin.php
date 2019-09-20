@@ -11,6 +11,7 @@ if(isset($_POST['login'])) {
 	}
 	
 	// Password
+	$password = "";
 	if(!empty($_POST['password'])) {
 		$password = addslashes(trim(($_POST['password'])));
 		/* Debugging Password Hash /
@@ -20,7 +21,7 @@ if(isset($_POST['login'])) {
 			echo "<br>";		
 		//	die();
 		//*/
-	}	
+	} 
 	
 	// Check them
 	//if($username===$adminU) { // For local testing
@@ -44,6 +45,24 @@ if(isset($_GET['add-expense']) && $_GET['add-expense'] == 'Add') {
 		addExpense($desc, $cost, $eDate);
 	}
 }
+
+// Add Receipt
+if((isset($_POST['receiptexpenseid']) && is_numeric($_POST['receiptexpenseid'])) && !empty($_FILES['receiptfile']['name'])) {
+	include "uploadProcessing.php";
+	print_r($_FILES);
+	$target_dir = "./receipts/";
+	if(uploadFile($target_dir, "receiptfile")) {
+		/**
+		 * Add Column filename to expenses
+		 * ALTER TABLE expenses ADD COLUMN expenseFilename varchar(75);
+		 */
+		// Insert query
+		global $db;
+		$receiptFilename = $_FILES['receiptfile']['name'];
+		$query = "UPDATE expenses SET expenseFilename = '$receiptFilename' WHERE expenseId='$_POST[receiptexpenseid]';";		
+		$result = mysqli_query($db, $query);
+	}
+} 
 ?>
 <script>
 function updateSales() {
@@ -202,14 +221,16 @@ $(document).ready(function() {
 				for($i = 0; $i < count($exSplit) - 1; $i++) { ?>
 					<div id="<?php echo "expense-modal-$i";?>" class="modal">
 						<a href="#close-modal" rel="modal:close" class="close-modal ">Close</a>
-						Add Receipt Image
+						<strong>Add Receipt Image</strong><br/>
 						<?php 
 						$exData = explode("__", $exSplit[$i]);
 						echo "$exData[1] $exData[2] $exData[3]";
 						?>
-						<form name='add-expense-image' method='get'>
-							<input type="file" name="receipt-file"/>
-							<input type="submit" name="submit-receipt" value="submit receipt"/>
+						<form name='add-expense-image' method='post' action="" enctype="multipart/form-data">
+							<input type="file" name="receiptfile"/>
+							<input type="hidden" name="periodBegin" value="<?php if(isset($_GET['periodBegin'])) echo $_GET['periodBegin']; ?>"/>
+							<input type="hidden" name="periodEnd" value="<?php if(isset($_GET['periodEnd'])) echo $_GET['periodEnd']; ?>"/>
+							<button name="receiptexpenseid" value="<?php echo $i; ?>">Submit Receipt</button>
 						</form>
 					</div>	
 				<?php } ?>

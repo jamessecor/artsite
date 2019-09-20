@@ -1,6 +1,6 @@
 <?php
-function uploadFile($target_dir) {
-	$target_file = $target_dir . basename($_FILES["updatefilename"]["name"]);
+function uploadFile($target_dir, $filename) {
+	$target_file = $target_dir . basename($_FILES[$filename]["name"]);
 	$uploadOk = 1;
 	
 	$path_parts = pathinfo($target_file);  // new line added by JDS
@@ -9,8 +9,8 @@ function uploadFile($target_dir) {
 	// line above was suggested in PHP manual pages online. pathinfo returns an array!		
 	
 	// Check if image file is a actual image or fake image		
-	$tmp_file = $_FILES["updatefilename"]["tmp_name"];
-	$check = getimagesize($_FILES["updatefilename"]["tmp_name"]);
+	$tmp_file = $_FILES[$filename]["tmp_name"];
+	$check = getimagesize($_FILES[$filename]["tmp_name"]);
 	//print "Checking image size of $tmp_file. Size is $check[0]<br>";
 	
 	if($check !== false) {
@@ -27,7 +27,7 @@ function uploadFile($target_dir) {
 	}
 	
 	// Check file size
-	if ($_FILES["updatefilename"]["size"] > 10000000) {           // I changed this to 10 MB to accomodate hi res images. 
+	if ($_FILES[$filename]["size"] > 10000000) {           // I changed this to 10 MB to accomodate hi res images. 
 		echo "Your file is too large.";              // I also had to change the setting in PHP.ini for max upload size
 		$uploadOk = 0;
 	}
@@ -41,9 +41,9 @@ function uploadFile($target_dir) {
 	}
 	
 	// Additional Error Checking Added by Joan: 
-	if ($_FILES['updatefilename']['error'] > 0) {
+	if ($_FILES[$filename]['error'] > 0) {
 		$uploadOk = 0;
-		switch ($_FILES['updatefilename']['error']) {
+		switch ($_FILES[$filename]['error']) {
 			case 1:
 				echo "File exceeded upload_max_filesize";   break;  
 			case 2:
@@ -67,12 +67,13 @@ function uploadFile($target_dir) {
 		echo "Your file was not uploaded.";
 	// if everything is ok, try to upload file
 	} else {
-		if (move_uploaded_file($_FILES["updatefilename"]["tmp_name"], $target_file)) {
-			$filename = basename($_FILES["updatefilename"]["name"]);
-			$imgLocation = "./img/" . $filename;			
+		if (move_uploaded_file($_FILES[$filename]["tmp_name"], $target_file)) {
+			$newfilename = basename($_FILES[$filename]["name"]);
+			$imgLocation = $target_dir . $newfilename;			
 		} else {
-			echo "There was an error uploading your file.";
+			echo "There was an error uploading your file.";			
 		}
 	}
+	return $uploadOk;
 }
 ?>
