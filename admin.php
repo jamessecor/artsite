@@ -24,8 +24,8 @@ if(isset($_POST['login'])) {
 	} 
 	
 	// Check them
-	if($username===$adminU) { // For local testing
-	//if($username===$adminU && password_verify($password, $adminP)) {
+	//if($username===$adminU) { // For local testing
+	if($username===$adminU && password_verify($password, $adminP)) {
 		$_SESSION['artsiteusername'] = $username;
 	}
 }
@@ -239,7 +239,8 @@ $(document).ready(function() {
 					</div>
 					<div id="<?php echo "expense-receipt-$i";?>" class="modal">
 						<a href="#close-modal" rel="modal:close" class="close-modal">Close</a>
-						<img src="./receipt/<?php echo $exData[4];?>" alt="01.jpg"/>
+						<span><?php echo "$exData[1] $exData[2] $exData[3]";?></span>
+						<img src="./receipts/<?php echo $exData[4];?>" alt="01.jpg"/>
 					</div>
 				<?php } ?>
 					
