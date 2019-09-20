@@ -52,10 +52,6 @@ if((isset($_POST['receiptexpenseid']) && is_numeric($_POST['receiptexpenseid']))
 	print_r($_FILES);
 	$target_dir = "./receipts/";
 	if(uploadFile($target_dir, "receiptfile")) {
-		/**
-		 * Add Column filename to expenses
-		 * ALTER TABLE expenses ADD COLUMN expenseFilename varchar(75);
-		 */
 		// Insert query
 		global $db;
 		$receiptFilename = $_FILES['receiptfile']['name'];
@@ -93,6 +89,7 @@ function updateSales() {
 
 function updateExpenses() {
 	var expenses = '<?php echo getExpenses(); ?>';
+	console.log(expenses);
 	var totalExpenses = 0;
 	// This is an array of individual sales
 	var expensesSplit = expenses.split("___");
@@ -100,6 +97,7 @@ function updateExpenses() {
 	var descs = new Array(expensesSplit.length);
 	var costs = new Array(expensesSplit.length);	
 	var dates = new Array(expensesSplit.length);	
+	var filenames = new Array(expensesSplit.length);
 	var expensesString = "";
 	<?php
 	// Add receipt img
@@ -111,16 +109,22 @@ function updateExpenses() {
 	// length - 1 because the last element is empty
 	for(var i = 0; i < expensesSplit.length - 1; i++) {
 		var descCostDateArray = expensesSplit[i].split("__");
+		console.log(descCostDateArray);
 		totalExpenses += parseFloat(descCostDateArray[2]);
 		ids[i] = descCostDateArray[0];
 		descs[i] = descCostDateArray[1];
 		costs[i] = descCostDateArray[2];
 		dates[i] = descCostDateArray[3];
+		filenames[i] = descCostDateArray[4];
 		if(i==0) {
-			expensesString += "<tr><th>Desc</th><th>Amount</th><th>Date</th></tr>";	
+			expensesString += "<tr><th>Desc(add img)</th><th>Amount</th><th>Date(see img)</th></tr>";	
 		}		
-		// Add "Add Image" Button
-		expensesString += "<tr><td><a href='#expense-modal-" + i + "' rel='modal:open'>" + descs[i] + "</a></td><td>" + costs[i] + "</td><td>" + dates[i] + "</td></tr>";
+		// TODO: Add image on hover or click
+		if(filenames[i] !== ' ') {
+			expensesString += "<tr id='expense-row-" + i + "'><td><a href='#expense-modal-" + i + "' rel='modal:open'>" + descs[i] + "</a></td><td>" + costs[i] + "</td><td><a href='./receipts/" + filenames[i] + "' >" + dates[i] + "</a></td></tr>";
+		} else {
+			expensesString += "<tr id='expense-row-" + i + "'><td><a href='#expense-modal-" + i + "' rel='modal:open'>" + descs[i] + "</a></td><td>" + costs[i] + "</td><td>" + dates[i] + "</td></tr>";
+		}		
 	}
 	expensesString += "<tr><td>Total</td><td>" + Math.round(totalExpenses*100)/100 + "</td></tr>";
 	expensesString = "<table>" + expensesString + "</table>";
