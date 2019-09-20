@@ -217,6 +217,9 @@ td {
 	font-weight:bold;
 	color: var(--nav-background-color);
 }
+
+#expenses-table>tbody>tr>th,#expenses-table>tbody>tr>td { padding-right: .5em; }
+#expenses-table>tbody>tr>th { background-color:var(--nav-color); text-align: center; }
 /*.expense-file-inputs { width: 25px; }*/
 input[type="submit"], button, td input, td textarea, #toTop, select, .showPeeps, .showSales, .press-links, input {
 	background-color: var(--nav-background-color);

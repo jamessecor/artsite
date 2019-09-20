@@ -127,7 +127,7 @@ function updateExpenses() {
 		}		
 	}
 	expensesString += "<tr><td>Total</td><td>" + Math.round(totalExpenses*100)/100 + "</td></tr>";
-	expensesString = "<table>" + expensesString + "</table>";
+	expensesString = "<table id='expenses-table'>" + expensesString + "</table>";
 	$("#expenses").html(expensesString);
 }
 $(document).ready(function() {
@@ -180,22 +180,30 @@ $(document).ready(function() {
 				?>
 				&nbsp;
 				<div class="row">
-					<div class="col-md-3 col-md-offset-1">						
+					<div class="col-md-8 col-md-offset-2">						
 						<div><strong>emails</strong></div>
 						<button class="showPeeps">SHOW emails</button>
 						<div style="display:none;" class="peeps"></div>
 					</div>
+				</div>
+				<hr>
+				<div class="row">
 					<!-- Sales -->
-					<div class="col-md-3">						
+					<div class="col-md-2 col-md-offset-2">						
 						<div><strong>sales</strong></div>
 						<form method="get" name="saleYearForm"> 
 							<div>Period Beginning<br><input type="date" name="periodBegin" value="<?php if(isset($_GET['periodBegin'])) echo $_GET['periodBegin']; ?>"/></div>
 							<div>Period Ending<br><input type="date" name="periodEnd" value="<?php if(isset($_GET['periodEnd'])) echo $_GET['periodEnd']; ?>"/></div>
 							<br><input type="submit" class="showSales" value="Show Sales"/>
 						</form>
+					</div>
+					<div class="col-md-7 col-md-offset-1">						
 						<div class="sales"></div>
 					</div>
-					<div class="col-md-5">
+				</div>
+				<hr>
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
 						<!--
 							create table expenses (
 								expenseId int not null AUTO_INCREMENT,
@@ -209,7 +217,6 @@ $(document).ready(function() {
 						<form method="get" name="expensesForm">
 							<input type="text" name="expense-description" placeholder="Drawing Board supplies"/>
 							<input type="text" name="expense-amount" placeholder="13.75"/>
-							<div>&nbsp;</div>
 							<input type="date" name="expense-date" value="<?php echo date("Y-m-d"); ?>"/>
 							<input type="hidden" name="periodBegin" value="<?php if(isset($_GET['periodBegin'])) echo $_GET['periodBegin']; ?>"/>
 							<input type="hidden" name="periodEnd" value="<?php if(isset($_GET['periodEnd'])) echo $_GET['periodEnd']; ?>"/>
