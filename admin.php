@@ -240,7 +240,7 @@ $(document).ready(function() {
 					<div id="<?php echo "expense-receipt-$i";?>" class="modal">
 						<a href="#close-modal" rel="modal:close" class="close-modal">Close</a>
 						<span><?php echo "$exData[1] $exData[2] $exData[3]";?></span>
-						<img src="./receipts/<?php echo $exData[4];?>" alt="01.jpg"/>
+						<img class="img-responsive" src="./receipts/<?php echo $exData[4];?>" alt="Receipt unavailable"/>
 					</div>
 				<?php } ?>
 					
