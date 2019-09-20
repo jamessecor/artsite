@@ -24,8 +24,8 @@ if(isset($_POST['login'])) {
 	} 
 	
 	// Check them
-	//if($username===$adminU) { // For local testing
-	if($username===$adminU && password_verify($password, $adminP)) {
+	if($username===$adminU) { // For local testing
+	//if($username===$adminU && password_verify($password, $adminP)) {
 		$_SESSION['artsiteusername'] = $username;
 	}
 }
@@ -121,7 +121,7 @@ function updateExpenses() {
 		}		
 		// TODO: Add image on hover or click
 		if(filenames[i] !== ' ') {
-			expensesString += "<tr id='expense-row-" + i + "'><td><a href='#expense-modal-" + i + "' rel='modal:open'>" + descs[i] + "</a></td><td>" + costs[i] + "</td><td><a href='./receipts/" + filenames[i] + "' >" + dates[i] + "</a></td></tr>";
+			expensesString += "<tr id='expense-row-" + i + "'><td><a href='#expense-modal-" + i + "' rel='modal:open'>" + descs[i] + "</a></td><td>" + costs[i] + "</td><td><a href='#expense-receipt-" + i + "' rel='modal:open'>" + dates[i] + "</a></td></tr>";
 		} else {
 			expensesString += "<tr id='expense-row-" + i + "'><td><a href='#expense-modal-" + i + "' rel='modal:open'>" + descs[i] + "</a></td><td>" + costs[i] + "</td><td>" + dates[i] + "</td></tr>";
 		}		
@@ -236,7 +236,11 @@ $(document).ready(function() {
 							<input type="hidden" name="periodEnd" value="<?php if(isset($_GET['periodEnd'])) echo $_GET['periodEnd']; ?>"/>
 							<button name="receiptexpenseid" value="<?php echo $i; ?>">Submit Receipt</button>
 						</form>
-					</div>	
+					</div>
+					<div id="<?php echo "expense-receipt-$i";?>" class="modal">
+						<a href="#close-modal" rel="modal:close" class="close-modal">Close</a>
+						<img src="./receipt/<?php echo $exData[4];?>" alt="01.jpg"/>
+					</div>
 				<?php } ?>
 					
 				</div>
