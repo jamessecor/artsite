@@ -18,19 +18,21 @@ function getEmailAddr() {
 
 function getSales() {
 	$sales = "";
-	if(isLoggedIn() && isset($_GET['periodBegin'])) {
+	if(isLoggedIn()) {
 		global $db;
 		$query = "SELECT price, title, c_name, c_lastname
 					FROM imageData i
 					INNER JOIN contacts c
 						ON i.buyerID = c.c_id
-					WHERE buyerID is not null 
-						and saleDate between '$_GET[periodBegin]' and '$_GET[periodEnd]' 
-					";
+					WHERE buyerID is not null ";
+		if(!empty($_GET['periodBegin']) && !empty($_GET['periodEnd'])) {
+			$query .= "and saleDate between '$_GET[periodBegin]' and '$_GET[periodEnd]'";
+		}		
+		$query .= ";";
 		$result = mysqli_query($db, $query);
 		while($sale = mysqli_fetch_assoc($result)) {
-			if($sale['title'] != null && $sale['price'] != null) {
-				$sales .= "$sale[title]__$sale[price]__$sale[c_name] $sale[c_lastname]___";			
+			if($sale['title'] != null && $sale['price'] != null && $sale['c_name'] != null && $sale['c_lastname'] != null) {
+				$sales .= addslashes("$sale[title]__$sale[price]__$sale[c_name] $sale[c_lastname]___");			
 			}		
 		}
 	}
