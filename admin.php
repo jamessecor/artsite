@@ -241,7 +241,7 @@ $(document).ready(function() {
 							<input type="file" name="receiptfile"/>
 							<input type="hidden" name="periodBegin" value="<?php if(isset($_GET['periodBegin'])) echo $_GET['periodBegin']; ?>"/>
 							<input type="hidden" name="periodEnd" value="<?php if(isset($_GET['periodEnd'])) echo $_GET['periodEnd']; ?>"/>
-							<button name="receiptexpenseid" value="<?php echo $i; ?>">Submit Receipt</button>
+							<button name="receiptexpenseid" value="<?php echo $exData[0]; ?>">Submit Receipt</button>
 						</form>
 					</div>
 					<div id="<?php echo "expense-receipt-$i";?>" class="modal">
