@@ -77,7 +77,7 @@ function updateSales() {
 	var titles = new Array(salesSplit.length);
 	var prices = new Array(salesSplit.length);	
 	var names = new Array(salesSplit.length);	
-	var salesString = "";
+	var salesString = "<div class='cv-text'>";
 	
 	// length - 1 because the last element is empty
 	for(var i = 0; i < salesSplit.length - 1; i++) {
@@ -86,12 +86,12 @@ function updateSales() {
 		titles[i] = titlePriceNameArray[0];
 		prices[i] = titlePriceNameArray[1];
 		names[i] = titlePriceNameArray[2];
-		salesString += titles[i] + " (" + names[i] + "): " + prices[i] + "<br>";
+		salesString += "<strong>" + titles[i] + "</strong> (" + names[i] + "): <strong>" + prices[i] + "</strong><br>";
 	}
-	salesString += "<strong>Total</strong>: " + totalSales + "<br>";
+	salesString += "<br><strong>Total</strong>: " + totalSales + "<br>";
 	var taxesDue = totalSales * .06;
 	taxesDue = Math.round(taxesDue * 100)/100;
-	salesString += "Taxes Due: " + taxesDue;
+	salesString += "Taxes Due: " + taxesDue + "</div>";
 	$(".sales").html(salesString);
 }
 
