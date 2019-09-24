@@ -58,7 +58,14 @@ if((isset($_POST['receiptexpenseid']) && is_numeric($_POST['receiptexpenseid']))
 		$query = "UPDATE expenses SET expenseFilename = '$receiptFilename' WHERE expenseId='$_POST[receiptexpenseid]';";		
 		$result = mysqli_query($db, $query);
 	}
-} 
+} elseif(isset($_POST['deleteExpense'])) {
+	$query = "DELETE FROM expenses WHERE expenseId='$_POST[deleteExpense]';";		
+	$result = mysqli_query($db, $query);
+	if($result) {
+		$desc = stripslashes($_POST['desc']);
+		echo "<div class='center-it text'>Successfully Deleted $desc.</div>";
+	}	
+}
 ?>
 <script>
 function updateSales() {
@@ -83,6 +90,7 @@ function updateSales() {
 	}
 	salesString += "<strong>Total</strong>: " + totalSales + "<br>";
 	var taxesDue = totalSales * .06;
+	taxesDue = Math.round(taxesDue * 100)/100;
 	salesString += "Taxes Due: " + taxesDue;
 	$(".sales").html(salesString);
 }
@@ -117,13 +125,19 @@ function updateExpenses() {
 		dates[i] = descCostDateArray[3];
 		filenames[i] = descCostDateArray[4];
 		if(i==0) {
-			expensesString += "<tr><th>Desc(add img)</th><th>Amount</th><th>Date(see img)</th></tr>";	
+			expensesString += "<tr><th>Desc(view img)</th><th>Amount(upload/delete)</th><th>Date</th></tr>";	
 		}		
 		// TODO: Add image on hover or click
 		if(filenames[i] !== ' ') {
-			expensesString += "<tr id='expense-row-" + i + "'><td><a href='#expense-modal-" + i + "' rel='modal:open'>" + descs[i] + "</a></td><td>" + costs[i] + "</td><td><a href='#expense-receipt-" + i + "' rel='modal:open'>" + dates[i] + "</a></td></tr>";
+			expensesString += "<tr id='expense-row-" + i + "'>"
+				+ "<td><a href='#expense-receipt-" + i + "' rel='modal:open'>" + descs[i] + "</a></td>"
+				+ "<td><a href='#expense-modal-" + i + "' rel='modal:open'>" + costs[i] + "</a></td>"
+				+ "<td>" + dates[i] + "</a></td></tr>";
 		} else {
-			expensesString += "<tr id='expense-row-" + i + "'><td><a href='#expense-modal-" + i + "' rel='modal:open'>" + descs[i] + "</a></td><td>" + costs[i] + "</td><td>" + dates[i] + "</td></tr>";
+			expensesString += "<tr id='expense-row-" + i + "'>"
+				+ "<td>" + descs[i] + "</td>"
+				+ "<td><a href='#expense-modal-" + i + "' rel='modal:open'>" + costs[i] + "</a></td>"
+				+ "<td>" + dates[i] + "</td></tr>";
 		}		
 	}
 	expensesString += "<tr><td>Total</td><td>" + Math.round(totalExpenses*100)/100 + "</td></tr>";
@@ -237,11 +251,16 @@ $(document).ready(function() {
 						$exData = explode("__", $exSplit[$i]);
 						echo "$exData[1] $exData[2] $exData[3]";
 						?>
-						<form name='add-expense-image' method='post' action="" enctype="multipart/form-data">
+						<form name='add-expense-image' method='post' onsubmit="return confirm('Continue?');" class="center-it" action="" enctype="multipart/form-data">
 							<input type="file" name="receiptfile"/>
 							<input type="hidden" name="periodBegin" value="<?php if(isset($_GET['periodBegin'])) echo $_GET['periodBegin']; ?>"/>
 							<input type="hidden" name="periodEnd" value="<?php if(isset($_GET['periodEnd'])) echo $_GET['periodEnd']; ?>"/>
-							<button name="receiptexpenseid" value="<?php echo $exData[0]; ?>">Submit Receipt</button>
+							<input type="hidden" name="desc" value="<?php echo $exData[1]; ?>"/>
+							<div>&nbsp;</div>
+							<div>
+								<button name="receiptexpenseid" value="<?php echo $exData[0]; ?>">Submit Receipt</button>							
+								<button name="deleteExpense" value="<?php echo $exData[0]; ?>">Delete Expense</button>
+							</div>
 						</form>
 					</div>
 					<div id="<?php echo "expense-receipt-$i";?>" class="modal">

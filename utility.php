@@ -48,7 +48,7 @@ function getExpenses() {
 		if(isset($_GET['periodBegin']) && $_GET['periodBegin'] != "" && isset($_GET['periodEnd']) && $_GET['periodEnd'] != "") {
 			$query .= " WHERE expenseDate between '$_GET[periodBegin]' and '$_GET[periodEnd]'"; 
 		}
-		$query .= ";";
+		$query .= " ORDER BY expenseDate;";
 		$result = mysqli_query($db, $query);
 		while($expense = mysqli_fetch_assoc($result)) {
 			if($expense['expenseDesc'] != null && $expense['cost'] != null && $expense['expenseDate'] != null) {
