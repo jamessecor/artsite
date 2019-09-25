@@ -74,9 +74,11 @@ function updateSales() {
 	
 	// This is an array of individual sales
 	var salesSplit = sales.split("___");
+
 	var titles = new Array(salesSplit.length);
 	var prices = new Array(salesSplit.length);	
-	var names = new Array(salesSplit.length);	
+	var names = new Array(salesSplit.length);
+	var saleDates = new Array(salesSplit.length);	
 	var salesString = "<div class='cv-text'>";
 	
 	// length - 1 because the last element is empty
@@ -86,7 +88,8 @@ function updateSales() {
 		titles[i] = titlePriceNameArray[0];
 		prices[i] = titlePriceNameArray[1];
 		names[i] = titlePriceNameArray[2];
-		salesString += "<strong>" + titles[i] + "</strong> (" + names[i] + "): <strong>" + prices[i] + "</strong><br>";
+		saleDates[i] = titlePriceNameArray[3];
+		salesString += "<strong>" + titles[i] + "</strong> (" + names[i] + ", " + saleDates[i] + "): <strong>" + prices[i] + "</strong><br>";
 	}
 	salesString += "<br><strong>Total</strong>: " + totalSales + "<br>";
 	var taxesDue = totalSales * .06;
@@ -97,7 +100,6 @@ function updateSales() {
 
 function updateExpenses() {
 	var expenses = '<?php echo getExpenses(); ?>';
-	console.log(expenses);
 	var totalExpenses = 0;
 	// This is an array of individual sales
 	var expensesSplit = expenses.split("___");
@@ -110,14 +112,12 @@ function updateExpenses() {
 	<?php
 	// Add receipt img
 	if(isset($_GET['expenseId'])) {
-		echo "var formExpenseId = " . $_GET['expenseId'] . ";";
-		echo "console.log(formExpenseId);";
+		echo "var formExpenseId = " . $_GET['expenseId'] . ";";		
 	}
 	?>
 	// length - 1 because the last element is empty
 	for(var i = 0; i < expensesSplit.length - 1; i++) {
 		var descCostDateArray = expensesSplit[i].split("__");
-		console.log(descCostDateArray);
 		totalExpenses += parseFloat(descCostDateArray[2]);
 		ids[i] = descCostDateArray[0];
 		descs[i] = descCostDateArray[1];
