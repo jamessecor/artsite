@@ -154,7 +154,23 @@ function changeHeaderCss(header, data) {
 		$(header).css("background-color","");
 	}
 }
+
+function updateURL() {
+	var url = window.location.href;
+		var urlArray = url.split("&");
+		var newURL = "";
+		for(var i = 0; i < urlArray.length; i++) {
+			if(!urlArray[i].includes("add-expense")) {
+				newURL += urlArray[i];
+			}
+		}
+	window.history.replaceState({}, "", newURL);
+}
+
 $(document).ready(function() {
+	// Stop Duplicate Expenses
+	updateURL();
+
 	// Sales
 	updateSales();
 	$("#sales-header").click(function() {
