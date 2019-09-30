@@ -19,6 +19,7 @@ if(!$artworkResult) {
 } else { // got artwork
 	// Dropdown showing pieces to edit and edit button
 	?>
+<div class="container-fluid">
 	<form id="selectwork" method="post" action="">
 		<table align="center">
 			<tr>
@@ -73,7 +74,8 @@ if(!$artworkResult) {
 				<input type="submit" value="Delete Work" name="deletework"></td>
 			</tr>
 		</table>
-	</form>			
+	</form>	
+</div>
 	<?php 					
 	if($validWork && (isset($_POST['editwork']) || isset($_POST['deletework']))) {
 		// TODO: validate entry

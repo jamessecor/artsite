@@ -144,12 +144,30 @@ function updateExpenses() {
 	expensesString = "<table id='expenses-table'>" + expensesString + "</table>";
 	$("#expenses").html(expensesString);
 }
+
+function changeHeaderCss(header, data) {
+	if($(data).css("display") == "none") {
+		$(header).css("color","#aec");
+		$(header).css("background-color","#644");
+	} else {
+		$(header).css("color","");
+		$(header).css("background-color","");
+	}
+}
 $(document).ready(function() {
 	// Sales
 	updateSales();
+	$("#sales-header").click(function() {
+		$(".sales").toggle();
+		changeHeaderCss("#sales-header", ".sales");
+	});
 	
 	// Expenses
 	updateExpenses();
+	$("#expenses-header").click(function() {
+		$("#expenses").toggle();
+		changeHeaderCss("#expenses-header", "#expenses");
+	});
 
 	// Emails
 	$(".peeps").html("<?php echo getEmailAddr(); ?>");
@@ -166,7 +184,7 @@ $(document).ready(function() {
 });
 </script>
 
-<div class='container'>
+<div class='container-fluid'>
 	<div class='row'>
 		<h1 id='contactHeading' class="center-it"><strong>Admin Page</strong></h1>
 		<div id='success'>
@@ -193,7 +211,7 @@ $(document).ready(function() {
 				//include "editcontacts.php";
 				?>
 				&nbsp;
-				<div class="row">
+				<div class="row container-fluid">
 					<div class="col-md-8 col-md-offset-2">						
 						<div><strong>emails</strong></div>
 						<button class="showPeeps">SHOW emails</button>
@@ -201,10 +219,10 @@ $(document).ready(function() {
 					</div>
 				</div>
 				<hr>
-				<div class="row">
+				<div class="row container-fluid">
 					<!-- Sales -->
 					<div class="col-md-2 col-md-offset-2">						
-						<div><strong>sales</strong></div>
+						<div id="sales-header"><strong>sales</strong></div>
 						<form method="get" name="saleYearForm"> 
 							<div>Period Beginning<br><input type="date" name="periodBegin" value="<?php if(isset($_GET['periodBegin'])) echo $_GET['periodBegin']; ?>"/></div>
 							<div>Period Ending<br><input type="date" name="periodEnd" value="<?php if(isset($_GET['periodEnd'])) echo $_GET['periodEnd']; ?>"/></div>
@@ -216,7 +234,7 @@ $(document).ready(function() {
 					</div>
 				</div>
 				<hr>
-				<div class="row">
+				<div class="row container-fluid">
 					<div class="col-md-8 col-md-offset-2">
 						<!--
 							create table expenses (
@@ -227,7 +245,7 @@ $(document).ready(function() {
 								PRIMARY KEY(expenseId)
 							);
 						-->
-						<div><strong>expenses</strong></div>
+						<div id="expenses-header"><strong>expenses</strong></div>
 						<form method="get" name="expensesForm">
 							<input type="text" name="expense-description" placeholder="Drawing Board supplies"/>
 							<input type="text" name="expense-amount" placeholder="13.75"/>
