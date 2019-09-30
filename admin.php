@@ -157,13 +157,14 @@ function changeHeaderCss(header, data) {
 
 function updateURL() {
 	var url = window.location.href;
-		var urlArray = url.split("&");
-		var newURL = "";
-		for(var i = 0; i < urlArray.length; i++) {
-			if(!urlArray[i].includes("add-expense")) {
-				newURL += urlArray[i];
-			}
+	var urlArray = url.split("&");
+	var newURL = "";
+	for(var i = 0; i < urlArray.length; i++) {
+		if(!urlArray[i].includes("add-expense")) {
+			newURL += urlArray[i] + "&";
 		}
+	}
+	newURL = newURL.substring(0, newURL.length - 1);
 	window.history.replaceState({}, "", newURL);
 }
 
