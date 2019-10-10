@@ -116,7 +116,7 @@ if(!$artworkResult) {
 				<div><img class="img-responsive center-it thumbnail" src="<?php echo "$path$imgLocation"; ?>" alt="Image Loading Error"></div>				
 			<?php } ?>
 			
-			<form id="updateform" method="post" action="" enctype="multipart/form-data">
+			<form id="updateform" class="container-fluid" method="post" action="" enctype="multipart/form-data">
 				<table align="center">
 					<?php if($disabled !== "disabled") { ?>
 					<tr>
