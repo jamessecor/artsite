@@ -70,6 +70,7 @@ if((isset($_POST['receiptexpenseid']) && is_numeric($_POST['receiptexpenseid']))
 <script>
 function updateSales() {
 	var totalSales = 0;
+	var taxesUnpaid = 0;
 	var sales = '<?php echo getSales(); ?>';
 	
 	// This is an array of individual sales
@@ -79,9 +80,12 @@ function updateSales() {
 	var prices = new Array(salesSplit.length);	
 	var names = new Array(salesSplit.length);
 	var saleDates = new Array(salesSplit.length);	
+	var ids = new Array(salesSplit.length);	
+	var taxStatus = new Array(salesSplit.length);	
+	var taxCss = "";
 	var salesString = "<div class='cv-text'>";
 	
-	// length - 1 because the last element is empty
+	// length - 1 because the last element is empty	
 	for(var i = 0; i < salesSplit.length - 1; i++) {
 		var titlePriceNameArray = salesSplit[i].split("__");
 		totalSales += parseInt(titlePriceNameArray[1]);
@@ -89,13 +93,35 @@ function updateSales() {
 		prices[i] = titlePriceNameArray[1];
 		names[i] = titlePriceNameArray[2];
 		saleDates[i] = titlePriceNameArray[3];
-		salesString += "<strong>" + titles[i] + "</strong> (" + names[i] + ", " + saleDates[i] + "): <strong>" + prices[i] + "</strong><br>";
+		ids[i] = titlePriceNameArray[4];
+		taxStatus[i] = titlePriceNameArray[5];
+		if(taxStatus[i] == 'none') {
+			taxesUnpaid += parseInt(titlePriceNameArray[1]);
+		}
+		taxCss = "";
+		console.log(taxStatus[i]);
+		taxCss = updateSalePriceCss(taxStatus[i]);
+		// on click add paid
+		salesString += "<span><input type=\"hidden\" value=\"" + ids[i] + "\"><strong><span id=\"sales-title\">" + titles[i] + "</span></strong> (" + names[i] + ", " + saleDates[i] + "): <span id='sales-price' style='"+taxCss+";'><strong>" + prices[i] + "</strong></span></span><br>";
 	}
 	salesString += "<br><strong>Total</strong>: " + totalSales + "<br>";
-	var taxesDue = totalSales * .06;
+	salesString += "<strong>Total Unpaid Taxes</strong>: " + taxesUnpaid + "<br>";
+	var taxesDue = taxesUnpaid * .06;
 	taxesDue = Math.round(taxesDue * 100)/100;
-	salesString += "Taxes Due: " + taxesDue + "</div>";
+	salesString += "Taxes Due: <span style='background-color:red;color:#7ff';>" + taxesDue + "</span></div>";
 	$(".sales").html(salesString);
+}
+
+function updateSalePriceCss(status) {
+	var taxCss = "";
+	if(status == 'none') {
+		taxCss = "background-color:red;color:#7ff";
+	} else if(status == 'front') {
+		taxCss = "background-color:#55f;color:#7ff";
+	} else if(status == 'paid') {
+		taxCss = "background-color:#4a4;color:#7ff";
+	}
+	return taxCss;
 }
 
 function updateExpenses() {
@@ -168,6 +194,24 @@ function updateURL() {
 	window.history.replaceState({}, "", newURL);
 }
 
+function updateTaxInfo(imageId, element) {
+  var xhttp;
+  if (imageId == "") {
+    console.log("No Id")
+    return;
+  }
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+		if(this.responseText) {
+			location.reload();			
+		}
+    }
+  };
+  xhttp.open("GET", "updateTaxInfo.php?imageId="+imageId, true);
+  xhttp.send();
+}
+
 $(document).ready(function() {
 	// Stop Duplicate Expenses
 	updateURL();
@@ -196,6 +240,16 @@ $(document).ready(function() {
 		} else {
 			$(".peeps").css("display","none");
 			emailShowing = false;
+		}		
+	});
+
+	// Span
+	$("span").on("click", function() {
+		var imageId = $(this).children("input[type=hidden]")[0].value;
+		var title = $(this).find("#sales-title")[0].innerHTML;
+		console.log($(this).find("#sales-title")[0].innerHTML);
+		if(confirm("Update Tax Info for " + title + "?")) {
+			updateTaxInfo(imageId, this);
 		}		
 	});
 });

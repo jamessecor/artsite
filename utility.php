@@ -20,7 +20,7 @@ function getSales() {
 	$sales = "";
 	if(isLoggedIn()) {
 		global $db;
-		$query = "SELECT price, title, c_name, c_lastname, saleDate
+		$query = "SELECT price, title, c_name, c_lastname, saleDate, imgID, taxStatus
 					FROM imageData i
 					INNER JOIN contacts c
 						ON i.buyerID = c.c_id
@@ -31,8 +31,11 @@ function getSales() {
 		$query .= " ORDER BY saleDate;";
 		$result = mysqli_query($db, $query);
 		while($sale = mysqli_fetch_assoc($result)) {
+			if($sale['taxStatus'] == null) {
+				$sale['taxStatus'] = "none";
+			}
 			if($sale['title'] != null && $sale['price'] != null && ($sale['c_name'] != null || $sale['c_lastname'] != null)) {
-				$sales .= addslashes("$sale[title]__$sale[price]__$sale[c_name] $sale[c_lastname]__$sale[saleDate]___");			
+				$sales .= addslashes("$sale[title]__$sale[price]__$sale[c_name] $sale[c_lastname]__$sale[saleDate]__$sale[imgID]__$sale[taxStatus]___");			
 			}		
 		}
 	}
