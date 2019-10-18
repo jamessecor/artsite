@@ -79,6 +79,7 @@ include "header.php";
 			</p>			
 			<p>
 				<a class="press-links" href="https://shop.kasinihouseartshop.com/product/vermont-art-guide-3" target="_blank">&nbsp;Where to get your own Vermont Art Guide&nbsp;</a>
+				<br/><a class="press-links" href="https://janicemorganauthor.com/suspended-sentence/portraits/" target="_blank">&nbsp;Suspended Sentence by author Janice Morgan&nbsp;</a>
 			</p>
 		</div>
 	</div>
