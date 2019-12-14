@@ -133,6 +133,7 @@ session_start();
 						<li><a href="images2015.php"><strong>2015</strong></a></li>
 						<li><a href="images2014.php"><strong>2014</strong></a></li>						
 						<li><a href="images2013.php"><strong>2013</strong></a></li>						
+						<li><a href="imagesAnimalMugDishGlass.php"><strong>mug.dish.glass</strong></a></li>
 						<li><a href="imagesNomophobia.php"><strong>#nomophobia</strong></a></li>
 						<li><a href="imagesAsNotSeen.php"><strong>As Not Seen</strong></a></li>
 						<li><a href="imagesDigitallyEdited.php"><strong>Digital Edits</strong></a></li>
