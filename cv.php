@@ -11,7 +11,9 @@ include "header.php";
 			</p>
 
 			<p>
-				<em><strong>As Not Seen</strong></em>, Center for Arts and Learning, Montpelier, VT Dec 2018-Jan 2019
+				<em><strong>Peanut Butter Garlic Toast</strong></em>, Morse Block Deli, Barre, VT Dec 2019-
+				<br><em><strong>animal mug, dish, and glass, etc</strong></em>, Norwich Public Library, Norwich, VT Dec 2019-
+				<br><em><strong>As Not Seen</strong></em>, Center for Arts and Learning, Montpelier, VT Dec 2018-Jan 2019
 				<br><em><strong>Driving Up a Chimney</strong></em>, Brown Library, Craftsbury, VT, Nov 2018-Jan 2019
 				<br><em><strong>As Not Seen</strong></em>, Art Hop (Site 43), Burlington, VT Sept 2018
 				<br><em><strong>Untitled</strong></em>, Aldrich Public Library, Barre, VT, April 2018-
