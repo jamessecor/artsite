@@ -221,7 +221,7 @@ td {
 #expenses-table>tbody>tr>th,#expenses-table>tbody>tr>td { padding-right: .5em; }
 #expenses-table>tbody>tr>th { background-color:var(--nav-color); text-align: center; }
 /*.expense-file-inputs { width: 25px; }*/
-input[type="submit"], button, td input, td textarea, #toTop, select, .showPeeps, .showSales, .press-links, input {
+input[type="submit"], button, td input, td textarea, #toTop, select, .showPeeps, .showSales, input {
 	background-color: var(--nav-background-color);
 	color: var(--nav-color);
 	border:.1em solid var(--nav-background-color);
@@ -262,7 +262,20 @@ input[type="submit"], button, td input, td textarea, #toTop, select, .showPeeps,
 #rules-text { background-color:#fc3; color:#00a; font-weight:bold; }
 /** end As Not Seen Only **/
 
-input[type="submit"]:hover, button:hover, #toTop:hover, .press-links:hover {
+.press-links {	
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	color: var(--nav-background-color);	
+}
+
+.press-links:visited,a:visited{text-decoration:none;}
+
+.press-links:hover {
+	color: rgba(233, 155, 168, 0.9);
+	background-color:rgb(27, 41, 71);
+	text-decoration:none;
+}
+
+input[type="submit"]:hover, button:hover, #toTop:hover {
 	background-color: var(--nav-color);
 	color: var(--nav-background-color);
 	text-decoration:none;

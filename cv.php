@@ -11,16 +11,16 @@ include "header.php";
 			</p>
 
 			<p>
-				<em><strong>Peanut Butter Garlic Toast</strong></em>, Morse Block Deli, Barre, VT Dec 2019-
-				<br><em><strong>animal mug, dish, and glass, etc</strong></em>, Norwich Public Library, Norwich, VT Dec 2019-
-				<br><em><strong>As Not Seen</strong></em>, Center for Arts and Learning, Montpelier, VT Dec 2018-Jan 2019
+				<em><strong>Peanut Butter Garlic Toast</strong></em>, <a href="https://www.morseblockdeli.com/" class="press-links" target="blank">Morse Block Deli</a>, Barre, VT Dec 2019-
+				<br><em><strong>animal mug, dish, and glass, etc</strong></em>, <a href="https://www.norwichlibrary.org/nplexhibits/" class="press-links" target="blank">Norwich Public Library</a>, Norwich, VT Dec 2019-
+				<br><em><strong>As Not Seen</strong></em>, <a href="https://cal-vt.org/" class="press-links" target="blank">Center for Arts and Learning</a>, Montpelier, VT Dec 2018-Jan 2019
 				<br><em><strong>Driving Up a Chimney</strong></em>, Brown Library, Craftsbury, VT, Nov 2018-Jan 2019
 				<br><em><strong>As Not Seen</strong></em>, Art Hop (Site 43), Burlington, VT Sept 2018
-				<br><em><strong>Untitled</strong></em>, Aldrich Public Library, Barre, VT, April 2018-
-				<br><em><strong>#nomophobia</strong></em>, Studio Place Arts, Barre, VT, Mar-Apr 2017
+				<br><em><strong>Untitled</strong></em>, <a href="https://www.aldrichpubliclibrary.org/" class="press-links" target="blank">Aldrich Public Library</a>, Barre, VT, April 2018-
+				<br><em><strong>#nomophobia</strong></em>, <a href="https://studioplacearts.com/" class="press-links" target="blank">Studio Place Arts</a>, Barre, VT, Mar-Apr 2017
 				<br><em><strong>In the Cracks</strong></em>, The Blinking Light Gallery, Plainfield, VT, Jan-Feb 2017
-				<br><em><strong>Untitled</strong></em>, The Daily Planet, Burlington, VT, Nov 2016-Jan 2017
-				<br><em><strong>Local Scenery</strong></em>, Greensboro Free Library, Greensboro, VT. March-May 2016
+				<br><em><strong>Untitled</strong></em>, <a href="http://dailyplanetvt.com/" class="press-links" target="blank">The Daily Planet</a>, Burlington, VT, Nov 2016-Jan 2017
+				<br><em><strong>Local Scenery</strong></em>, <a href="https://www.greensborofreelibrary.org/" class="press-links" target="blank">Greensboro Free Library</a>, Greensboro, VT. March-May 2016
 				<br><em><strong>Recent Work</strong></em>, Skinny Pancake, Montpelier, VT, 2013
 				<br><em><strong>Senegal-France-Syracuse</strong></em>, Westcott Art Gallery, Syracuse, NY, 2011
 			</p>
