@@ -28,7 +28,7 @@ function move() {
 				$("#pourcentage-chiffre").html(width + "% Complete");
 				fullBar = setTimeout(function() {
 					width = 0;					
-					$("#pourcentage").html("Content Load Successful. Please Load More.");									
+					$("#pourcentage").html("Content Here Now");									
 					moreContent = setInterval(function() {						
 						flashes++;						
 						if(textIsOn) {
@@ -40,7 +40,7 @@ function move() {
 								clearInterval(moreContent);
 							}
 						} else {
-							$("#pourcentage").html("Content Load Successful. Please Load More.");									
+							$("#pourcentage").html("Content Here Now");									
 							textIsOn = true;
 						}						
 					}, 500);

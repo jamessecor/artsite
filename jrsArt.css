@@ -299,7 +299,6 @@ input[type="text"]:disabled{
 	height: 30px;
 	background-color: #4CAF50;  
 	color:rgb(224, 230, 191);
-	margin-top:.25em;
 }
 
 #pourcentage-chiffre {
@@ -320,7 +319,7 @@ input[type="text"]:disabled{
 .love-tech {
 	position: absolute;
 	top:15%;
-	left:45%;
+	left:calc(45% - 44px);
 }
   
 @keyframes spin {
