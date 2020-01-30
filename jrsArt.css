@@ -287,19 +287,51 @@ input[type="text"]:disabled{
 	color: #eea9b9;
 }
 
+#cent-pourcent {
+	margin-top:10em;
+	display:block;
+	background-color: #baa;
+}
+
+#pourcentage {
+	text-align: center;
+	width: 0%;
+	height: 30px;
+	background-color: #4CAF50;  
+	color:rgb(224, 230, 191);
+	margin-top:.25em;
+}
+
+#pourcentage-chiffre {
+	/*height: 100%;*/
+	margin-top:.2em;
+	color:rgb(200, 234, 243);
+}
+
+.loader {
+	border: 16px solid #f18282; /* Light grey */
+	border-top: 16px solid #3498db; /* Blue */
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+	animation: spin 2s linear infinite;
+  }
+
+.love-tech {
+	position: absolute;
+	top:15%;
+	left:45%;
+}
+  
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+  } 
+
 select:disabled {
 	background: solid black;
 }
 
-/*
-#nextImg {
-	top:35%;
-}
-
-#prevImg {
-	bottom:35%;
-}
-*/
 ::-webkit-scrollbar {
 	width:6px;
 }

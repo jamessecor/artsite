@@ -48,6 +48,7 @@
 						<li><a href="../images2013.php"><strong>2013</strong></a></li>						
 						<li><a href="../imagesNomophobia.php"><strong>#nomophobia</strong></a></li>
 						<li><a href="../imagesAsNotSeen.php"><strong>As Not Seen</strong></a></li>
+						<li><a href="LoveTech.php"><strong>Love Tech</strong></a></li>
 					</ul>
 				</li>
 				<li <?php if(strpos($_SERVER['REQUEST_URI'], '/cv.php')) echo "class='active'";?>>

@@ -1,3 +1,66 @@
+function move() {
+	$("#pourcentage").html("");							
+	var fullBar;
+	var moreContent;
+	var flashes = 0;
+	var textIsOn = true;
+	var i = 0;
+	var id;
+	var id2;
+	var id3;
+	var stall = (Math.random() * 25);
+	stall = Math.round(stall);
+	var stallCnt = (Math.random() * 10);
+	stallCnt = Math.round(stallCnt);
+	if (i == 0) {
+		i = 1;
+		var elem = document.getElementById("pourcentage");
+		var width = 0;
+		id = setInterval(frame, 50);
+		function frame() {
+			clearTimeout(fullBar);				
+			clearInterval(moreContent);				
+			if (width >= 100) {
+				clearInterval(id);
+				clearInterval(id2);
+				clearInterval(id3);
+				i = 0;				
+				$("#pourcentage-chiffre").html(width + "% Complete");
+				fullBar = setTimeout(function() {
+					width = 0;					
+					$("#pourcentage").html("Content Load Successful. Please Load More.");									
+					moreContent = setInterval(function() {						
+						flashes++;						
+						if(textIsOn) {
+							$("#pourcentage").html("");									
+							textIsOn = false;
+							if(flashes >= 6) {
+								elem.style.width = width + "%";						
+								$("#pourcentage-chiffre").html("Load Now");
+								clearInterval(moreContent);
+							}
+						} else {
+							$("#pourcentage").html("Content Load Successful. Please Load More.");									
+							textIsOn = true;
+						}						
+					}, 500);
+				}, 1500);
+			} else {
+				width++;
+				if(width == stall) {
+					clearInterval(id);					
+					id2 = setInterval(frame, 1111); //1111
+				} else if(width == stall + stallCnt) {
+					clearInterval(id2);
+					id3 = setInterval(frame, 10);
+				}
+				elem.style.width = width + "%";
+				$("#pourcentage-chiffre").html(width + "% Complete");
+			}
+		}
+	}
+}
+
 function load() {
 	// Next Button
 	document.getElementById('nextImg').addEventListener("click", function() {
