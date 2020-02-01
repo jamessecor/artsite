@@ -1,9 +1,11 @@
+var numOfCircles = 0;
 function move() {
 	$("#pourcentage").html("");							
+	$("#cent-pourcent").css("display","");
+	$("#cicle-loader").css("display","none");
 	var fullBar;
-	var moreContent;
-	var flashes = 0;
-	var textIsOn = true;
+	var moreContent;	
+	var firstLoop = true;
 	var i = 0;
 	var id;
 	var id2;
@@ -28,23 +30,22 @@ function move() {
 				$("#pourcentage-chiffre").html(width + "% Complete");
 				fullBar = setTimeout(function() {
 					width = 0;					
-					$("#pourcentage").html("Content Here Now");									
 					moreContent = setInterval(function() {						
-						flashes++;						
-						if(textIsOn) {
-							$("#pourcentage").html("");									
-							textIsOn = false;
-							if(flashes >= 6) {
-								elem.style.width = width + "%";						
-								$("#pourcentage-chiffre").html("Load Now");
-								clearInterval(moreContent);
-							}
-						} else {
-							$("#pourcentage").html("Content Here Now");									
-							textIsOn = true;
-						}						
-					}, 500);
-				}, 1500);
+						if(firstLoop) {
+							$("#cent-pourcent").css("display","none");						
+							$("#circle-loader-" + numOfCircles).css("display","");
+							numOfCircles++;						
+						}
+						else {
+							firstLoop = true;
+							elem.style.width = width + "%";						
+							$("#pourcentage-chiffre").html("Load More Content Now");
+							$("#cent-pourcent").css("display","");
+							clearInterval(moreContent);
+						}														
+						firstLoop = false;
+					}, 1500); // 1500
+				}, 250);
 			} else {
 				width++;
 				if(width == stall) {
