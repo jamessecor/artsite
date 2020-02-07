@@ -7,7 +7,8 @@ include "./imagesTemplate.php";
 <script src='./jrsArt.js'></script>
 <div class='container'>    
     <?php
-    for($i=0;$i<166;$i++) {
+    $totalCircles = 166;
+    for($i = 0; $i < $totalCircles; $i++) {
     ?>    
         <div id="circle-loader-<?php echo $i; ?>" style="display:none" class="loader love-tech"></div>
     <?php
@@ -21,7 +22,20 @@ include "./imagesTemplate.php";
         </div>
     </div>
 </div>
-
+<script>
+    $(document).ready(function() {
+        for(var i = 0; i < <?php echo $totalCircles; ?>; i++) {            
+            $("#circle-loader-" + i).css("background-color", getRGB());
+        }        
+    });
+    function getRGB() {
+        var r = Math.round((Math.random() * 255),1);
+        var g = Math.round((Math.random() * 255),1);
+        var b = Math.round((Math.random() * 255),1);
+        
+        return "rgb(" + r + "," + g + "," + b + ")";
+    }
+</script>
 <?php
 include "footer.php";
 ?>
