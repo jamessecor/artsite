@@ -1,10 +1,9 @@
 <?php
 // Landing PAGE
 
-include "header.php";
-include "./imagesTemplate.php";
+include "./header.php";
 ?>
-<script src='./jrsArt.js'></script>
+<script src='../jrsArt.js'></script>
 <div class='container'>    
     <?php
     $totalCircles = 166;
@@ -37,5 +36,5 @@ include "./imagesTemplate.php";
     }
 </script>
 <?php
-include "footer.php";
+include "../footer.php";
 ?>

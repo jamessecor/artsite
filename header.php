@@ -136,8 +136,7 @@ session_start();
 						<li><a href="imagesAnimalMugDishGlass.php"><strong>mug.dish.glass</strong></a></li>
 						<li><a href="imagesNomophobia.php"><strong>#nomophobia</strong></a></li>
 						<li><a href="imagesAsNotSeen.php"><strong>As Not Seen</strong></a></li>
-						<li><a href="imagesDigitallyEdited.php"><strong>Digital Edits</strong></a></li>
-						<li><a href="LoveTech.php"><strong>Love Tech</strong></a></li>
+						<li><a href="imagesDigitallyEdited.php"><strong>Digital Edits</strong></a></li>						
 					</ul>
 				</li>
 				<li <?php if(strpos($_SERVER['REQUEST_URI'], '/cv.php')) echo "class='active'";?>>
@@ -151,6 +150,9 @@ session_start();
 				</li>
 				<li>
 					<a href="./asnotseen/index.php"><em><strong>As Not Seen</strong></em></a>
+				</li>
+				<li>
+					<a href="./morecontent/index.php"><strong>more</strong></a>
 				</li>
 				<?php 
 				include "checkLogin.php";
