@@ -47,7 +47,7 @@ function colors() {
 	var transparency;
 	for(var i = 0; i < parseInt(<?php echo $rowCount; ?>); i++) {		
 		for(var j = 0; j < 12; j++) {			
-			transparency = Math.round(Math.random() * 3) ? Math.random() : "0";
+			transparency = Math.round(Math.random() * 2) ? Math.random() : "0";
 			var r = Math.round(Math.random() * 255);
 			var g = Math.round(Math.random() * 255);
 			var b = Math.round(Math.random() * 255);

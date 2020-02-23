@@ -16,7 +16,7 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, footer, header {
 	--nav-color: rgb(170,170,200);
 	--form-background: rgba(190,211,244,.3);
 	--form-border: rgb(100,100,120); /*#779;*/
-	--page-background: rgb(150, 165, 167);
+	--page-background: rgb(197, 215, 218);
 }
 
 body {
@@ -282,7 +282,7 @@ input[type="text"]:disabled{
 	color: #eea9b9;
 }
 
-.colors-col { width: calc(100% / 12); height:100%; }
+.colors-col { width: calc(100% / 12); height:100%; border-radius:100%; }
 
 #cent-pourcent {
 	margin-top:.1em;
