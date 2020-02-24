@@ -27,6 +27,7 @@ include "./imagesTemplate.php";
 <script>
 var colorsInterval;
 var timesThruColors = 0;
+var idToPause = "colors-col-3-3";
 $(document).ready(function() {	
 	$("#images-main").css("display","none");	
 	var rowHeight = $(".colors-col").css("width");
@@ -37,11 +38,22 @@ $(document).ready(function() {
 });
 
 $(".colors-col").each(function() {
-	$(this).on("click",function() {
+	if($(this).attr("id") != idToPause) {
+		$(this).on("click",function() {
+			clearInterval(colorsInterval);
+			$("#colors").css("display","none");
+			$("#images-main").css("display","");
+		});
+	}
+});
+
+$("#" + idToPause).on("click",function() {
+	if(colorsInterval == null) {
+		colorsInterval = setInterval(colors,1000);
+	} else {
 		clearInterval(colorsInterval);
-		$("#colors").css("display","none");
-		$("#images-main").css("display","");
-	});
+		colorsInterval = null;
+	}
 });
 
 function colors() {
