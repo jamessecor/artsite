@@ -26,6 +26,7 @@ include "./imagesTemplate.php";
 <script src='./jrsArt.js'></script>
 <script>
 var colorsInterval;
+var timesThruColors = 0;
 $(document).ready(function() {	
 	$("#images-main").css("display","none");	
 	var rowHeight = $(".colors-col").css("width");
@@ -37,12 +38,12 @@ $(document).ready(function() {
 
 $(".colors-col").each(function() {
 	$(this).on("click",function() {
-		console.log("HEFE");
 		clearInterval(colorsInterval);
 		$("#colors").css("display","none");
 		$("#images-main").css("display","");
 	});
 });
+
 function colors() {
 	var transparency;
 	for(var i = 0; i < parseInt(<?php echo $rowCount; ?>); i++) {		
@@ -54,6 +55,10 @@ function colors() {
 			var rgb = "rgba(" + r + "," + g + "," + b + "," + transparency + ")";
 			$("#colors-col-" + i + "-" + j).css("background-color",rgb);			
 		}
+	}
+	timesThruColors++;
+	if(timesThruColors == 5) {
+		alert("Click anywhere to see paintings");
 	}
 }
 </script>
