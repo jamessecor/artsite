@@ -39,6 +39,7 @@
 					<a class='dropdown-toggle' data-toggle="dropdown"><strong>images
 					<span class="caret"></span></strong></a>
 					<ul class="dropdown-menu">
+						<li><a href="../images2020.php"><strong>2020</strong></a></li>
 						<li><a href="../images2019.php"><strong>2019</strong></a></li>
 						<li><a href="../images2018.php"><strong>2018</strong></a></li>
 						<li><a href="../images2017.php"><strong>2017</strong></a></li>
