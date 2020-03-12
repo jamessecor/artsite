@@ -235,17 +235,18 @@ input[type="submit"], button, td input, td textarea, #toTop, select, .showPeeps,
 	border: 2px dotted #f00;
 }
 
-#winner-msg {
-	top: 25%;
-	text-align: center;
+#winner-msg, #help-me-thru {
+	left: calc(50% - 50em/2);
+	width:50em;
+	top:calc(25%);
 	position: absolute;
-	background-color: #ff0;
-	color: #f33;
-	border: 5em solid #f0f;
+	background-color: rgb(223, 173, 115);
+	color: rgb(7, 102, 139);
+	border: 3em solid rgb(106, 88, 110);
 	border-radius: 20em;
-	padding: 3em;
+	padding: 2em;
 	font-weight: bold;
-	text-align: center;
+	text-align:center;
 }
 
 .sale-text { font-weight: bold; }
