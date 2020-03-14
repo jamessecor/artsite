@@ -27,7 +27,7 @@ include "./imagesTemplate.php";
 </div>
 <script src='./jrsArt.js'></script>
 <script>
-var intervalTime = 500;
+var intervalTime = 50;
 var colorsInterval;
 var timesThruColors = 0;
 var circles = [];
@@ -42,13 +42,11 @@ $(document).ready(function() {
 });
 
 // Go to images
-$(".colors-col").each(function() {
-	$(this).on("click",function() {
-		clearInterval(colorsInterval);
-		$("#colors").hide();
-		$("#help-me-thru").hide();
-		$("#images-main").show();
-	});
+$("#colors").on("click",function() {
+	clearInterval(colorsInterval);
+	$("#colors").hide();
+	$("#help-me-thru").hide();
+	$("#images-main").show();
 });
 
 $("#help-me-thru").on("click",function() {
@@ -63,16 +61,16 @@ function colors() {
 	for(var i = 0; i < parseInt(<?php echo $rowCount; ?>); i++) {		
 		for(var j = 0; j < parseInt(<?php echo $colCount; ?>); j++) {			
 			createAndAddTemp = true;
-			if(Math.random() * 300 < 2) {
+			if(Math.random() * 1000 < 2) {
 				circles.forEach(circle => {
 					if(circle.id == "colors-col-" + i + "-" + j) {
 						createAndAddTemp = false;
 					}
 				});
 				if(createAndAddTemp) {
-					var r = Math.round(Math.random() * 100 + 100);
+					var r = Math.round(Math.random() * 100 + 50);
 					var g = Math.round(Math.random() * 100 + 100);
-					var b = Math.round(Math.random() * 100 + 100);
+					var b = Math.round(Math.random() * 100 + 155);
 					var tempRGB = "rgb(" + r + "," + g + "," + b + ")";
 					var tempObj = {
 						rgb: tempRGB,
@@ -81,24 +79,26 @@ function colors() {
 						id: "colors-col-" + i + "-" + j
 					};
 					$("#" + tempObj.id).css("background-color",tempObj.rgb).hide();
-					$("#" + tempObj.id).fadeTo(2000, 1);
+					$("#" + tempObj.id).fadeTo(5000, 1);
 					circles.push(tempObj);
 				}
 			} 
 		}
 	}
+	
 	for(var t = 0; t < circles.length; t++) {
 		circles[t].timeAlive++;
-		if(circles[t].timeAlive == circles[t].totalTimeOnEarth) {
-			$("#" + circles[t].id).fadeTo(2000, 0);
-			circles.splice(t - 1, 1);
+		if(circles[t].timeAlive >= circles[t].totalTimeOnEarth) {
+			$("#" + circles[t].id).fadeTo(5000, 0, "", function() {
+				circles.splice(t, 1);
+			});			
 		}
 	}
-
+	
 	timesThruColors++;
-	if(timesThruColors == 8) {
+	if(timesThruColors == 150) {
 		$("#help-me-thru").fadeIn(1000);
-	} else if(timesThruColors == 15) {
+	} else if(timesThruColors == 225) {
 		$("#help-me-thru").fadeOut(1000);
 	}
 }
