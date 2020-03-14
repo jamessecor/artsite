@@ -287,8 +287,8 @@ div[id^="colors-col"] {
 	width: calc(100% / 12); 
 	height:100%; 
 	border-radius:100%; 
-	border: 12px solid #fff;
-	border-top: 12px solid #3ca;
+	border: .2em solid #fff;
+	border-top: .2em solid #3ca;
 	animation: spin 2s linear infinite;
 }
 

@@ -30,7 +30,6 @@ include "./imagesTemplate.php";
 var intervalTime = 500;
 var colorsInterval;
 var timesThruColors = 0;
-var idToPause = "colors-col-3-3";
 var circles = [];
 $(document).ready(function() {	
 	$("#images-main").hide();
@@ -59,22 +58,12 @@ $("#help-me-thru").on("click",function() {
 	$("#images-main").show();
 });
 
-// Pause Everything
-$("#" + idToPause).on("click",function() {
-	if(colorsInterval == null) {
-		colorsInterval = setInterval(colors,intervalTime);
-	} else {
-		clearInterval(colorsInterval);
-		colorsInterval = null;
-	}
-});
-
 function colors() {	
 	var createAndAddTemp = true;
 	for(var i = 0; i < parseInt(<?php echo $rowCount; ?>); i++) {		
 		for(var j = 0; j < parseInt(<?php echo $colCount; ?>); j++) {			
 			createAndAddTemp = true;
-			if(Math.random() * 100 < 2) {
+			if(Math.random() * 300 < 2) {
 				circles.forEach(circle => {
 					if(circle.id == "colors-col-" + i + "-" + j) {
 						createAndAddTemp = false;
@@ -92,7 +81,7 @@ function colors() {
 						id: "colors-col-" + i + "-" + j
 					};
 					$("#" + tempObj.id).css("background-color",tempObj.rgb).hide();
-					$("#" + tempObj.id).fadeIn(2000);
+					$("#" + tempObj.id).fadeTo(2000, 1);
 					circles.push(tempObj);
 				}
 			} 
@@ -101,7 +90,7 @@ function colors() {
 	for(var t = 0; t < circles.length; t++) {
 		circles[t].timeAlive++;
 		if(circles[t].timeAlive == circles[t].totalTimeOnEarth) {
-			$("#" + circles[t].id).fadeOut(2000);
+			$("#" + circles[t].id).fadeTo(2000, 0);
 			circles.splice(t - 1, 1);
 		}
 	}
