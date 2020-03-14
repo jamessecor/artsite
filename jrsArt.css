@@ -236,13 +236,13 @@ input[type="submit"], button, td input, td textarea, #toTop, select, .showPeeps,
 }
 
 #winner-msg, #help-me-thru {
-	left: calc(50% - 50em/2);
-	width:50em;
+	left: 5%;
+	width:90%;
 	top:calc(25%);
 	position: absolute;
-	background-color: rgb(223, 173, 115);
-	color: rgb(7, 102, 139);
-	border: 3em solid rgb(106, 88, 110);
+	background-color: rgb(230, 221, 170);
+	color: rgb(54, 112, 134);
+	border: 3em solid rgb(172, 95, 108);
 	border-radius: 20em;
 	padding: 2em;
 	font-weight: bold;
@@ -283,7 +283,14 @@ input[type="text"]:disabled{
 	color: #eea9b9;
 }
 
-.colors-col { width: calc(100% / 12); height:100%; border-radius:100%; }
+div[id^="colors-col"] { 
+	width: calc(100% / 12); 
+	height:100%; 
+	border-radius:100%; 
+	border: 12px solid #fff;
+	border-top: 12px solid #3ca;
+	animation: spin 2s linear infinite;
+}
 
 #cent-pourcent {
 	margin-top:.1em;

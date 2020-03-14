@@ -8,10 +8,11 @@ include "./imagesTemplate.php";
 <div class='container'>
 	<div id="colors">
 		<?php 
-		$rowCount = 20;
+		$rowCount = 40;
+		$colCount = 12;
 		for($i = 0; $i < $rowCount; $i++) { ?>
 			<div class="row colors-row" id="colors-row-<?php echo $i; ?>">
-				<?php for($j = 0; $j < 12; $j++) { ?>
+				<?php for($j = 0; $j < $colCount; $j++) { ?>
 					<div class="col-xs-1 colors-col" id="colors-col-<?php echo $i . '-' . $j;?>">&nbsp;</div>
 				<?php } ?>
 			</div>
@@ -26,72 +27,90 @@ include "./imagesTemplate.php";
 </div>
 <script src='./jrsArt.js'></script>
 <script>
+var intervalTime = 500;
 var colorsInterval;
 var timesThruColors = 0;
 var idToPause = "colors-col-3-3";
+var circles = [];
 $(document).ready(function() {	
-	$("#images-main").css("display","none");	
-	$("#help-me-thru").css("display","none");
-	var rowHeight = $(".colors-col").css("width");
+	$("#images-main").hide();
+	$("#help-me-thru").hide();
 	$(".navbar").css("margin","0");
+	var rowHeight = $(".colors-col").css("width");
 	$("#colors").children().css("height",rowHeight);
 	colors();
-	colorsInterval = setInterval(colors,1500);
+	colorsInterval = setInterval(colors,intervalTime);
 });
 
 // Go to images
 $(".colors-col").each(function() {
-	if($(this).attr("id") != idToPause) {
-		$(this).on("click",function() {
-			clearInterval(colorsInterval);
-			$("#colors").css("display","none");
-			$("#images-main").css("display","");
-		});
-	}
+	$(this).on("click",function() {
+		clearInterval(colorsInterval);
+		$("#colors").hide();
+		$("#help-me-thru").hide();
+		$("#images-main").show();
+	});
 });
 
 $("#help-me-thru").on("click",function() {
 	clearInterval(colorsInterval);
-	$("#colors").css("display","none");
-	$(this).css("display","none");
-	$("#images-main").css("display","");
+	$("#colors").hide();
+	$(this).hide();
+	$("#images-main").show();
 });
 
 // Pause Everything
 $("#" + idToPause).on("click",function() {
 	if(colorsInterval == null) {
-		colorsInterval = setInterval(colors,1500);
+		colorsInterval = setInterval(colors,intervalTime);
 	} else {
 		clearInterval(colorsInterval);
 		colorsInterval = null;
 	}
 });
 
-function colors() {
-	var coords = [];
-	var transparency;
+function colors() {	
+	var createAndAddTemp = true;
 	for(var i = 0; i < parseInt(<?php echo $rowCount; ?>); i++) {		
-		for(var j = 0; j < 12; j++) {			
-			if(Math.random() * 10 < 2) {
-				coords.push(i + "-" + j);
-			} else {
-				$("#colors-col-" + i + "-" + j).css("display","").fadeOut(7000);			
-			}
+		for(var j = 0; j < parseInt(<?php echo $colCount; ?>); j++) {			
+			createAndAddTemp = true;
+			if(Math.random() * 100 < 2) {
+				circles.forEach(circle => {
+					if(circle.id == "colors-col-" + i + "-" + j) {
+						createAndAddTemp = false;
+					}
+				});
+				if(createAndAddTemp) {
+					var r = Math.round(Math.random() * 100 + 100);
+					var g = Math.round(Math.random() * 100 + 100);
+					var b = Math.round(Math.random() * 100 + 100);
+					var tempRGB = "rgb(" + r + "," + g + "," + b + ")";
+					var tempObj = {
+						rgb: tempRGB,
+						timeAlive: 0,
+						totalTimeOnEarth: 2,
+						id: "colors-col-" + i + "-" + j
+					};
+					$("#" + tempObj.id).css("background-color",tempObj.rgb).hide();
+					$("#" + tempObj.id).fadeIn(2000);
+					circles.push(tempObj);
+				}
+			} 
 		}
 	}
-	coords.forEach(thisCircle => {
-		transparency = Math.round(Math.random() * 2) ? Math.random() : "0";
-		var r = Math.round(Math.random() * 255);
-		var g = Math.round(Math.random() * 255);
-		var b = Math.round(Math.random() * 255);
-		var rgb = "rgb(" + r + "," + g + "," + b + ")";
-		$("#colors-col-" + thisCircle).css("background-color",rgb);			
-		$("#colors-col-" + thisCircle).fadeIn(5000);
-	});
-	
+	for(var t = 0; t < circles.length; t++) {
+		circles[t].timeAlive++;
+		if(circles[t].timeAlive == circles[t].totalTimeOnEarth) {
+			$("#" + circles[t].id).fadeOut(2000);
+			circles.splice(t - 1, 1);
+		}
+	}
+
 	timesThruColors++;
-	if(timesThruColors == 2) {
+	if(timesThruColors == 8) {
 		$("#help-me-thru").fadeIn(1000);
+	} else if(timesThruColors == 15) {
+		$("#help-me-thru").fadeOut(1000);
 	}
 }
 </script>
