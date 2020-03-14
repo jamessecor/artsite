@@ -61,7 +61,7 @@ function colors() {
 	for(var i = 0; i < parseInt(<?php echo $rowCount; ?>); i++) {		
 		for(var j = 0; j < parseInt(<?php echo $colCount; ?>); j++) {			
 			createAndAddTemp = true;
-			if(Math.random() * 500 < 2) {
+			if(Math.random() * 275 < 2) {
 				circles.forEach(circle => {
 					if(circle.id == "colors-col-" + i + "-" + j) {
 						createAndAddTemp = false;
@@ -75,7 +75,7 @@ function colors() {
 					var tempObj = {
 						rgb: tempRGB,
 						timeAlive: 0,
-						totalTimeOnEarth: Math.random() * 2 + 1,
+						totalTimeOnEarth: Math.random() * 3 + 1,
 						id: "colors-col-" + i + "-" + j
 					};
 					$("#" + tempObj.id).css("background-color",tempObj.rgb).hide();
