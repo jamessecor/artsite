@@ -61,7 +61,7 @@ function colors() {
 	for(var i = 0; i < parseInt(<?php echo $rowCount; ?>); i++) {		
 		for(var j = 0; j < parseInt(<?php echo $colCount; ?>); j++) {			
 			createAndAddTemp = true;
-			if(Math.random() * 750 < 2) {
+			if(Math.random() * 500 < 2) {
 				circles.forEach(circle => {
 					if(circle.id == "colors-col-" + i + "-" + j) {
 						createAndAddTemp = false;
@@ -89,7 +89,7 @@ function colors() {
 	for(var t = 0; t < circles.length; t++) {
 		circles[t].timeAlive++;
 		if(circles[t].timeAlive >= circles[t].totalTimeOnEarth) {
-			$("#" + circles[t].id).fadeTo(5000, 0, "", function() {
+			$("#" + circles[t].id).fadeTo(2500, 0, "", function() {
 				circles.splice(t, 1);
 			});			
 		}
