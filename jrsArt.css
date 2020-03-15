@@ -258,9 +258,17 @@ input[type="submit"], button, td input, td textarea, #toTop, select, .showPeeps,
 #rules-text { background-color:#fc3; color:#00a; font-weight:bold; }
 /** end As Not Seen Only **/
 
+.show-titles {
+	padding-left: .2em;
+	padding-right: .2em;
+	border-radius:.1em;
+	text-align:center;
+	color: var(--nav-color);
+	background-color: var(--nav-background-color);	
+}
 .press-links {	
-	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-	color: var(--nav-background-color);	
+	font-weight: bold;
+	color: var(--nav-background-color);
 }
 
 .press-links:visited,a:visited{text-decoration:none;}
