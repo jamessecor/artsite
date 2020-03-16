@@ -9,7 +9,7 @@ include "header.php";
 
 		$("#group-header").on("click",function() {
 			$("#group").fadeToggle();
-		});
+		});		
 	});
 </script>
 <div class="container">
@@ -47,7 +47,8 @@ include "header.php";
 			</div>
 			<div id="group">
 				<p>
-					<span class="show-titles">Contemporary American Regionalism: Vermont Perspectives</span> Southern Vermont Art Center, Manchester, VT, 2019
+					<span class="show-titles">Futures</span> Studio Place Arts, Barre, VT, 2020
+					<br><span class="show-titles">Contemporary American Regionalism: Vermont Perspectives</span> Southern Vermont Art Center, Manchester, VT, 2019
 					<br><span class="show-titles">Summer Juried Show</span> T.W. Wood Gallery, Montpelier, VT, 2017
 					<br><span class="show-titles">Encountering Yellow</span> Studio Place Arts, Barre, VT, 2016
 					<br><span class="show-titles">Ongoing Member Shows</span> The Front, Montpelier, VT, 2015-2017
