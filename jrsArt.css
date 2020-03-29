@@ -136,7 +136,7 @@ body {
 
 .center-it { text-align:center; }
 
-.thumbnail { width: 15em; display:inline; }
+.thumbnail { width: 15em; margin:auto; }
 
 .errorText {
 	color:#39d;
