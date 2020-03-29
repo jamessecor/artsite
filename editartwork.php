@@ -209,6 +209,12 @@ if(!$artworkResult) {
 						</td>
 					</tr>
 					<tr>
+						<th>Sale Date</th>
+					</tr>
+					<tr>
+						<td><input type="date" name="updatesaledate" value="<?php echo $isNew ? "" : "$editWork[saleDate]";?>" <?php echo $disabled; ?>></td>
+					</tr>
+					<tr>
 						<td>
 							<input type="checkbox" name="ishomepage" <?php echo $editWork['isHomePage'] ? "Checked" : ""; echo " $disabled "; ?>>Put on homepage
 						</td>
@@ -308,7 +314,14 @@ if(!$artworkResult) {
 			$newBuyer = $_POST['updatebuyer'];
 			$hasBuyer = true;
 		} 
-		
+
+		// Validate SaleDate
+		$hasSaleDate = false;
+		if(!empty($_POST['updatesaledate'])) {
+			$newSaleDate = $_POST['updatesaledate'];
+			$hasSaleDate = true;
+		} 
+
 		// Validate Grouping
 		$hasGrouping = false;
 		if(!empty($_POST['updategrouping'])) {
@@ -348,8 +361,11 @@ if(!$artworkResult) {
 
 				// Insert new buyer if has buyer
 				if($hasBuyer) $query .= ", buyerID = '$newBuyer'";	
+
+				// Insert new sale date if has sale date
+				if($hasSaleDate) $query .= ", saleDate = '$newSaleDate'";	
 				
-				// Insert new buyer if has buyer
+				// Insert new grouping if has grouping
 				if($hasGrouping) $query .= ", grouping = '$newGrouping'";	
 				
 				// WHERE clause
@@ -359,10 +375,12 @@ if(!$artworkResult) {
 				$query = "INSERT INTO imageData (title, media, yearCreated, filename, arrangement, isHomePage";
 				if($hasPrice) $query .= ", price";
 				if($hasBuyer) $query .= ", buyerID";
+				if($hasSaleDate) $query .= ", saleDate";
 				if($hasGrouping) $query .= ", grouping";
 				$query .= ") VALUES ('$newTitle', '$newMedium', '$newYear', '$newFilename', '$newArrangement', '$isHomePage'";
 				if($hasPrice) $query .= ", '$newPrice'";
 				if($hasBuyer) $query .= ", '$newBuyer'";
+				if($hasSaleDate) $query .= ", '$newSaleDate'";
 				if($hasGrouping) $query .= ", '$newGrouping'";
 				$query .= ");";
 				
@@ -396,6 +414,9 @@ if(!$artworkResult) {
 						$names = mysqli_fetch_array($nameResult);
 						echo (count($names) > 1) ? "</br>(Purchased by $names[0] $names[1])" : "</br>(Purchased by $names[0])";
 					}					
+				}
+				if($hasSaleDate) {
+					echo "<br/>Sale Date: $newSaleDate";
 				}
 				if($hasGrouping) {
 					echo "</br>Grouping: $newGrouping";
