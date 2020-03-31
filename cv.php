@@ -3,26 +3,31 @@ include "header.php";
 ?>
 <script>
 	$(document).ready(function() {
-		$("#solo-header").on("click",function() {
-			$("#solo").fadeToggle();
+		$(".cv-items").each(function() {
+			$(this).hide();			
 		});
 
-		$("#group-header").on("click",function() {
-			$("#group").fadeToggle();
-		});		
+		$(".cv-headers").each(function() {
+			$(this).on("click",function() {
+				var group_id = $(this).attr('id');
+				var items_id = group_id.substring(0,group_id.indexOf("-"));
+				$("#" + items_id).fadeToggle();
+				console.log($(this).html() + "&#x25BC;");
+			});
+		});
 	});
 </script>
 <div class="container">
 	<div id='success'>
 		<div class="cv-text">
-			<div id="solo-header">
+			<div class="cv-headers" id="solo-header">
 				<p>
 					<strong>
 						&#x25B6; Solo Exhibitions
 					</strong>
 				</p>
 			</div>
-			<div id="solo">
+			<div class="cv-items" id="solo">
 				<p>
 					<span class="show-titles">Peanut Butter Garlic Toast</span> <a href="https://www.morseblockdeli.com/" class="press-links" target="blank">Morse Block Deli</a> - Barre, VT Dec 2019-					
 					<br><span class="show-titles">animal mug, dish, and glass, etc</span> <a href="https://www.norwichlibrary.org/nplexhibits/" class="press-links" target="blank">Norwich Public Library</a> - Norwich, VT Dec 2019-
@@ -38,14 +43,14 @@ include "header.php";
 					<br><span class="show-titles">Senegal-France-Syracuse</span> Westcott Art Gallery - Syracuse, NY, 2011
 				</p>
 			</div>
-			<div id="group-header">	
+			<div class="cv-headers" id="group-header">	
 				<p>
 					<strong>
 						&#x25B6; Selected Group Exhibitions
 					</strong>
 				</p>
 			</div>
-			<div id="group">
+			<div class="cv-items" id="group">
 				<p>
 					<span class="show-titles">Futures</span> Studio Place Arts, Barre, VT, 2020
 					<br><span class="show-titles">Contemporary American Regionalism: Vermont Perspectives</span> Southern Vermont Art Center, Manchester, VT, 2019
@@ -60,45 +65,60 @@ include "header.php";
 					<br><span class="show-titles">20-30, 2D-3D</span>  Chandler Center for the Arts Gallery, Randolph, VT, 2013
 					<br><span class="show-titles">Senior Show</span>  Houghton House, Geneva, NY, 2010
 				</p>
-			</div>			
-			<p>
-				<strong>
-					&#x25B6; Residency Participation
-				</strong>
-			</p>
-			<p>
-				VT Artists Week, Vermont Studio Center, Johnson, VT, 2018 
-			</p>
-			<p>
-				<strong>
-					&#x25B6; Education
-				</strong>
-			</p>
-
-			<p>
-				Hobart and William Smith Colleges, Geneva, NY - Honors project and Minor in Studio Art, 2010
-			</p>
-			<p>
-				<strong>
-					&#x25B6; Press
-				</strong>
-			</p>			
-			<p>
-				<a class="press-links" href="./press/as-not-seen.pdf" target="_blank">&nbsp;As Not Seen: Review&nbsp;</a>
-				<br/><a class="press-links" href="./press/artistToWatch.jpg" target="_blank">&nbsp;Artist to Watch, Vermont Art Guide #3&nbsp;</a>
-				<br/><a class="press-links" href="./press/companions.jpg" target="_blank">&nbsp;Companions, Vermont Art Guide #3&nbsp;</a>
-				<br/><a class="press-links" href="./press/7_best_2017__7Days.pdf" target="_blank">&nbsp;Our Seven Favorite Vermont Art Shows of 2017&nbsp;</a>
-				<br/><a class="press-links" href="./press/nomophobia_MegBrazill.pdf" target="_blank">&nbsp;Art Review: James Secor, Studio Place Arts&nbsp;</a>			
-			</p>
-			<p>
-				<strong>
-					&#x25B6; Links
-				</strong>
-			</p>			
-			<p>
-				<a class="press-links" href="https://shop.kasinihouseartshop.com/product/vermont-art-guide-3" target="_blank">&nbsp;Where to get your own Vermont Art Guide&nbsp;</a>
-				<br/><a class="press-links" href="https://janicemorganauthor.com/suspended-sentence/portraits/" target="_blank">&nbsp;Suspended Sentence by author Janice Morgan&nbsp;</a>
-			</p>
+			</div>	
+			<div class="cv-headers" id="residency-header">		
+				<p>
+					<strong>
+						&#x25B6; Residency Participation
+					</strong>
+				</p>
+			</div>
+			<div class="cv-items" id="residency">
+				<p>
+					VT Artists Week, Vermont Studio Center, Johnson, VT, 2018 
+				</p>
+			</div>
+			<div class="cv-headers" id="ed-header">
+				<p>
+					<strong>
+						&#x25B6; Education
+					</strong>
+				</p>	
+			</div>
+			<div class="cv-items" id="ed">
+				<p>
+					Hobart and William Smith Colleges, Geneva, NY - Honors project and Minor in Studio Art, 2010
+				</p>
+			</div>
+			<div class="cv-headers" id="press-header">
+				<p>
+					<strong>
+						&#x25B6; Press
+					</strong>
+				</p>			
+			</div>
+			<div class="cv-items" id="press">
+				<p>
+					<a class="press-links" href="./press/as-not-seen.pdf" target="_blank">&nbsp;As Not Seen: Review&nbsp;</a>
+					<br/><a class="press-links" href="./press/artistToWatch.jpg" target="_blank">&nbsp;Artist to Watch, Vermont Art Guide #3&nbsp;</a>
+					<br/><a class="press-links" href="./press/companions.jpg" target="_blank">&nbsp;Companions, Vermont Art Guide #3&nbsp;</a>
+					<br/><a class="press-links" href="./press/7_best_2017__7Days.pdf" target="_blank">&nbsp;Our Seven Favorite Vermont Art Shows of 2017&nbsp;</a>
+					<br/><a class="press-links" href="./press/nomophobia_MegBrazill.pdf" target="_blank">&nbsp;Art Review: James Secor, Studio Place Arts&nbsp;</a>			
+				</p>
+			</div>
+			<div class="cv-headers" id="links-header">			
+				<p>
+					<strong>
+						&#x25B6; Links
+					</strong>
+				</p>			
+			</div>
+			<div class="cv-items" id="links">			
+				<p>
+					<a class="press-links" href="https://shop.kasinihouseartshop.com/product/vermont-art-guide-3" target="_blank">&nbsp;Where to get your own Vermont Art Guide&nbsp;</a>
+					<br/><a class="press-links" href="https://janicemorganauthor.com/suspended-sentence/portraits/" target="_blank">&nbsp;Suspended Sentence by author Janice Morgan&nbsp;</a>
+				</p>
+			</div>
 		</div>
 	</div>
 	&nbsp;
