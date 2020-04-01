@@ -272,8 +272,9 @@ input[type="submit"], button, td input, td textarea, #toTop, select, .showPeeps,
 	padding-right: .2em;
 	border-radius:.1em;
 	text-align:center;
-	color: var(--nav-color);
-	background-color: var(--nav-background-color);	
+	font-weight:bold;
+	color: var(--nav-background-color);
+	border:.1em solid var(--nav-background-color);	
 }
 .press-links {	
 	font-weight: bold;
