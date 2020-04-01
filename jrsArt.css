@@ -198,6 +198,15 @@ a[id^="right-arrow"] { right:0; }
 	color:var(--nav-background-color);
 }
 
+.cv-headers>p:hover, .press-links:hover { 
+	background:var(--nav-background-color); 
+	color:var(--nav-color); 
+	border-radius: .1em;
+	text-decoration:none;
+}
+
+.cv-headers>p { display:inline-block; font-weight:bold;}
+
 .text { text-align:center; }
 
 .imgButtons {
@@ -272,12 +281,6 @@ input[type="submit"], button, td input, td textarea, #toTop, select, .showPeeps,
 }
 
 .press-links:visited,a:visited{text-decoration:none;}
-
-.press-links:hover {
-	color: rgba(233, 155, 168, 0.9);
-	background-color:rgb(27, 41, 71);
-	text-decoration:none;
-}
 
 input[type="submit"]:hover, button:hover, #toTop:hover {
 	background-color: var(--nav-color);

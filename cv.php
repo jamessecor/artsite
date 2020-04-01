@@ -11,9 +11,19 @@ include "header.php";
 			$(this).on("click",function() {
 				var group_id = $(this).attr('id');
 				var items_id = group_id.substring(0,group_id.indexOf("-"));
+				var group_html = $("#" + group_id).html();
+				
+				// Toggle Items
 				$("#" + items_id).fadeToggle();
-				console.log($(this).html() + "&#x25BC;");
-			});
+
+				// Switch Arrows
+				if(group_html.indexOf("▶") > -1) {
+					group_html = group_html.replace("▶","▼");
+				} else {
+					group_html = group_html.replace("▼","▶");					
+				}
+				$("#" + group_id).html(group_html);
+			});			
 		});
 	});
 </script>
@@ -21,11 +31,7 @@ include "header.php";
 	<div id='success'>
 		<div class="cv-text">
 			<div class="cv-headers" id="solo-header">
-				<p>
-					<strong>
-						&#x25B6; Solo Exhibitions
-					</strong>
-				</p>
+				<p>&#x25B6; Solo Exhibitions</p>
 			</div>
 			<div class="cv-items" id="solo">
 				<p>
@@ -44,11 +50,7 @@ include "header.php";
 				</p>
 			</div>
 			<div class="cv-headers" id="group-header">	
-				<p>
-					<strong>
-						&#x25B6; Selected Group Exhibitions
-					</strong>
-				</p>
+				<p>&#x25B6; Selected Group Exhibitions</p>
 			</div>
 			<div class="cv-items" id="group">
 				<p>
@@ -67,11 +69,7 @@ include "header.php";
 				</p>
 			</div>	
 			<div class="cv-headers" id="residency-header">		
-				<p>
-					<strong>
-						&#x25B6; Residency Participation
-					</strong>
-				</p>
+				<p>&#x25B6; Residency Participation</p>
 			</div>
 			<div class="cv-items" id="residency">
 				<p>
@@ -79,11 +77,7 @@ include "header.php";
 				</p>
 			</div>
 			<div class="cv-headers" id="ed-header">
-				<p>
-					<strong>
-						&#x25B6; Education
-					</strong>
-				</p>	
+				<p>&#x25B6; Education</p>	
 			</div>
 			<div class="cv-items" id="ed">
 				<p>
@@ -91,11 +85,7 @@ include "header.php";
 				</p>
 			</div>
 			<div class="cv-headers" id="press-header">
-				<p>
-					<strong>
-						&#x25B6; Press
-					</strong>
-				</p>			
+				<p>&#x25B6; Press</p>			
 			</div>
 			<div class="cv-items" id="press">
 				<p>
@@ -107,11 +97,7 @@ include "header.php";
 				</p>
 			</div>
 			<div class="cv-headers" id="links-header">			
-				<p>
-					<strong>
-						&#x25B6; Links
-					</strong>
-				</p>			
+				<p>&#x25B6; Links</p>			
 			</div>
 			<div class="cv-items" id="links">			
 				<p>
