@@ -4,9 +4,20 @@
 include "./header.php";
 ?>
 <script src='./jrsArt.js'></script>
+<script>
+	$(document).ready(function() {
+		$(".store-row input").each(function() {
+			$(this).hide();
+		});
+		$(".store-row select").each(function() {
+			$(this).hide();
+		});
+	});
+</script>
 <div class="row">
     <div id="store-heading" class="col-md-10 col-md-offset-1 center-it">
-        Online Store to Benefit the <a target="_blank" class="press-links" href="https://www.vtfoodbank.org/">Vermont Food Bank</a>. 
+	------------ COMING SOON ------------
+	<br/>Online Store to Benefit the <a target="_blank" class="press-links" href="https://www.vtfoodbank.org/">Vermont Food Bank</a>. 
         <br/>75% of all proceeds will be donated.
     </div>
 </div>
@@ -19,7 +30,7 @@ include "./header.php";
         <input type="hidden" name="cmd" value="_cart">
         <input type="hidden" name="business" value="james.secor@gmail.com">
         <input type="hidden" name="lc" value="US">
-        <input type="hidden" name="item_name" value="Cards">
+        <input type="hidden" name="item_name" value="Postcards - At My Wits End">
         <input type="hidden" name="item_number" value="1">
         <input type="hidden" name="button_subtype" value="products">
         <input type="hidden" name="no_note" value="0">
@@ -53,8 +64,8 @@ include "./header.php";
         <input type="hidden" name="cmd" value="_cart">
         <input type="hidden" name="business" value="james.secor@gmail.com">
         <input type="hidden" name="lc" value="US">
-        <input type="hidden" name="item_name" value="Cards">
-        <input type="hidden" name="item_number" value="1">
+        <input type="hidden" name="item_name" value="Postcards - Modern Social Hour II">
+        <input type="hidden" name="item_number" value="2">
         <input type="hidden" name="button_subtype" value="products">
         <input type="hidden" name="no_note" value="0">
         <input type="hidden" name="tax_rate" value="6.000">
@@ -87,8 +98,8 @@ include "./header.php";
         <input type="hidden" name="cmd" value="_cart">
         <input type="hidden" name="business" value="james.secor@gmail.com">
         <input type="hidden" name="lc" value="US">
-        <input type="hidden" name="item_name" value="Cards">
-        <input type="hidden" name="item_number" value="1">
+        <input type="hidden" name="item_name" value="Postcards - animal mug, dish, glass I">
+        <input type="hidden" name="item_number" value="3">
         <input type="hidden" name="button_subtype" value="products">
         <input type="hidden" name="no_note" value="0">
         <input type="hidden" name="tax_rate" value="6.000">
@@ -121,8 +132,8 @@ include "./header.php";
         <input type="hidden" name="cmd" value="_cart">
         <input type="hidden" name="business" value="james.secor@gmail.com">
         <input type="hidden" name="lc" value="US">
-        <input type="hidden" name="item_name" value="Cards">
-        <input type="hidden" name="item_number" value="1">
+        <input type="hidden" name="item_name" value="Postcards - Barcodes">
+        <input type="hidden" name="item_number" value="4">
         <input type="hidden" name="button_subtype" value="products">
         <input type="hidden" name="no_note" value="0">
         <input type="hidden" name="tax_rate" value="6.000">
@@ -155,8 +166,8 @@ include "./header.php";
         <input type="hidden" name="cmd" value="_cart">
         <input type="hidden" name="business" value="james.secor@gmail.com">
         <input type="hidden" name="lc" value="US">
-        <input type="hidden" name="item_name" value="Cards">
-        <input type="hidden" name="item_number" value="1">
+        <input type="hidden" name="item_name" value="Postcards - Espresso at Art Hop">
+        <input type="hidden" name="item_number" value="5">
         <input type="hidden" name="button_subtype" value="products">
         <input type="hidden" name="no_note" value="0">
         <input type="hidden" name="tax_rate" value="6.000">
