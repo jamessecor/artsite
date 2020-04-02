@@ -145,15 +145,16 @@ session_start();
 				</li>
 				<li <?php if(strpos($_SERVER['REQUEST_URI'], '/contact.php')) echo "class='active'";?> >
 					<a href="./contact.php"><strong>contact</strong></a>
-				</li>
+				</li>				
 				<li>
-					<a href="http://jamessecor.com/nomophobia" target="_blank"><em><strong>#nomophobia site</strong></em></a>
-				</li>
-				<li>
-					<a href="./asnotseen/index.php"><em><strong>As Not Seen</strong></em></a>
-				</li>
-				<li>
-					<a href="./morecontent/index.php"><strong>more</strong></a>
+					<a class='dropdown-toggle' data-toggle="dropdown"><strong>more
+					<span class="caret"></span></strong></a>
+					<ul class="dropdown-menu">
+						<li><a href="./morecontent/index.php"><strong>content</strong></a></li>
+						<li><a href="./morecontent/dots.php"><strong>dots</strong></a></li>
+						<li><a href="./morecontent/asnotseen.php"><strong>As Not Seen</strong></a></li>
+						<li><a href="http://jamessecor.com/nomophobia" target="_blank"><em><strong>#nomophobia site</strong></em></a></li>
+					</ul>				
 				</li>
 				<?php 
 				include "checkLogin.php";

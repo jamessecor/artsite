@@ -1,108 +1,189 @@
 <?php
 // Landing PAGE
 
-include "header.php";
-include "./imagesTemplate.php";
+include "./header.php";
 ?>
-
-<div class='container'>
-	<div id="colors">
-		<?php 
-		$rowCount = 40;
-		$colCount = 12;
-		for($i = 0; $i < $rowCount; $i++) { ?>
-			<div class="row colors-row" id="colors-row-<?php echo $i; ?>">
-				<?php for($j = 0; $j < $colCount; $j++) { ?>
-					<div class="col-xs-1 colors-col" id="colors-col-<?php echo $i . '-' . $j;?>">&nbsp;</div>
-				<?php } ?>
-			</div>
-		<?php } ?>
-	</div>
-	<div id="help-me-thru">Touch/Click anywhere to proceed to paintings.</div>
-	<div id="images-main">
-		<?php
-		displayImages(" isHomePage = true ORDER BY arrangement");
-		?>
-	</div>
-</div>
 <script src='./jrsArt.js'></script>
-<script>
-var intervalTime = 50;
-var colorsInterval;
-var timesThruColors = 0;
-var circles = [];
-$(document).ready(function() {	
-	$("#images-main").hide();
-	$("#help-me-thru").hide();
-	$(".navbar").css("margin","0");
-	var rowHeight = $(".colors-col").css("width");
-	$("#colors").children().css("height",rowHeight);
-	colors();
-	colorsInterval = setInterval(colors,intervalTime);
-});
-
-// Go to images
-$("#colors").on("click",function() {
-	clearInterval(colorsInterval);
-	$("#colors").hide();
-	$("#help-me-thru").hide();
-	$("#images-main").show();
-});
-
-$("#help-me-thru").on("click",function() {
-	clearInterval(colorsInterval);
-	$("#colors").hide();
-	$(this).hide();
-	$("#images-main").show();
-});
-
-function colors() {	
-	var createAndAddTemp = true;
-	for(var i = 0; i < parseInt(<?php echo $rowCount; ?>); i++) {		
-		for(var j = 0; j < parseInt(<?php echo $colCount; ?>); j++) {			
-			createAndAddTemp = true;
-			if(Math.random() * 275 < 2) {
-				circles.forEach(circle => {
-					if(circle.id == "colors-col-" + i + "-" + j) {
-						createAndAddTemp = false;
-					}
-				});
-				if(createAndAddTemp) {
-					var r = Math.round(Math.random() * 100 + 50);
-					var g = Math.round(Math.random() * 100 + 100);
-					var b = Math.round(Math.random() * 100 + 155);
-					var tempRGB = "rgb(" + r + "," + g + "," + b + ")";
-					var tempObj = {
-						rgb: tempRGB,
-						timeAlive: 0,
-						totalTimeOnEarth: Math.random() * 3 + 1,
-						id: "colors-col-" + i + "-" + j
-					};
-					$("#" + tempObj.id).css("background-color",tempObj.rgb).hide();
-					$("#" + tempObj.id).fadeTo(5000, 1);
-					circles.push(tempObj);
-				}
-			} 
-		}
-	}
-	
-	for(var t = 0; t < circles.length; t++) {
-		circles[t].timeAlive++;
-		if(circles[t].timeAlive >= circles[t].totalTimeOnEarth) {
-			$("#" + circles[t].id).fadeTo(2500, 0, "", function() {
-				circles.splice(t, 1);
-			});			
-		}
-	}
-	
-	timesThruColors++;
-	if(timesThruColors == 150) {
-		$("#help-me-thru").fadeIn(1000);
-	} else if(timesThruColors == 225) {
-		$("#help-me-thru").fadeOut(1000);
-	}
-}
-</script>
+<div class="row">
+    <div id="store-heading" class="col-md-10 col-md-offset-1 center-it">
+        Online Store to Benefit the <a target="_blank" class="press-links" href="https://www.vtfoodbank.org/">Vermont Food Bank</a>. 
+        <br/>75% of all proceeds will be donated.
+    </div>
+</div>
+<br/>
+<div class="row store-row">
+    <div class="col-md-1"></div>
+    <div class="col-md-2">
+        <img width="100%" src="http://jamessecor.com/img/AtMyWitsEnd2018.jpg"/>
+        <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post" >
+        <input type="hidden" name="cmd" value="_cart">
+        <input type="hidden" name="business" value="james.secor@gmail.com">
+        <input type="hidden" name="lc" value="US">
+        <input type="hidden" name="item_name" value="Cards">
+        <input type="hidden" name="item_number" value="1">
+        <input type="hidden" name="button_subtype" value="products">
+        <input type="hidden" name="no_note" value="0">
+        <input type="hidden" name="tax_rate" value="6.000">
+        <input type="hidden" name="shipping" value="0.00">
+        <input type="hidden" name="add" value="1">
+        <input type="hidden" name="bn" value="PP-ShopCartBF:btn_cart_LG.gif:NonHostedGuest">
+        <table>        
+        <tr><td>At My Wits End</td></tr>
+        <tr><td><input type="hidden" name="on0" value="Postcards">4 x 6 inch postcards</td></tr><tr><td><select name="os0">
+            <option value="5 cards">5 cards $8.00 USD</option>
+            <option value="10 cards">10 cards $15.00 USD</option>
+            <option value="15 cards">15 cards $20.00 USD</option>
+        </select> </td></tr>
+        </table>
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="hidden" name="option_select0" value="5 cards">
+        <input type="hidden" name="option_amount0" value="8.00">
+        <input type="hidden" name="option_select1" value="10 cards">
+        <input type="hidden" name="option_amount1" value="15.00">
+        <input type="hidden" name="option_select2" value="15 cards">
+        <input type="hidden" name="option_amount2" value="20.00">
+        <input type="hidden" name="option_index" value="0">
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+    </div>
+    <div class="col-md-2">
+        <img width="100%" src="http://jamessecor.com/img/IMG_20200308_112616.jpg"/>
+        <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post" >
+        <input type="hidden" name="cmd" value="_cart">
+        <input type="hidden" name="business" value="james.secor@gmail.com">
+        <input type="hidden" name="lc" value="US">
+        <input type="hidden" name="item_name" value="Cards">
+        <input type="hidden" name="item_number" value="1">
+        <input type="hidden" name="button_subtype" value="products">
+        <input type="hidden" name="no_note" value="0">
+        <input type="hidden" name="tax_rate" value="6.000">
+        <input type="hidden" name="shipping" value="0.00">
+        <input type="hidden" name="add" value="1">
+        <input type="hidden" name="bn" value="PP-ShopCartBF:btn_cart_LG.gif:NonHostedGuest">
+        <table>        
+        <tr><td>Modern Social Hour II</td></tr>
+        <tr><td><input type="hidden" name="on0" value="Postcards">4 x 6 inch postcards</td></tr><tr><td><select name="os0">
+            <option value="5 cards">5 cards $8.00 USD</option>
+            <option value="10 cards">10 cards $15.00 USD</option>
+            <option value="15 cards">15 cards $20.00 USD</option>
+        </select> </td></tr>
+        </table>
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="hidden" name="option_select0" value="5 cards">
+        <input type="hidden" name="option_amount0" value="8.00">
+        <input type="hidden" name="option_select1" value="10 cards">
+        <input type="hidden" name="option_amount1" value="15.00">
+        <input type="hidden" name="option_select2" value="15 cards">
+        <input type="hidden" name="option_amount2" value="20.00">
+        <input type="hidden" name="option_index" value="0">
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+    </div>
+    <div class="col-md-2">
+        <img width="100%" src="http://jamessecor.com/img/animalMug_dish_andGlass_I.jpg"/>
+        <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post" >
+        <input type="hidden" name="cmd" value="_cart">
+        <input type="hidden" name="business" value="james.secor@gmail.com">
+        <input type="hidden" name="lc" value="US">
+        <input type="hidden" name="item_name" value="Cards">
+        <input type="hidden" name="item_number" value="1">
+        <input type="hidden" name="button_subtype" value="products">
+        <input type="hidden" name="no_note" value="0">
+        <input type="hidden" name="tax_rate" value="6.000">
+        <input type="hidden" name="shipping" value="0.00">
+        <input type="hidden" name="add" value="1">
+        <input type="hidden" name="bn" value="PP-ShopCartBF:btn_cart_LG.gif:NonHostedGuest">
+        <table>        
+        <tr><td>animal mug, dish, glass I</td></tr>
+        <tr><td><input type="hidden" name="on0" value="Postcards">4 x 6 inch postcards</td></tr><tr><td><select name="os0">
+            <option value="5 cards">5 cards $8.00 USD</option>
+            <option value="10 cards">10 cards $15.00 USD</option>
+            <option value="15 cards">15 cards $20.00 USD</option>
+        </select> </td></tr>
+        </table>
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="hidden" name="option_select0" value="5 cards">
+        <input type="hidden" name="option_amount0" value="8.00">
+        <input type="hidden" name="option_select1" value="10 cards">
+        <input type="hidden" name="option_amount1" value="15.00">
+        <input type="hidden" name="option_select2" value="15 cards">
+        <input type="hidden" name="option_amount2" value="20.00">
+        <input type="hidden" name="option_index" value="0">
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+    </div>
+    <div class="col-md-2">
+        <img width="100%" src="http://jamessecor.com/img/barcodes2019.jpg"/>
+        <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post" >
+        <input type="hidden" name="cmd" value="_cart">
+        <input type="hidden" name="business" value="james.secor@gmail.com">
+        <input type="hidden" name="lc" value="US">
+        <input type="hidden" name="item_name" value="Cards">
+        <input type="hidden" name="item_number" value="1">
+        <input type="hidden" name="button_subtype" value="products">
+        <input type="hidden" name="no_note" value="0">
+        <input type="hidden" name="tax_rate" value="6.000">
+        <input type="hidden" name="shipping" value="0.00">
+        <input type="hidden" name="add" value="1">
+        <input type="hidden" name="bn" value="PP-ShopCartBF:btn_cart_LG.gif:NonHostedGuest">
+        <table>        
+        <tr><td>Barcodes</td></tr>
+        <tr><td><input type="hidden" name="on0" value="Postcards">4 x 6 inch postcards</td></tr><tr><td><select name="os0">
+            <option value="5 cards">5 cards $8.00 USD</option>
+            <option value="10 cards">10 cards $15.00 USD</option>
+            <option value="15 cards">15 cards $20.00 USD</option>
+        </select> </td></tr>
+        </table>
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="hidden" name="option_select0" value="5 cards">
+        <input type="hidden" name="option_amount0" value="8.00">
+        <input type="hidden" name="option_select1" value="10 cards">
+        <input type="hidden" name="option_amount1" value="15.00">
+        <input type="hidden" name="option_select2" value="15 cards">
+        <input type="hidden" name="option_amount2" value="20.00">
+        <input type="hidden" name="option_index" value="0">
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+    </div>
+    <div class="col-md-2">
+        <img width="100%" src="http://jamessecor.com/img/teacup.jpg"/>
+        <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post" >
+        <input type="hidden" name="cmd" value="_cart">
+        <input type="hidden" name="business" value="james.secor@gmail.com">
+        <input type="hidden" name="lc" value="US">
+        <input type="hidden" name="item_name" value="Cards">
+        <input type="hidden" name="item_number" value="1">
+        <input type="hidden" name="button_subtype" value="products">
+        <input type="hidden" name="no_note" value="0">
+        <input type="hidden" name="tax_rate" value="6.000">
+        <input type="hidden" name="shipping" value="0.00">
+        <input type="hidden" name="add" value="1">
+        <input type="hidden" name="bn" value="PP-ShopCartBF:btn_cart_LG.gif:NonHostedGuest">
+        <table>        
+        <tr><td>Espresso at Art Hop</td></tr>
+        <tr><td><input type="hidden" name="on0" value="Postcards">4 x 6 inch postcards</td></tr><tr><td><select name="os0">
+            <option value="5 cards">5 cards $8.00 USD</option>
+            <option value="10 cards">10 cards $15.00 USD</option>
+            <option value="15 cards">15 cards $20.00 USD</option>
+        </select> </td></tr>
+        </table>
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="hidden" name="option_select0" value="5 cards">
+        <input type="hidden" name="option_amount0" value="8.00">
+        <input type="hidden" name="option_select1" value="10 cards">
+        <input type="hidden" name="option_amount1" value="15.00">
+        <input type="hidden" name="option_select2" value="15 cards">
+        <input type="hidden" name="option_amount2" value="20.00">
+        <input type="hidden" name="option_index" value="0">
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+    </div>
+</div>
 <?php
-include "footer.php";
+include "./footer.php";
 ?>

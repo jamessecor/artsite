@@ -281,6 +281,16 @@ input[type="submit"], button, td input, td textarea, #toTop, select, .showPeeps,
 	color: var(--nav-background-color);
 }
 
+div.row.store-row>div>form>table>tbody>tr>td { text-align: center; }
+
+#store-heading {
+	font-weight:bold;
+	background-color: rgb(202, 224, 235);
+	border-radius: .25em;
+	color:#a03030;
+	border: .25em solid teal;
+}
+
 .press-links:visited,a:visited{text-decoration:none;}
 
 input[type="submit"]:hover, button:hover, #toTop:hover {
