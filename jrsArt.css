@@ -282,6 +282,9 @@ input[type="submit"], button, td input, td textarea, #toTop, select, .showPeeps,
 }
 
 div.row.store-row>div>form>table>tbody>tr>td { text-align: center; }
+input[type="image"] { background:none; border:none; }
+
+div.row.store-row>div>form>table {width:100%;}
 
 #store-heading {
 	font-weight:bold;
