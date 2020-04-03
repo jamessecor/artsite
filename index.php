@@ -14,11 +14,12 @@ include "./header.php";
 		});
 	});
 </script>
+<div class="container">
 <div class="row">
     <div id="store-heading" class="col-md-10 col-md-offset-1 center-it">
 	------------ COMING SOON ------------
 	<br/>Online Store to Benefit the <a target="_blank" class="press-links" href="https://www.vtfoodbank.org/">Vermont Food Bank</a>. 
-        <br/>75% of all proceeds will be donated.
+        <br/>--------------------------------------
     </div>
 </div>
 <br/>

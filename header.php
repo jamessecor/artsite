@@ -104,8 +104,6 @@ session_start();
 	});
 	</script>
 <body>
-	<div id="left-col" class="col-md-1 side-cols"></div>
-	<div id="right-col" class="col-md-1 side-cols"></div>
 	<div id="wrapper">
 
 	<nav class="navbar navbar-default">
