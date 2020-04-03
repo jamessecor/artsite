@@ -31,7 +31,7 @@ include "./header.php";
         <input type="hidden" name="cmd" value="_cart">
         <input type="hidden" name="business" value="james.secor@gmail.com">
         <input type="hidden" name="lc" value="US">
-        <input type="hidden" name="item_name" value="Postcards - At My Wits End">
+        <input type="hidden" name="item_name" value="Postcards - Trees on the North Branch">
         <input type="hidden" name="item_number" value="1">
         <input type="hidden" name="button_subtype" value="products">
         <input type="hidden" name="no_note" value="0">
@@ -40,7 +40,7 @@ include "./header.php";
         <input type="hidden" name="add" value="1">
         <input type="hidden" name="bn" value="PP-ShopCartBF:btn_cart_LG.gif:NonHostedGuest">
         <table>        
-        <tr><td>At My Wits End</td></tr>
+        <tr><td>Trees on the North Branch</td></tr>
         <tr><td><input type="hidden" name="on0" value="Postcards">4.5 x 5.5 inch postcards</td></tr><tr><td><select name="os0">
             <option value="5 cards">5 cards $8.00 USD</option>
             <option value="10 cards">10 cards $15.00 USD</option>
