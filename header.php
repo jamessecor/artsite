@@ -139,8 +139,8 @@ session_start();
 					</ul>
 				</li>
 				<li><a  href="./cv.php"><strong>cv</strong></a></li>
-				<li><a href="./contact.php"><strong>contact</strong></a></li>
 				<li><a href="./store.php"><strong>store</strong></a></li>
+				<li><a href="./contact.php"><strong>contact</strong></a></li>
 				<li>
 					<a class='dropdown-toggle' data-toggle="dropdown"><strong>more
 					<span class="caret"></span></strong></a>
