@@ -138,12 +138,9 @@ session_start();
 						<li><a href="imagesDigitallyEdited.php"><strong>Digital Edits</strong></a></li>						
 					</ul>
 				</li>
-				<li <?php if(strpos($_SERVER['REQUEST_URI'], '/cv.php')) echo "class='active'";?>>
-					<a  href="./cv.php"><strong>cv</strong></a>
-				</li>
-				<li <?php if(strpos($_SERVER['REQUEST_URI'], '/contact.php')) echo "class='active'";?> >
-					<a href="./contact.php"><strong>contact</strong></a>
-				</li>				
+				<li><a  href="./cv.php"><strong>cv</strong></a></li>
+				<li><a href="./contact.php"><strong>contact</strong></a></li>
+				<li><a href="./store.php"><strong>store</strong></a></li>
 				<li>
 					<a class='dropdown-toggle' data-toggle="dropdown"><strong>more
 					<span class="caret"></span></strong></a>
@@ -157,13 +154,11 @@ session_start();
 				<?php 
 				include "checkLogin.php";
 				if(isLoggedIn()) { ?>
-				<li>
-					<a href="./admin.php"><em><strong>Admin</strong></em></a>
-				</li>
+					<li><a href="./admin.php"><em><strong>Admin</strong></em></a></li>
 				<?php } ?>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li class="navbar-text">James Secor &copy; 2017</li>
+				<li class="navbar-text">James Secor &copy; 2020</li>
 			</ul>
 			</div>
 		</div>

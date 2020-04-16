@@ -4,13 +4,13 @@
 include "header.php";
 ?>
 
-<div class='container'>
+<div class='container-fluid'>
 	<div id="colors">
 		<?php 
 		$rowCount = 40;
 		$colCount = 12;
 		for($i = 0; $i < $rowCount; $i++) { ?>
-			<div class="row colors-row" id="colors-row-<?php echo $i; ?>">
+			<div class="row no-gutters colors-row" id="colors-row-<?php echo $i; ?>">
 				<?php for($j = 0; $j < $colCount; $j++) { ?>
 					<div class="col-xs-1 colors-col" id="colors-col-<?php echo $i . '-' . $j;?>">&nbsp;</div>
 				<?php } ?>
