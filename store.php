@@ -65,7 +65,8 @@ include "./header.php";
                         + "http://jamessecor.com/img/teacup.jpg;" 
                         + "http://jamessecor.com/img/animalMug_dish_andGlass_I.jpg;"
                         + "http://jamessecor.com/img/IMG_20200308_112616.jpg;"
-                        + "http://jamessecor.com/img/barcodes2019.jpg",
+                        + "http://jamessecor.com/img/barcodes2019.jpg;"
+                        + "http://jamessecor.com/img/DeliveryCorridor2018.jpg",
             "itemNumber": "10",
             "title": "Mix Pack - assorted images"
         }
