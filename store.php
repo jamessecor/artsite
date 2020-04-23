@@ -31,20 +31,20 @@ include "./header.php";
             "title": "Modern Social Hour II"
         },
         {
-            "imgSrc": "http://jamessecor.com/img/IMG_20191207_102302.jpg",
-            "itemNumber": "6",
-            "title": "animal mug, dish, and glass II"
-        },
-        {
             "imgSrc": "http://jamessecor.com/img/animalMug_dish_andGlass_I.jpg",
             "itemNumber": "3",
             "title": "animal mug, dish, and glass I"
-        },
+        },        
         {
             "imgSrc": "http://jamessecor.com/img/FadingLight2016.jpg",
             "itemNumber": "7",
             "title": "Fading Light"
         },
+        {
+            "imgSrc": "http://jamessecor.com/img/IMG_20191207_102302.jpg",
+            "itemNumber": "6",
+            "title": "animal mug, dish, and glass II"
+        },        
         {
             "imgSrc": "http://jamessecor.com/img/TrademoreShoppingCenter2017.jpg",
             "itemNumber": "8",
