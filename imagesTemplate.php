@@ -162,7 +162,7 @@ if(isLoggedIn()) {
 					
 					<!-- Link to open the modal -->
 					<!-- This is the image displayed prior to clicking -->
-					<a href="#modal-img-<?php echo $i;?>" rel="modal:open"><img class="img-responsive" src="<?php echo $filepath; ?>" alt="Image unavailable"/></a>
+					<a href="#modal-img-<?php echo $i;?>" rel="modal:open"><img class="img-responsive img-generic" src="<?php echo $filepath; ?>" alt="Image unavailable"/></a>
 					
 					<?php
 					// NEW ENDS ************************************
