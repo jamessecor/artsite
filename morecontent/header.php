@@ -37,6 +37,10 @@
 					<a class='dropdown-toggle' data-toggle="dropdown"><strong>images
 					<span class="caret"></span></strong></a>
 					<ul class="dropdown-menu">
+						<li><a href="imagesAnimalMugDishGlass.php"><strong>mug.dish.glass</strong></a></li>
+						<li><a href="imagesNomophobia.php"><strong>#nomophobia</strong></a></li>
+						<li><a href="imagesAsNotSeen.php"><strong>As Not Seen</strong></a></li>
+						<li><a href="imagesDigitallyEdited.php"><strong>Digital Edits</strong></a></li>						
 						<li><a href="../images2020.php"><strong>2020</strong></a></li>
 						<li><a href="../images2019.php"><strong>2019</strong></a></li>
 						<li><a href="../images2018.php"><strong>2018</strong></a></li>
@@ -45,8 +49,6 @@
 						<li><a href="../images2015.php"><strong>2015</strong></a></li>
 						<li><a href="../images2014.php"><strong>2014</strong></a></li>						
 						<li><a href="../images2013.php"><strong>2013</strong></a></li>						
-						<li><a href="../imagesNomophobia.php"><strong>#nomophobia</strong></a></li>
-						<li><a href="../imagesAsNotSeen.php"><strong>As Not Seen</strong></a></li>
 					</ul>
 				</li>
 				<li><a  href="../cv.php"><strong>cv</strong></a></li>
