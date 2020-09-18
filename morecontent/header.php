@@ -19,7 +19,7 @@
 <body onload='load()'>
 	<div id="wrapper">
 
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-fixed-top navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type = "button" id="tbut" class = "navbar-toggle" 
