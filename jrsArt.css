@@ -20,6 +20,7 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, footer, header {
 }
 
 body {
+	margin-top: 4.5em;
 	background-color:var(--page-background);
 	width:100%;
 	height:100%;
