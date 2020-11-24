@@ -35,7 +35,7 @@ include "header.php";
 			</div>
 			<div class="cv-items" id="solo">
 				<p>
-					<span class="show-titles">Peanut Butter Garlic Toast</span> <a href="https://www.morseblockdeli.com/" class="press-links" target="blank">Morse Block Deli</a> - Barre, VT Dec 2019-					
+					<span class="show-titles">Peanut Butter Garlic Toast</span> <a href="https://www.morseblockdeli.com/" class="press-links" target="blank">Morse Block Deli</a> - Barre, VT Dec 2019-Sept 2020				
 					<br><span class="show-titles">animal mug, dish, and glass, etc</span> <a href="https://www.norwichlibrary.org/nplexhibits/" class="press-links" target="blank">Norwich Public Library</a> - Norwich, VT Dec 2019-
 					<br><span class="show-titles">As Not Seen</span> <a href="https://cal-vt.org/" class="press-links" target="blank">Center for Arts and Learning</a> - Montpelier, VT Dec 2018-Jan 2019
 					<br><span class="show-titles">Driving Up a Chimney</span> Brown Library - Craftsbury, VT, Nov 2018-Jan 2019
@@ -54,7 +54,8 @@ include "header.php";
 			</div>
 			<div class="cv-items" id="group">
 				<p>
-					<span class="show-titles">Futures</span> Studio Place Arts, Barre, VT, 2020
+					<span class="show-titles">Screen Time</span> River Arts, Morrisville VT, Nov 2020-Jan 2021
+					<br><span class="show-titles">Futures</span> Studio Place Arts, Barre, VT, 2020
 					<br><span class="show-titles">Contemporary American Regionalism: Vermont Perspectives</span> Southern Vermont Art Center, Manchester, VT, 2019
 					<br><span class="show-titles">Summer Juried Show</span> T.W. Wood Gallery, Montpelier, VT, 2017
 					<br><span class="show-titles">Encountering Yellow</span> Studio Place Arts, Barre, VT, 2016
