@@ -49,6 +49,7 @@ if(confirm(contacts)) {
 					<option value="">Select Contact</option>
 					<?php
 					$selected = "";
+					$selectedId = "";
 					if(isset($_POST['editcontact'])) {
 						$selectedId = $_POST['contactSelect'];						
 					}
