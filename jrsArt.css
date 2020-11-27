@@ -172,7 +172,6 @@ div[id^="modal-img"] { background-color:#777; padding:2.5em 3em 2.5em 3em;}
 	}	
 	.img-generic { 
 		object-fit:cover;
-		max-height:18em;
 		width:100%;
 	}
 }

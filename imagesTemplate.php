@@ -122,22 +122,8 @@ if(isLoggedIn()) {
 						$price = "POR";
 					
 					// Sort out rows / columns
-					if($i % 3 === 0) {
-						print "<div class=\"row img-row\">";
-					}
-					
-					switch($i % 3) {
-						case(0): 
-							print "<div class=\"col-md-4 col-left\">";
-							break;
-						case(1):
-							print "<div class=\"col-md-4 col-middle\">";
-							break;
-						case(2):
-							print "<div class=\"col-md-4 col-right\">";
-							break;
-					}
-					
+					print "<div class=\"row img-row\">";
+					print "<div class=\"col-md-6 col-md-offset-3\">";
 					
 					//NEW BEGINS ************************************
 					//print "<div class='priceTag'><a href='$filepath' target='blank'><img class='img-responsive' src='$filepath' alt='Image Temporarily Unavailable'></a>";
@@ -203,13 +189,7 @@ if(isLoggedIn()) {
 						</form>
 					<?php
 					}
-					print "</div></div></div>";
-					
-					if($i === $numrows - 1) {
-						print "</div>";
-					} elseif($i % 3 === 2) {
-						print "</div><div class=\"row\">&nbsp;</div>";
-					}
+					print "</div></div></div></div>";					
 				}
 			}
 			?>
