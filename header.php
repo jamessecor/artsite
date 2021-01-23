@@ -128,6 +128,7 @@ session_start();
 						<li><a href="imagesNomophobia.php"><strong>#nomophobia</strong></a></li>
 						<li><a href="imagesAsNotSeen.php"><strong>As Not Seen</strong></a></li>
 						<li><a href="imagesDigitallyEdited.php"><strong>Digital Edits</strong></a></li>						
+						<li><a href="images2021.php"><strong>2021</strong></a></li>
 						<li><a href="images2020.php"><strong>2020</strong></a></li>
 						<li><a href="images2019.php"><strong>2019</strong></a></li>
 						<li><a href="images2018.php"><strong>2018</strong></a></li>
