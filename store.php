@@ -7,8 +7,8 @@ include "./header.php";
 <div class="container">
 <div class="row">
     <div id="store-heading" class="col-md-10 col-md-offset-1 center-it">
-		Online Store to Benefit the <a target="_blank" class="press-links" href="https://fairfight.com/fair-fight-2020/">Fair Fight 2020</a>. 
-        <br/>100% of sales go to the Food Bank.
+		Online Store to Benefit the <a target="_blank" class="press-links" href="https://eji.org/">Equal Justice Initiative</a>. 
+        <br/>100% of sales go to the Equal Justice Initiative.
     </div>
 </div>
 <br/>
