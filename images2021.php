@@ -1,5 +1,5 @@
 <?php
-// IMAGES 2020 PAGE
+// IMAGES 2021 PAGE
 
 include "header.php";
 include "./imagesTemplate.php";
@@ -8,7 +8,7 @@ include "./imagesTemplate.php";
 
 <div class='container'>
 	<?php
-		displayImages(" yearCreated = 2020 ORDER BY arrangement");
+		displayImages(" yearCreated = 2021 ORDER BY arrangement");
 	?>
 </div>
 
