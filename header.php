@@ -124,7 +124,8 @@ session_start();
 					<a class='dropdown-toggle' data-toggle="dropdown"><strong>images
 					<span class="caret"></span></strong></a>
 					<ul class="dropdown-menu">
-					<li><a href="imagesAnimalMugDishGlass.php"><strong>mug.dish.glass</strong></a></li>
+						<li><a href="availableWorks.php"><strong>available works</strong></a></li>
+						<li><a href="imagesAnimalMugDishGlass.php"><strong>mug.dish.glass</strong></a></li>					
 						<li><a href="imagesNomophobia.php"><strong>#nomophobia</strong></a></li>
 						<li><a href="imagesAsNotSeen.php"><strong>As Not Seen</strong></a></li>
 						<li><a href="imagesDigitallyEdited.php"><strong>Digital Edits</strong></a></li>						

@@ -37,10 +37,11 @@
 					<a class='dropdown-toggle' data-toggle="dropdown"><strong>images
 					<span class="caret"></span></strong></a>
 					<ul class="dropdown-menu">
-						<li><a href="imagesAnimalMugDishGlass.php"><strong>mug.dish.glass</strong></a></li>
-						<li><a href="imagesNomophobia.php"><strong>#nomophobia</strong></a></li>
-						<li><a href="imagesAsNotSeen.php"><strong>As Not Seen</strong></a></li>
-						<li><a href="imagesDigitallyEdited.php"><strong>Digital Edits</strong></a></li>						
+						<li><a href="../availableWorks.php"><strong>available works</strong></a></li>
+						<li><a href="../imagesAnimalMugDishGlass.php"><strong>mug.dish.glass</strong></a></li>
+						<li><a href="../imagesNomophobia.php"><strong>#nomophobia</strong></a></li>
+						<li><a href="../imagesAsNotSeen.php"><strong>As Not Seen</strong></a></li>
+						<li><a href="../imagesDigitallyEdited.php"><strong>Digital Edits</strong></a></li>						
 						<li><a href="../images2021.php"><strong>2021</strong></a></li>
 						<li><a href="../images2020.php"><strong>2020</strong></a></li>
 						<li><a href="../images2019.php"><strong>2019</strong></a></li>
