@@ -106,8 +106,9 @@ if(isLoggedIn()) {
 		if(!$data) {
 			print "Images could not be retrieved.";
 		} else {
-			echo "&nbsp;";
-			// print "<div class='center-it text'><strong>Images from ${year}</strong></div><br><br>";
+			?>
+			<div class="spacer-row"></div>
+			<?php
 			$numrows = mysqli_num_rows($data);
 			for($i = 0; $i < $numrows; $i++) {
 				$row = mysqli_fetch_assoc($data);
@@ -120,78 +121,82 @@ if(isLoggedIn()) {
 						$price = $row['buyerID'] ? "sold" : "$$row[price]";
 					else
 						$price = "POR";
-					
-					// Sort out rows / columns
-					print "<div class=\"row img-row\">";
-					print "<div class=\"col-md-6 col-md-offset-3\">";
-					
-					//NEW BEGINS ************************************
-					//print "<div class='priceTag'><a href='$filepath' target='blank'><img class='img-responsive' src='$filepath' alt='Image Temporarily Unavailable'></a>";
-					
 					?>		
-					
-					<div class="priceTag">
-					<div id="modal-img-<?php echo $i;?>" class="modal">
-						<a href="#close-modal" rel="modal:close" class="close-modal ">Close</a>
-						<img class="img-responsive" id="inner-img-<?php echo $i; ?>" src="<?php echo $filepath; ?>" alt="Image unavailable"/>
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-6 offset-3">
+								<div class="priceTag">
+									<div id="modal-img-<?php echo $i;?>" class="modal">
+										<a href="#close-modal" rel="modal:close" class="close-modal ">Close</a>
+										<img class="img-responsive" id="inner-img-<?php echo $i; ?>" src="<?php echo $filepath; ?>" alt="Image unavailable"/>
 
-						<?php if($i !== 0) { ?>
-							<a id="left-arrow-<?php echo $i;?>" class="arrows" href="#modal-img-<?php echo $i - 1;?>" rel="modal:open" >&nbsp;</a>
-							<a id="real-arrow-left" class="real-arrows" href="#modal-img-<?php echo $i - 1;?>" rel="modal:open">&#x25C0;</a>
-						<?php } 
-						if($i !== $numrows -1) { ?>
-							<a id="right-arrow-<?php echo $i;?>" class="arrows" href="#modal-img-<?php echo $i + 1;?>" rel="modal:open" >&nbsp;</a>
-							<a id="real-arrow-right" class="real-arrows" href="#modal-img-<?php echo $i + 1;?>" rel="modal:open">&#x25B6;</a>
-						<?php } ?>
+										<?php if($i !== 0) { ?>
+											<a id="left-arrow-<?php echo $i;?>" class="arrows" href="#modal-img-<?php echo $i - 1;?>" rel="modal:open" >&nbsp;</a>
+											<a id="real-arrow-left" class="real-arrows" href="#modal-img-<?php echo $i - 1;?>" rel="modal:open">&#x25C0;</a>
+										<?php } 
+										if($i !== $numrows -1) { ?>
+											<a id="right-arrow-<?php echo $i;?>" class="arrows" href="#modal-img-<?php echo $i + 1;?>" rel="modal:open" >&nbsp;</a>
+											<a id="real-arrow-right" class="real-arrows" href="#modal-img-<?php echo $i + 1;?>" rel="modal:open">&#x25B6;</a>
+										<?php } ?>
+									</div>
+						
+									<!-- Link to open the modal -->
+									<!-- This is the image displayed prior to clicking -->
+									<a href="#modal-img-<?php echo $i;?>" rel="modal:open"><img class="img-responsive img-generic" src="<?php echo $filepath; ?>" alt="Image unavailable"/></a>
+								</div>
+							</div>
+							<!-- right col -->
+							<div class="col-3 art-label align-self-end">
+								<?php					
+								// Image Info
+								$info = "<div class='text text-label' ><strong>$row[title]</strong>, $row[yearCreated]<br>$row[media]";
+								if($price !== "")
+									$info .= "<br>${price}";
+								
+								// Print label info to page
+								print $info;
 
+								// Image data form
+								if(isLoggedIn()) {
+									$peeps = selectQuery($db, "c_id,c_name,c_lastname", "contacts", "1", "1");								
+								?>
+									<br>
+									<form name="update-arrangement" method="get" action="">
+										<input type="text" name="new-title" value="<?php echo $row['title']; ?>" />
+										<input type="text" name="new-year" value="<?php echo $row['yearCreated']; ?>" />
+										<input type="text" name="new-medium" value="<?php echo $row['media']; ?>" />
+										<input type="text" name="new-price" value="<?php echo $row['price']; ?>" />
+										<input type="text" name="new-position" value="<?php echo $row['arrangement']; ?>" />
+										<select name="new-buyer">
+											<option value="">Select...</option>
+										<?php 
+											if($peeps) {									
+												while($peep = mysqli_fetch_assoc($peeps)) {										
+													$selected = "";										
+													if($peep['c_id'] === $row['buyerID']) {
+														$selected = "selected";
+													}
+													echo "<option value=\"$peep[c_id]\" $selected >$peep[c_name] $peep[c_lastname]</option>";
+												}
+											}								
+										?>
+										</select>
+										<input type="date" name="new-saleDate" value="<?php echo $row['saleDate']; ?>" />
+										<input type="hidden" name="imgID" value="<?php echo $row['imgID']; ?>" />
+										<input type="submit" value="Update" />								
+									</form>
+								<?php
+								}
+								?>
+								</div>
+							</div>
+						</div>
+						<div class="row spacer-row"></div>
 					</div>
-					
-					<!-- Link to open the modal -->
-					<!-- This is the image displayed prior to clicking -->
-					<a href="#modal-img-<?php echo $i;?>" rel="modal:open"><img class="img-responsive img-generic" src="<?php echo $filepath; ?>" alt="Image unavailable"/></a>
-					
-					<?php
-					// NEW ENDS ************************************
-					
-					print "<div style='height:.5em'>&nbsp;</div>";
-					// Image Info
-					$info = "<div class='text' ><strong>$row[title]</strong>, $row[yearCreated]<br>$row[media]";
-					if($price !== "")
-						$info .= "<br>${price}";
-					print $info;
-					if(isLoggedIn()) {
-						$peeps = selectQuery($db, "c_id,c_name,c_lastname", "contacts", "1", "1");								
-					?>
-						<br>
-						<form name="update-arrangement" method="get" action="">
-							<input type="text" name="new-title" value="<?php echo $row['title']; ?>" />
-							<input type="text" name="new-year" value="<?php echo $row['yearCreated']; ?>" />
-							<input type="text" name="new-medium" value="<?php echo $row['media']; ?>" />
-							<input type="text" name="new-price" value="<?php echo $row['price']; ?>" />
-							<input type="text" name="new-position" value="<?php echo $row['arrangement']; ?>" />
-							<select name="new-buyer">
-								<option value="">Select...</option>
-							<?php 
-								if($peeps) {									
-									while($peep = mysqli_fetch_assoc($peeps)) {										
-										$selected = "";										
-										if($peep['c_id'] === $row['buyerID']) {
-											$selected = "selected";
-										}
-										echo "<option value=\"$peep[c_id]\" $selected >$peep[c_name] $peep[c_lastname]</option>";
-									}
-								}								
-							?>
-							</select>
-							<input type="date" name="new-saleDate" value="<?php echo $row['saleDate']; ?>" />
-							<input type="hidden" name="imgID" value="<?php echo $row['imgID']; ?>" />
-							<input type="submit" value="Update" />								
-						</form>
-					<?php
-					}
-					print "</div></div></div></div>";					
+				<?php
 				}
 			}
+			if($numrows > 5) {
 			?>
 			<div class="row">
 				<div style="text-align:center;">
@@ -200,6 +205,7 @@ if(isLoggedIn()) {
 			</div>
 			<br><br>
 			<?php
+			}
 		}
 	}
 		

@@ -20,47 +20,31 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, footer, header {
 }
 
 body {
-	margin-top: 4.5em;
 	background-color:var(--page-background);
 	width:100%;
 	height:100%;
 	font-family:"Courier New", Courier, monospace;
 }
 
-/* Navbar Changes */
-.navbar { border:none; border-radius:0; z-index: 1; }
+.art-label { bottom: 5px; text-align: left !important; }
 
-.navbar-default,
-.navbar-default .navbar-nav .open .dropdown-toggle,
-.navbar-default .navbar-nav .open .dropdown-menu>li>a,
-.navbar-default .navbar-nav .open .dropdown-menu {
-	background-color: var(--nav-background-color);
+/* Navbar Changes */
+.navbar, .navbar-brand, .nav-link, .nav-item.dropdown > .dropdown-menu > .dropdown-item,
+.nav-item.dropdown > .dropdown-menu {
+	font-weight: bold; 
+	background: var(--nav-background-color); 
+	color: var(--nav-color); 
 }
+.navbar-brand:hover, .nav-link:hover, .nav-item.active {
+	background: var(--nav-color); 
+	color: var(--nav-background-color); 
+}
+
+.nav-link { border-radius: 5px; }
 
 /* toggle button */
 #tbut {
 	background-color: var(--nav-color);
-}
-
-.navbar-default .navbar-brand, 
-.navbar-default .navbar-right li.navbar-text,
-.navbar-default .navbar-nav .dropdown-toggle,
-.navbar-default .navbar-nav > li > a,
-.navbar-default .navbar-nav .open .dropdown-toggle,
-.navbar-default .navbar-nav .open .dropdown-menu>li>a,
-.navbar-default .navbar-nav .open .dropdown-menu {
-	color:var(--nav-color);
-}
-
-/*.navbar-default .navbar-header:hover, */
-.navbar-default .navbar-brand:hover,
-.navbar-default .navbar-nav .dropdown-toggle:hover,
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav .open .dropdown-toggle:hover,
-.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
-	color:var(--nav-background-color);
-	background-color:var(--nav-color);
-	border-radius:5em;
 }
 
 #navbar-art > ul > li.active > a {
@@ -137,6 +121,13 @@ body {
 
 .center-it { text-align:center; }
 
+.align-bottom-left { 
+	text-align: left !important; 
+	display: inline-block !important;
+	vertical-align: bottom !important; 
+	float: none !important; 
+ }
+
 .thumbnail { width: 15em; margin:auto; }
 
 .errorText {
@@ -157,7 +148,7 @@ body {
 	margin-top:1.5em;
 	text-align:center;
 }
-
+.spacer-row { height: 4rem; }
 .img-responsive {
 	border-radius:.25em;
 }
@@ -209,6 +200,7 @@ a[id^="right-arrow"] { right:0; }
 	margin:0em 1em 0em 1em ;
 	color:var(--nav-background-color);
 }
+.text-label { text-align: left !important; }
 
 .cv-headers>p:hover, .press-links:hover { 
 	background:var(--nav-background-color); 
