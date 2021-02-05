@@ -10,9 +10,6 @@ $email="";
 $memo="";
 $errors=array();
 
-print "<div class='container'>";
-
-
 if(isset($_POST['submit'])) {
 	// reCaptcha
 	if(!empty($_POST['g-recaptcha-response'])) {
@@ -33,19 +30,19 @@ if(isset($_POST['submit'])) {
 		if(strlen(trim($name))==0)
 			$errors['name']="Name cannot be blank.";
 		else if(!preg_match("/^[a-zA-Z '-.]+$/", $name))
-			$errors['name']="Name cannot include special characters.";
+			$errors['name']="Name cannot include special characters";
 	} else {
-		$errors['name']="This field is required.";
+		$errors['name']="This field is required";
 	}
 	
 	// Email
 	if(!empty($_POST['email'])) {
 		$email=$_POST['email'];
 		if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-			$errors['email']="Invalid email address.";
+			$errors['email']="Invalid email address";
 		}
 	} else {
-		$errors['email']="This field is required.";
+		$errors['email']="This field is required";
 	}
 	
 	// Memo
@@ -60,9 +57,15 @@ if(isset($_POST['submit'])) {
 	
 }
 
-print "<div class='row'><div class='col-md-6 col-md-offset-3 center-it'>";
-print "<h1 id='contactHeading'><strong>Join Email List / Send Message</strong></h1>";
-print "</div></div>";
+?>
+<div class="spacer-row"></div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 offset-md-3 text-center">
+			<h1 id='contactHeading'><strong>Join Email List / Send Message</strong></h1>
+		</div>
+	</div>
+<?php
 if($validation=="Success") {
 	// Set up variables for db connection
 	include "../dbconfig/dbparams.php";
@@ -73,8 +76,8 @@ if($validation=="Success") {
 	?>
 	<div id='success'>
 		<div class='row'>
-			<div class='col-md-6 col-md-offset-3'>	
-			<table align="center">
+			<div class='col-md-8 col-md-offset-2'>	
+			<table>
 				<tr><td>Success!</td></tr>
 				<tr><td>Thank you, <?php echo $name; ?>.</td></tr>
 				<tr><td>Your message has been sent.</td></tr>
@@ -91,46 +94,45 @@ if($validation=="Success") {
 } else {
 
 ?>
-<form id='contactForm' action="" method='post'>
-<div class="row">
-	<div class="col-md-4 col-md-offset-4">
-	<table align="center" class="full">
-		<tr><td>Name</td></tr>
-		<tr>
-			<td><input type='text' class="full" name='name' value="<?php echo isset($_POST['name']) ? $_POST['name']: ''; ?>"  required="required"></td>			
-		</tr>
-		<tr>
-			<td colspan=2><small class="errorText"><?php echo array_key_exists('name', $errors) ? $errors['name'] : ""; ?></small></td>
-		</tr>
-		<tr><td>Email</td></tr>
-		<tr>
-			<td><input type='email' class="full" name='email' value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>"required="required"></td>
-		</tr>
-		<tr>
-			<td><small class="errorText"><?php echo array_key_exists('email', $errors) ? $errors['email'] : ""; ?></small></td>
-		</tr>
-		<tr><td>Message</td></tr>
-		<tr>
-			<td><textarea rows="4" class="full" name='memo' placeholder='Enter comments here.' ><?php echo isset($_POST['memo']) ? $_POST['memo']: '' ?></textarea></td>
-		</tr>
-		<tr><td><div class="g-recaptcha" data-sitekey="6LcZnoQUAAAAABN4yNqWK9PTKzdLHkvqMgquBnH1"></div></td></tr>
-		<tr><td style="height:.25em;"></td></tr>
-		<tr>
-			<td><small class="errorText"><?php echo array_key_exists('g-recaptcha-response', $errors) ? $errors['g-recaptcha-response'] : ""; ?></small></td>
-		</tr>
-		<tr>
-			<td><input type='submit' name='submit' value='Submit' formnovalidate></td>
-		</tr>
-	</table>
-	
+
+	<div class="row">
+		<div class="col-md-6 offset-md-3">
+			<form action="" id="contactForm" method='post'>
+				<div class="row col-md-8 offset-md-2">
+					<div class="form-group full">
+						<label for="name" class="bold-with-color">Name</label>
+						<small class="errorText"><?php echo array_key_exists('name', $errors) ? $errors['name'] : ""; ?></small>
+						<input type='text' class="form-control full" name='name' value="<?php echo isset($_POST['name']) ? $_POST['name']: ''; ?>"  required="required">
+					</div>
+					
+					<div class="form-group full">
+						<label for="email" class="bold-with-color">Email</label>
+						<small class="errorText"><?php echo array_key_exists('email', $errors) ? $errors['email'] : ""; ?></small>
+						<input type='email' class="form-control full" name='email' value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>"required="required">
+					</div>
+
+					<div class="form-group full">
+						<label for="message" class="bold-with-color">Message</label>
+						<textarea rows="4" class="full" name='memo' placeholder='Enter comments here.' ><?php echo isset($_POST['memo']) ? $_POST['memo']: '' ?></textarea>
+					</div>
+					
+					<div class="form-group">
+						<small class="errorText"><?php echo array_key_exists('g-recaptcha-response', $errors) ? $errors['g-recaptcha-response'] : ""; ?></small>
+						<div class="g-recaptcha" data-sitekey="6LcZnoQUAAAAABN4yNqWK9PTKzdLHkvqMgquBnH1"></div>
+					</div>
+					
+					<div class="form-group">
+						<input type='submit' name='submit' value='Submit' formnovalidate>
+					</div>	
+				</div>	
+			</form>		
 		</div>
-	</div>	
-</form>
+	</div>
+</div>
+
 <?PHP
 
 }
-
-print "</div>";
 
 include "footer.php"
 ?>

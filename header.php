@@ -20,7 +20,6 @@ session_start();
 	<script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 <body>
-	<div class="container-fluid">
 	<script>
 	$(document).ready(function(){
 		$("#imgNav").hover(function(){

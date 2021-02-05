@@ -27,8 +27,9 @@ include "header.php";
 		});
 	});
 </script>
-<div class="container">
-	<div id='success'>
+<div class="spacer-row"></div>
+<div class="row">
+	<div class="col-10 offset-1" id='success'>
 		<div class="cv-text">
 			<div class="cv-headers" id="solo-header">
 				<p>&#x25B6; Solo Exhibitions</p>
