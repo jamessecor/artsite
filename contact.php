@@ -61,7 +61,7 @@ if(isset($_POST['submit'])) {
 <div class="spacer-row"></div>
 <div class="container">
 	<div class="row">
-		<div class="col-md-6 offset-md-3 text-center">
+		<div class="col-lg-6 offset-lg-3 text-center">
 			<h1 id='contactHeading'><strong>Join Email List / Send Message</strong></h1>
 		</div>
 	</div>
@@ -76,7 +76,7 @@ if($validation=="Success") {
 	?>
 	<div id='success'>
 		<div class='row'>
-			<div class='col-md-8 col-md-offset-2'>	
+			<div class='col-lg-8 col-lg-offset-2'>	
 			<table>
 				<tr><td>Success!</td></tr>
 				<tr><td>Thank you, <?php echo $name; ?>.</td></tr>
@@ -96,9 +96,9 @@ if($validation=="Success") {
 ?>
 
 	<div class="row">
-		<div class="col-md-6 offset-md-3">
+		<div class="col-lg-6 offset-lg-3">
 			<form action="" id="contactForm" method='post'>
-				<div class="row col-md-8 offset-md-2">
+				<div class="row col-lg-8 offset-lg-2">
 					<div class="form-group full">
 						<label for="name" class="bold-with-color">Name</label>
 						<small class="errorText"><?php echo array_key_exists('name', $errors) ? $errors['name'] : ""; ?></small>

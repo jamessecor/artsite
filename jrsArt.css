@@ -145,8 +145,10 @@ body {
 
 .spacer-row { height: 2rem; }
 .img-row { margin-bottom: 6rem; }
-.img-responsive {
+.image-fluid {
 	border-radius:.25em;
+	max-width: 100%;
+	height: auto;
 }
 
 /****** MODALS Begin *******/
@@ -363,22 +365,4 @@ select:disabled {
 
 ::-webkit-scrollbar-thumb {
 	background-color: #ccc;
-}
-
-/* Price Status Tip */
-.priceTagText {
-    visibility: hidden;
-    width: 4em;
-    background-color: var(--nav-background-color);
-    color: var(--nav-color);
-    border-radius: .2em;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    top:-110%;
-    left: 110%;
-}
-
-.priceTag:hover .priceTagText {
-    visibility: visible;
 }
