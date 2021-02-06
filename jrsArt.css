@@ -17,6 +17,7 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, footer, header {
 	--form-background: rgba(190,211,244,.3);
 	--form-border: rgb(100,100,120); /*#779;*/
 	--page-background: rgb(197, 215, 218);
+	--dullred: rgb(175,100,100);
 }
 
 body {
@@ -28,24 +29,24 @@ body {
 
 .art-label { bottom: 5px; text-align: left !important; }
 
-/* Navbar Changes */
-.navbar, .navbar-brand, .nav-link, .nav-item.dropdown > .dropdown-menu > .dropdown-item,
+/* Navbar color */
+.navbar, .navbar-dark .navbar-brand, .nav-link, .nav-item.dropdown > .dropdown-menu > .dropdown-item,
 .nav-item.dropdown > .dropdown-menu {
 	font-weight: bold; 
 	background: var(--nav-background-color); 
 	color: var(--nav-color); 
 }
-.navbar-brand:hover, .nav-link:hover, .nav-item.active {
+.navbar-toggler { background: var(--dullred); }
+
+/* Reverse colors */
+#navbar-art > ul > li > a:hover,
+.nav-item.dropdown.show > a, .navbar-dark .navbar-brand:hover, .nav-link:hover,
+.nav-item.dropdown > .dropdown-menu.show > .dropdown-item:hover {
 	background: var(--nav-color); 
 	color: var(--nav-background-color); 
 }
 
-.nav-link { border-radius: 5px; }
-
-/* toggle button */
-#tbut {
-	background-color: var(--nav-color);
-}
+.navbar-dark .navbar-brand, .nav-link, .nav-link.active { border-radius: 5px; }
 
 #navbar-art > ul > li.active > a {
 	color:var(--nav-background-color);

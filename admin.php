@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "header.php";
 include "utility.php";
 require "../includes/artsiteConfig.php";
