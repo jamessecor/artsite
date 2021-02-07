@@ -57,7 +57,8 @@ include "header.php";
 			</div>
 			<div class="cv-items" id="group">
 				<p>
-					<span class="show-titles">Screen Time</span> River Arts, Morrisville VT, Nov 2020-Jan 2021
+					<span class="show-titles">Rolling On</span> Studio Place Arts, Barre, VT, Jan-Mar 2021
+					<br><span class="show-titles">Screen Time</span> River Arts, Morrisville, VT, Nov 2020-Jan 2021
 					<br><span class="show-titles">Futures</span> Studio Place Arts, Barre, VT, 2020
 					<br><span class="show-titles">Contemporary American Regionalism: Vermont Perspectives</span> Southern Vermont Art Center, Manchester, VT, 2019
 					<br><span class="show-titles">Summer Juried Show</span> T.W. Wood Gallery, Montpelier, VT, 2017
