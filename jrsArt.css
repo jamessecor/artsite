@@ -285,7 +285,11 @@ button, .form-group > input, .form-group > textarea, #toTop, select, .showPeeps,
 	color: var(--nav-background-color);
 }
 
-div.row.store-row>div>form>table>tbody>tr>td { text-align: center; }
+div.row.store-row>div>form>table>tbody>tr>td { 
+	text-align: center; 
+	font-weight: bold;
+	color: var(--nav-background-color);
+}
 input[type="image"] { background:none; border:none; }
 #store-mix-pack-imgs>img { display:block; float:left; }
 

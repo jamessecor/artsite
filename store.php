@@ -5,14 +5,14 @@ include "./header.php";
 
 <div class="spacer-row"></div>
 <div class="row">
-    <div id="store-heading" class="col-10 offset-1 text-center">
+    <div id="store-heading" class="col-lg-10 offset-lg-1 text-center">
 		Online Store to Benefit the <a target="_blank" class="press-links" href="https://eji.org/">Equal Justice Initiative</a>. 
         <br/>100% of sales go to the Equal Justice Initiative.
     </div>
 </div>
 <div class="spacer-row"></div>
 <div class="row">
-    <div class="col-10 offset-1" id="store-items"></div>
+    <div class="col-lg-10 offset-lg-1" id="store-items"></div>
 </div>
 <script>
     var storeItemsArray = [
@@ -82,7 +82,7 @@ include "./header.php";
             }
             var imgSources = dataArray[i].imgSrc.split(";");
             var width = 100 / imgSources.length;
-            out += '<div class="col-4">';
+            out += '<div class="col-lg-4">';
             for(var j = 0; j < imgSources.length; j++) {
                 out += '<img width="' + width + '%" src="' + imgSources[j] + '"/>';
             }
