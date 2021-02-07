@@ -145,10 +145,10 @@ if(isLoggedIn()) {
 							<a href="#modal-img-<?php echo $i;?>" rel="modal:open"><img class="image-fluid" src="<?php echo $filepath; ?>" alt="Image unavailable"/></a>
 						</div>
 						<!-- right col -->
-						<div class="col-lg-3 art-label align-self-end">
+						<div class="col-lg-3 align-self-end">
 							<?php					
 							// Image Info
-							$info = "<div class='text text-label' ><strong>$row[title]</strong>, $row[yearCreated]<br>$row[media]";
+							$info = "<div class='text art-label center-it'><strong>$row[title]</strong>, $row[yearCreated]<br>$row[media]";
 							if($price !== "")
 								$info .= "<br>${price}";
 							

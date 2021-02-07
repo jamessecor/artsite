@@ -27,8 +27,6 @@ body {
 	font-family:"Courier New", Courier, monospace;
 }
 
-.art-label { bottom: 5px; text-align: left !important; }
-
 /* Navbar color */
 .navbar, .navbar-dark .navbar-brand, .nav-link, .nav-item.dropdown > .dropdown-menu > .dropdown-item,
 .nav-item.dropdown > .dropdown-menu {
@@ -53,22 +51,7 @@ body {
 	background-color:var(--nav-color);
 	border-radius:1em;
 }
-
 /* End Navbar Changes */
-
-@media screen and (min-width: 480px) {
-	.side-cols { background-color: rgba(180,180,230,.2); }
-}
-
-.side-cols {
-	z-index: -15;
-	position:fixed;
-	background-color: rgba(180,180,230,0);
-	height: 100%;
-}
-
-#right-col { right:0; }
-#left-col { left:0; }
 
 #foot {
 	position:fixed;
@@ -81,23 +64,12 @@ body {
 .current-show-img { max-width: 400px; width:100%;/* height: 366px;*/ border-radius:2em; /*border: 1em solid rgb(100,200,200); */ padding:1em;}
 .show-title { font-size: 2em; font-weight: bold; background-color: rgba(200,80,80,.1); border: 4px solid rgba(150,150,250,.3); border-radius: 3em;}
 
-/*
-.col-left   { margin: 0 1em 0 0; }
-.col-middle { margin: 0 1em 0 1em; }
-.col-right  { margin: 0 0 0 1em; }
-*/
-
 #contactHeading {
 	/*margin:1em 0 0 25%;	*/
 	color: #557;
 }
 
-
 #contactForm, #success {
-/*	position:fixed;
-	width:50%;
-	margin-left:10%;
-	margin-top:1em;*/
 	padding-top:15px;
 	padding-bottom:15px;
 	background-color: var(--form-background);
@@ -121,13 +93,6 @@ body {
 	color:#39d;
 }
 
-#homeImg {
-	float:right;
-	width:50%;
-	margin-right:25%;
-	margin-top:1em;	
-}
-
 .full {width:100%; }
 
 .spacer-row { height: 2rem; }
@@ -141,14 +106,22 @@ body {
 /****** MODALS Begin *******/
 div[id^="modal-img"] { background-color:#777; padding:2.5em 3em 2.5em 3em; }
 
+.art-label { 
+	margin-top: 1rem !important; 
+	text-align: center;
+}
+
 /* Larger Screens */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 992px) {
 	div[id^="modal-img"].modal { 
 		max-width:55%; 
 	}	
 	.img-generic { 
 		object-fit:cover;
 		width:100%;
+	}
+	.art-label {
+		text-align: left;
 	}
 }
 
@@ -181,11 +154,8 @@ a[id^="right-arrow"] { right:0; }
 /****** MODALS End *******/
 
 .text, .cv-text{
-	position:relative;
-	margin:0em 1em 0em 1em ;
 	color:var(--nav-background-color);
 }
-.text-label { text-align: left !important; }
 
 .cv-headers>p:hover, .press-links:hover { 
 	background:var(--nav-background-color); 
@@ -195,8 +165,6 @@ a[id^="right-arrow"] { right:0; }
 }
 
 .cv-headers>p { display:inline-block; font-weight:bold;}
-
-.text { text-align:center; }
 
 .imgButtons {
 	position:relative;
