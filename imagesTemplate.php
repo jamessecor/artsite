@@ -119,7 +119,7 @@ if(isLoggedIn()) {
 					
 					$price = "";
 					if($row['buyerID'] || $row['price'])
-						$price = $row['buyerID'] ? "sold" : "$$row[price]";
+						$price = $row['buyerID'] ? "<span class='strike'>$$row[price]</span> " . "sold" : "$$row[price]";
 					else
 						$price = "POR";
 					?>		
