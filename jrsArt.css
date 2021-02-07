@@ -70,20 +70,6 @@ body {
 #right-col { right:0; }
 #left-col { left:0; }
 
-/*
-#top {
-	position:fixed;
-	z-index:2;
-	vertical-align:middle;
-	width: 100%;
-	background-color: #ccc;
-	text-align:center;
-	font-size:2.5em;
-	padding: .3em 0 .3em 0;
-	color:rgba(100,100,150,.8);
-	top:0;
-}
-*/
 #foot {
 	position:fixed;
 	color:rgba(100,100,150,.8);

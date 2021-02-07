@@ -3,22 +3,22 @@
 
 include "./header.php";
 ?>
-<script src='../jrsArt.js'></script>
-<div class='container'>    
-    <?php
-    $totalCircles = 166;
-    for($i = 0; $i < $totalCircles; $i++) {
-    ?>    
-        <div id="circle-loader-<?php echo $i; ?>" style="display:none" class="loader love-tech"></div>
-    <?php
-    }
-    ?>    
-    <div class="row center-it">
-        <div class="mx-auto" id="cent-pourcent">
-            <div id="pourcentage"></div>
-            <div id="pourcentage-chiffre">0% Complete</div>
-            <button id="load-content-button" onclick="move()">Load Content</button>
-        </div>
+<div class="spacer-row"></div>
+<div class="spacer-row"></div>
+<script src='../jrsArt.js'></script>    
+<?php
+$totalCircles = 166;
+for($i = 0; $i < $totalCircles; $i++) {
+?>    
+    <div id="circle-loader-<?php echo $i; ?>" style="display:none" class="loader love-tech"></div>
+<?php
+}
+?>    
+<div class="row center-it">
+    <div class="col-lg-12" id="cent-pourcent">
+        <div id="pourcentage"></div>
+        <div id="pourcentage-chiffre">0% Complete</div>
+        <button id="load-content-button" onclick="move()">Load Content</button>
     </div>
 </div>
 <script>
