@@ -1,6 +1,4 @@
 <?php
-// Landing PAGE
-
 include "./header.php";
 ?>
 <div class="spacer-row"></div>

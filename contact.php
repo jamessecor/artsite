@@ -1,7 +1,5 @@
 <?PHP
 // CONTACT PAGE
-session_start();
-$_SESSION['activetab'] = 'contact';
 include "header.php";
 
 $validation="failed";

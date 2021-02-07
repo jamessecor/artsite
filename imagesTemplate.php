@@ -1,5 +1,4 @@
 <?php
-$_SESSION['activetab'] = 'images';
 require "../dbconfig/dbparams.php";
 require "../dbconfig/dbconnect.php";
 include "./utility.php";

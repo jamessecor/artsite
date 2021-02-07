@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -19,10 +20,6 @@
 <body>
 	<script>
 	$(document).ready(function(){
-		$("#imgNav").hover(function(){
-			$(".imgSubnav").toggle();
-		});			
-		
 		// Make arrows light up when hovering
 		$(".arrows").each(function() {
 			var side = $(this).attr("id").split("-")[0];
@@ -105,14 +102,14 @@
 	});
 	</script>
 
-	<nav class="navbar navbar-dark navbar-expand-lg">
+	<nav class="navbar navbar-dark sticky-top navbar-expand-lg">
 		<a class="navbar-brand" href="./index.php">James Secor</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-art" aria-controls="navbar-art" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>		
 		<div class="collapse navbar-collapse" id="navbar-art">
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item dropdown <?php echo $_SESSION['activetab'] == 'images' ? "active" : ""; ?>">
+			<li class="nav-item dropdown <?php echo strpos($_SERVER['REQUEST_URI'], 'images') ? "active" : ""; ?>">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarImagesDropdownLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					images
 				</a>
@@ -133,10 +130,10 @@
 					<a class="dropdown-item" href="images2013.php">2013</a>						
 				</div>
 			</li>
-			<li class="nav-item <?php echo $_SESSION['activetab'] == 'cv' ? "active" : ""; ?>"><a class="nav-link" href="./cv.php">cv</a></li>
-			<li class="nav-item <?php echo $_SESSION['activetab'] == 'store' ? "active" : ""; ?>"><a class="nav-link" href="./store.php">store</a></li>
-			<li class="nav-item <?php echo $_SESSION['activetab'] == 'contact' ? "active" : ""; ?>"><a class="nav-link" href="./contact.php">contact</a></li>
-			<li class="nav-item dropdown">
+			<li class="nav-item <?php echo strpos($_SERVER['REQUEST_URI'], 'cv') ? "active" : ""; ?>"><a class="nav-link" href="./cv.php">cv</a></li>
+			<li class="nav-item <?php echo strpos($_SERVER['REQUEST_URI'], 'store') ? "active" : ""; ?>"><a class="nav-link" href="./store.php">store</a></li>
+			<li class="nav-item <?php echo strpos($_SERVER['REQUEST_URI'], 'contact') ? "active" : ""; ?>"><a class="nav-link" href="./contact.php">contact</a></li>
+			<li class="nav-item dropdown <?php echo strpos($_SERVER['REQUEST_URI'], 'morecontent') ? "active" : ""; ?>">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarMoreDropdownLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					more
 				</a>

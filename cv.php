@@ -1,6 +1,4 @@
 <?php
-session_start();
-$_SESSION['activetab'] = 'cv';
 include "header.php";
 ?>
 <script>
