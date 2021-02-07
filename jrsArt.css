@@ -183,7 +183,7 @@ a[id^="right-arrow"] { right:0; }
 #expenses-table>tbody>tr>th,#expenses-table>tbody>tr>td { padding-right: .5em; }
 #expenses-table>tbody>tr>th { background-color:var(--nav-color); text-align: center; }
 /*.expense-file-inputs { width: 25px; }*/
-button, .form-group > input, .form-group > textarea, #toTop, select, .showPeeps, .showSales, input {
+button, .form-group > input, .form-group > input:focus, .form-group > textarea, #toTop, select, .showPeeps, .showSales, input {
 	background-color: var(--nav-background-color);
 	color: var(--nav-color);
 	border:.1em solid var(--nav-background-color);
