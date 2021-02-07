@@ -88,7 +88,7 @@ if($validation=="Success") {
 	</div>	
 	<?php 
 	// Send yourself email
-	$memo .= "\r\n\r\nsender: $email"
+	$memo .= "\r\n\r\nsender: $email";
 	$headers = "From: james@jamessecor.com" . "\r\n" 
 		. "Cc: $email" . "\r\n";
 	mail("james.secor@gmail.com", "New Art Contact", $memo, $headers);
