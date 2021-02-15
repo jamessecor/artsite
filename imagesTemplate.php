@@ -125,25 +125,8 @@ if(isLoggedIn()) {
 					
 					<div class="row img-row">
 						<div class="col-lg-6 offset-lg-3">
-							<div id="modal-img-<?php echo $i;?>" class="modal">
-								<a href="#close-modal" rel="modal:close" class="close-modal ">Close</a>
-								<img class="img-responsive" id="inner-img-<?php echo $i; ?>" src="<?php echo $filepath; ?>" alt="Image unavailable"/>
-
-								<?php if($i !== 0) { ?>
-									<a id="left-arrow-<?php echo $i;?>" class="arrows" href="#modal-img-<?php echo $i - 1;?>" rel="modal:open" >&nbsp;</a>
-									<a id="real-arrow-left" class="real-arrows" href="#modal-img-<?php echo $i - 1;?>" rel="modal:open">&#x25C0;</a>
-								<?php } 
-								if($i !== $numrows -1) { ?>
-									<a id="right-arrow-<?php echo $i;?>" class="arrows" href="#modal-img-<?php echo $i + 1;?>" rel="modal:open" >&nbsp;</a>
-									<a id="real-arrow-right" class="real-arrows" href="#modal-img-<?php echo $i + 1;?>" rel="modal:open">&#x25B6;</a>
-								<?php } ?>
-							</div>
-				
-							<!-- Link to open the modal -->
-							<!-- This is the image displayed prior to clicking -->
-							<a href="#modal-img-<?php echo $i;?>" rel="modal:open"><img class="image-fluid" src="<?php echo $filepath; ?>" alt="Image unavailable"/></a>
+							<img class="image-fluid" src="<?php echo $filepath; ?>" alt="Image unavailable"/>
 						</div>
-						<!-- right col -->
 						<div class="col-lg-3 align-self-end">
 							<?php					
 							// Image Info

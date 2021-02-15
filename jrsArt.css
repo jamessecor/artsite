@@ -103,9 +103,6 @@ body {
 	height: auto;
 }
 
-/****** MODALS Begin *******/
-div[id^="modal-img"] { background-color:#777; padding:2.5em 3em 2.5em 3em; }
-
 .art-label { 
 	margin-top: 1rem !important; 
 	text-align: center;
@@ -113,45 +110,10 @@ div[id^="modal-img"] { background-color:#777; padding:2.5em 3em 2.5em 3em; }
 
 /* Larger Screens */
 @media only screen and (min-width: 992px) {
-	div[id^="modal-img"].modal { 
-		max-width:55%; 
-	}	
-	.img-generic { 
-		object-fit:cover;
-		width:100%;
-	}
 	.art-label {
 		text-align: left;
 	}
 }
-
-.arrows { 
-	position: absolute;	
-	top:0;
-	height: 100%;
-	width:40%;
-	background-color: rgba(0,0,0,0); 
-	/*border: 2px solid var(--nav-background-color); */
-}
-.arrows:hover, .real-arrows:hover { 
-	text-decoration:none; 
-	color: #77f;
-}
-.arrows:hover { background-color: rgba(0, 0, 0, 0.08); }
-/*#real-arrow-left:hover, #real-arrow-right:hover { color: #77f }*/
-.real-arrows { 
-	top: 50%; 
-	color: rgba(30,30,70,.2); 
-}
-#real-arrow-left { position:absolute; left:1em; }
-#real-arrow-right { position:absolute; right:1em; }
-
-a[id^="left-arrow"] { left:0; }
-a[id^="right-arrow"] { right:0; }
-
-.toggle-left-right { position:absolute; width:10px; height:10px; background-color:#ffffff; }
-.modal { overflow: visible; }
-/****** MODALS End *******/
 
 .text, .cv-text{
 	color:var(--nav-background-color);

@@ -9,99 +9,11 @@
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	
 	<link href="jrsArt.css" rel="stylesheet">
-	<!-- jQuery Modal -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 	<script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 <body>
-	<script>
-	$(document).ready(function(){
-		// Make arrows light up when hovering
-		$(".arrows").each(function() {
-			var side = $(this).attr("id").split("-")[0];
-			var thisElem = $(this)[0];			
-			if(side === "left") {				
-				$(this).hover(function() {
-					$("a#real-arrow-left").css("color","#77f");					
-				}, function() {
-					$("a#real-arrow-left").css("color","rgba(30,30,70,.2)"); 		
-				});			
-			} else if(side === "right") {
-				$(this).hover(function() {
-					$("a#real-arrow-right").css("color","#77f");
-				}, function() {
-					$("a#real-arrow-right").css("color","rgba(30,30,70,.2)"); 		
-				});			
-			}			
-		});
-
-		// Make left and right arrows work for modal
-		$(document).keydown(function(event) {
-			var modalIsVisible = false;
-			
-			// Check that the modal is visible
-			$(".modal").each(function() {
-				if($(this).is(":visible")) {
-					modalIsVisible = true;
-					//console.log($(this).position());
-				}
-			});
-			
-			if(modalIsVisible) {
-				// Get class modal
-				var ourModalIndex = $(".modal").length - 1;
-				console.log(ourModalIndex);
-				
-				// Get the currently active modal
-				// For some reason, it's at the end
-				var ourModal = $(".modal")[ourModalIndex];
-				console.log(ourModal);
-				
-				// Get our good buddy's id
-				var ourModalId = ourModal.id;
-				console.log("ourModal.id = " + ourModal.id);
-				
-				// Grab that number off the end
-				var ourNum = ourModalId.split("-")[2];
-				console.log(ourModalId.split("-")[2]);
-
-				// Only move if not first or last
-				console.log("length of modal = ");
-				console.log($(".modal").length);
-				if(ourNum !== 0 && ourNum !== $(".modal").length) {
-						
-					// Use that id to figure out what left and right do
-					// Get arrows class 			
-					var idToClick = "";
-					console.log(event.which + "pressed");
-					if(event.which == 37 || event.which == 39) {
-						//console.log($(this).attr("id"));
-						if(event.which == 37) {
-							idToClick = "#left-arrow-" + ourNum;
-						} else if(event.which == 39) {
-							idToClick = "#right-arrow-" + ourNum;
-						}				
-						
-						// Do not click if at the beginning or end to avoid errors
-						var endId = "#right-arrow-" + ($(".modal").length - 1);
-						if(idToClick !== "#left-arrow-0" && idToClick !== endId) {
-							$(idToClick).trigger("click");
-							console.log("clicking " + idToClick);
-						} else {
-							console.log("idToClick = " + idToClick + "...no click");
-						}
-					}
-				}
-			}
-		});
-		
-	});
-	</script>
-
 	<nav class="navbar navbar-dark sticky-top navbar-expand-lg">
 		<a class="navbar-brand" href="./index.php">James Secor</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-art" aria-controls="navbar-art" aria-expanded="false" aria-label="Toggle navigation">
