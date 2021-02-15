@@ -12,7 +12,7 @@ for($i = 0; $i < $totalCircles; $i++) {
 <?php
 }
 ?>    
-<div class="row center-it">
+<div class="row no-gutters center-it">
     <div class="col-lg-12" id="cent-pourcent">
         <div id="pourcentage"></div>
         <div id="pourcentage-chiffre">0% Complete</div>

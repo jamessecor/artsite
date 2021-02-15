@@ -245,7 +245,6 @@ div[id^="colors-col"] {
 }
 
 #cent-pourcent {
-	margin-top:.1em;
 	background-color: #baa;
 }
 
@@ -253,7 +252,7 @@ div[id^="colors-col"] {
 	text-align: center;
 	width: 0%;
 	height: 30px;
-	background-color: #4CAF50;  
+	background-color: #816d79;  
 	color:rgb(224, 230, 191);
 }
 
