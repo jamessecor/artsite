@@ -96,8 +96,8 @@ if($validation=="Success") {
 
 	<div class="row">
 		<div class="col-lg-6 offset-lg-3">
-			<form action="" class="form-inline justify-content-center" id="contactForm" method='post'>
-				<div class="row col-lg-8 offset-lg-2">
+			<form action="" id="contactForm" method='post'>
+				<div class="form-row justify-content-center col-lg-12 offset-lg-2">
 					<div class="form-group full">
 						<label for="name" class="bold-with-color">Name</label>
 						<small class="errorText"><?php echo array_key_exists('name', $errors) ? $errors['name'] : ""; ?></small>
