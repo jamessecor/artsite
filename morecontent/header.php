@@ -12,9 +12,9 @@
 	<link href="../jrsArt.css" rel="stylesheet">
 	<script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
-<body onload='load()'>
+<body>
 	<nav class="navbar navbar-dark sticky-top navbar-expand-lg">
-		<a class="navbar-brand" href="./index.php">James Secor</a>
+		<a class="navbar-brand" href="../index.php">James Secor</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-art" aria-controls="navbar-art" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>		
