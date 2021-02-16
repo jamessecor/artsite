@@ -1,8 +1,5 @@
 <?php
-// Landing PAGE
-
 include "./header.php";
-//include "../imagesTemplate.php";
 ?>
 <script src='../jrsArt.js'></script>
 <script language="JavaScript">
@@ -122,7 +119,7 @@ function animateBox(index, color) {
 						left: "+=50",
 						height: "toggle"
 					}, 400, function() {
-						$("#winner-msg").html("Congratulations! All your storage units are now full! You win.<br><a href=\"https://www.google.com/search?q=storage+units+near+me\" target=\"_blank\">Find Nearby Storage for My Stuff.</a>").css("display", "inline");
+						$("#winner-msg").html("Congratulations! All your storage units are now full! You win.<br><button href=\"https://www.google.com/search?q=storage+units+near+me\" target=\"_blank\">Find Nearby Storage for My Stuff.</button>").css("display", "inline");
 					});
 					return 0;
 				} else {
@@ -192,51 +189,48 @@ $(document).ready(function() {
 })
 
 </script>
-<!--<div class='container'>-->
-	<div id="balance-bar">
-		<span id="balance-amt"></span>
+<div id="balance-bar">
+	<span id="balance-amt"></span>
+</div>
+<div id="rules">
+	<div id="rules-text">			
+		<span class="decision-buttons">
+		Buy! Buy! Buy! Sell! Sell! Sell!<br>
+		</span>
+		Fill up that storage unit!<br>
+		Buy items to put in your unit, or just sell enough to win.<br>
+		But watch out! People may not like what you're selling.<br>
 	</div>
-	<div id="rules">
-		<div id="rules-text">			
-			<span class="decision-buttons">
-			Buy! Buy! Buy! Sell! Sell! Sell!<br>
-			</span>
-			Fill up that storage unit!<br>
-			Buy items to put in your unit, or just sell enough to win.<br>
-			But watch out! People may not like what you're selling.<br>
-		</div>
-		<button class="decision-buttons" id="start-button">Click to begin</button>
+	<button class="decision-buttons" id="start-button">Click to begin</button>
+</div>
+<?php 
+// Create Objects to buy
+for($i = 0; $i < 50; $i++) {
+?>
+<div id="row<?php echo $i; ?>" height="5em" class="row text-center no-gutters flashingRow">
+	<div class="col" id="words<?php echo $i; ?>">
+		<div class="sale-text" id="item-text<?php echo $i; ?>"></div>
+		<div class="sale-text" id="value-text<?php echo $i; ?>"></div>		
+		<button class="decision-buttons" id="add-to-unit<?php echo $i; ?>">Add to Storage Unit</button>
+		<button class="decision-buttons" id="sell-it<?php echo $i; ?>">Sell It</button>
+		<button class="decision-buttons" id="trash-it<?php echo $i; ?>">Trash It</button>
 	</div>
-	<?php 
-	// Create Objects to buy
-	for($i = 0; $i < 50; $i++) {
-	?>
-	<div id="row<?php echo $i; ?>" height="5em" class="row flashingRow">
-		<div id="words<?php echo $i; ?>" align="center">
-			<div class="sale-text" id="item-text<?php echo $i; ?>"></div>
-			<div class="sale-text" id="value-text<?php echo $i; ?>"></div>		
-			<button class="decision-buttons" id="add-to-unit<?php echo $i; ?>">Add to Storage Unit</button>
-			<button class="decision-buttons" id="sell-it<?php echo $i; ?>">Sell It</button>
-			<button class="decision-buttons" id="trash-it<?php echo $i; ?>">Trash It</button>
-		</div>
-	</div>
-	<?php
-	}
-	?>	
-	<div class="row">
-		<div class="col-md">
-			<?php 
-			$imageSrc = "../img/mcD.jpg";
-			for($i = 0; $i < 30; $i++){
-				echo "<img class=\"winner-images\" style=\"width:20%; position:absolute; top:${i}em; right:${i}em\" src=\"$imageSrc\" alt=\"Buy NOW!\">";
-			}
-			?>
-			<img style="width:100%; position:fixed; top:7em; right:0; z-index:-1;" src="<?php echo $imageSrc; ?>" alt="nope">
-			<div id="winner-msg"></div>
-		</div>		
-	</div>
-<!--</div>-->
-
+</div>
+<?php
+}
+?>	
+<div class="row no-gutters">
+	<div class="col-md">
+		<?php 
+		$imageSrc = "../img/mcD.jpg";
+		for($i = 0; $i < 30; $i++){
+			echo "<img class=\"winner-images\" style=\"width:20%; position:absolute; top:${i}em; right:${i}em\" src=\"$imageSrc\" alt=\"Buy NOW!\">";
+		}
+		?>
+		<img style="width:100%; position:fixed; top:7em; right:0; z-index:-1;" src="<?php echo $imageSrc; ?>" alt="nope">
+		<div id="winner-msg"></div>
+	</div>		
+</div>
 <?php
 include "../footer.php";
 ?>

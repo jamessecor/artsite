@@ -238,10 +238,10 @@ input[type="text"]:disabled{
 div[id^="colors-col"] { 
 	width: calc(100% / 12); 
 	height:100%; 
-	border-radius:100%; 
-	border: 2em solid var(--page-background);/* #fff;*/
-	/* border-top: 1.5em solid var(--page-background); /* #3ca;*/
-	/*animation: spin 2s linear infinite;*/
+	border-radius:10%; 
+}
+div[id^="colors-col"]:hover { 
+	background: black;
 }
 
 #cent-pourcent {
