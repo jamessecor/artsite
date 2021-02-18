@@ -20,61 +20,58 @@ if(!$artworkResult) {
 	// Dropdown showing pieces to edit and edit button
 	?>
 <div class="container-fluid">
-	<form id="selectwork" method="post" action="">
-		<table align="center">
-			<tr>
-				<td>Select a work to edit</td>
-			</tr>
-			<tr>
-				<td><select id="piece" name="workSelected" >
-					<option value="newWork">*Add New Work*</option>						
-				<?php
-				// Populate drop-down
-				if(isset($_POST['editwork']) || isset($_POST['deletework'])) {
-					if(!empty($_POST['workSelected'])) {
-						global $selectedTitle;
-						$s = $_POST['workSelected'];
-						$selectedID = $_POST['workSelected'];
-					} else {
-						$errors['validwork'] = "Choose a work to edit or delete.";
+	<!-- <div class="col-lg-12"> -->
+		<form id="selectwork" method="post" action="">
+			<div class="form-row justify-content-center col-lg-12 offset-lg-2">
+				<div class="form-group full">
+					<label for="workSelected" class="bold-with-color">Select a work to edit</label>
+					<select id="piece" class="form-control" name="workSelected" >
+						<option value="newWork">*Add New Work*</option>						
+					<?php
+					// Populate drop-down
+					if(isset($_POST['editwork']) || isset($_POST['deletework'])) {
+						if(!empty($_POST['workSelected'])) {
+							global $selectedTitle;
+							$s = $_POST['workSelected'];
+							$selectedID = $_POST['workSelected'];
+						} else {
+							$errors['validwork'] = "Choose a work to edit or delete.";
+						}
+						
 					}
 					
-				}
-				
-				// Work is selected 
-				//if(count($errors) == 0)
-					$validWork = true;
-				
-				
-				while($work = mysqli_fetch_assoc($artworkResult)) {
-					$n = $work['title'];
-					$id = $work['imgID'];
-					// Correct Updated Artwork for dropdown and display
-					if(isset($_POST['updatework']) && ($n == $_POST['oldtitle'])) {
-						$n = $_POST['updatetitle'];
-					}						
+					// Work is selected 
+					//if(count($errors) == 0)
+						$validWork = true;
 					
-					// Only display on Dropdown menu if not deleted
-					if(!(isset($_POST['submitdeletion']) && $n == $_POST['oldtitle'])) {
-						if(isset($_POST['workSelected']) && $_POST['workSelected'] === $n)
-							print "<option value=\"${id}\" selected>$n</option>";
-						else
-							print "<option value=\"${id}\">$n</option>";
+					
+					while($work = mysqli_fetch_assoc($artworkResult)) {
+						$n = $work['title'];
+						$id = $work['imgID'];
+						// Correct Updated Artwork for dropdown and display
+						if(isset($_POST['updatework']) && ($n == $_POST['oldtitle'])) {
+							$n = $_POST['updatetitle'];
+						}						
+						
+						// Only display on Dropdown menu if not deleted
+						if(!(isset($_POST['submitdeletion']) && $n == $_POST['oldtitle'])) {
+							if(isset($_POST['workSelected']) && $_POST['workSelected'] === $n)
+								print "<option value=\"${id}\" selected>$n</option>";
+							else
+								print "<option value=\"${id}\">$n</option>";
+						}
 					}
-				}
-				?>
-				</select>
-				</td>
-			</tr>
-			<tr>
-				<td><small class='errorText'><?php echo array_key_exists('validwork',$errors) ? $errors['validwork'] : ''; ?></small></td>
-			</tr>
-			<tr>
-				<td><input type="submit" value="Add/Edit Work" name="editwork">
-				<input type="submit" value="Delete Work" name="deletework"></td>
-			</tr>
-		</table>
-	</form>	
+					?>
+					</select>
+					<small class='errorText'><?php echo array_key_exists('validwork',$errors) ? $errors['validwork'] : ''; ?></small></td>
+				</div>
+				<div class="form-group full">
+					<input type="submit" value="Add/Edit Work" name="editwork">
+					<input type="submit" value="Delete Work" name="deletework">
+				</div>
+			</div>
+		</form>	
+	</div>
 </div>
 	<?php 					
 	if($validWork && (isset($_POST['editwork']) || isset($_POST['deletework']))) {
@@ -117,77 +114,54 @@ if(!$artworkResult) {
 			<?php } ?>
 			
 			<form id="updateform" class="container-fluid" method="post" action="" enctype="multipart/form-data">
-				<table align="center">
+				<div class="form-row justify-content-center col-lg-12 offset-lg-2">
 					<?php if($disabled !== "disabled") { ?>
-					<tr>
-						<th>Filename</th>
-					</tr>
-					<tr>
-						<td>
-							<input type='file' name='updatefilename'>
-							<input type="checkbox" name="bypassupload" <?php echo $isNew ? "" : "checked" ?>>Bypass Image Upload							
-						</td>
-					</tr>
+						<div class="form-group full">
+							<label class="bold-with-color" for="updatefilename">Filename</label>
+							<input class="form-control" type='file' name='updatefilename'>
+							<input class="form-control" type="checkbox" name="bypassupload" <?php echo $isNew ? "" : "checked" ?>>Bypass Image Upload
+						</div>
 					<?php } ?>
-					<tr>
-						<th>Title</th>
-					</tr>
-					<tr>
-						<td><input type="text" name="updatetitle" value="<?php echo $isNew ? "" : $htmlTitle;?>" <?php echo $disabled; ?>></td>
-						<td><small class='errorText'><?php echo array_key_exists('updatetitle',$errors) ? $errors['updatetitle'] : ''; ?></small></td>
-					</tr>
-					<tr>
-						<th>Medium</th>
-					</tr>
-					<tr>
-						<td><input type="text" name="updatemedium" value="<?php echo $isNew ? "" : $htmlMedia;?>" <?php echo $disabled; ?>></td>
-					</tr>
-					<tr>
-						<th>Year</th>
-					</tr>
-					<tr>
-						<td><input type="text" name="updateyear" value="<?php echo $isNew ? "" : "$editWork[yearCreated]";?>" <?php echo $disabled; ?>></td>
-					</tr>
-					<tr>
-						<th>Arrangement</th>
-					</tr>
-					<tr>
-						<td><input type="text" name="updatearrangement" value="<?php echo $isNew ? "" : "$editWork[arrangement]";?>" <?php echo $disabled; ?>></td>
-					</tr>
-					<tr>
-						<th>Grouping</th>
-					</tr>
-					<tr>
-						<td>
-							(Available Groupings: 
-							<?php
-							$groupingsResult = selectQuery($db, "DISTINCT grouping", "imageData", "1", "1");
-							if(!$groupingsResult) {
-								echo ("couldn't find grouping");
-							} else {
-								while($group = mysqli_fetch_array($groupingsResult)) {
-									echo " ${group[0]} ";
-								}
-							}							
-							?>
-							)
-						</td>
-					</tr>
-					<tr>
-						<td><input type="text" name="updategrouping" value="<?php echo $isNew ? "" : "$editWork[grouping]";?>" <?php echo $disabled; ?>></td>
-					</tr>
-					<tr>
-						<th>Price</th>
-					</tr>
-					<tr>
-						<td><input type="text" name="updateprice" value="<?php echo $isNew ? "" : "$editWork[price]";?>" <?php echo $disabled; ?>></td>
-					</tr>
-					<tr>
-						<th>Buyer</th>
-					</tr>
-					<tr>
-						<td>
-							<select name="updatebuyer" <?php echo " $disabled "; ?>>
+					<div class="form-group full">
+						<label class="bold-with-color" for="updatetitle">Title</label>
+						<input class="form-control" type="text" name="updatetitle" value="<?php echo $isNew ? "" : $htmlTitle;?>" <?php echo $disabled; ?>>
+						<small class='errorText'><?php echo array_key_exists('updatetitle',$errors) ? $errors['updatetitle'] : ''; ?></small>
+					</div>
+					<div class="form-group full">
+						<label class="bold-with-color" for="updatemedium">Medium</label>
+						<input class="form-control" type="text" name="updatemedium" value="<?php echo $isNew ? "" : $htmlMedia;?>" <?php echo $disabled; ?>>
+					</div>
+					<div class="form-group full">
+						<label class="bold-with-color" for="updateyear">Year</label>
+						<input class="form-control" type="text" name="updateyear" value="<?php echo $isNew ? "" : "$editWork[yearCreated]";?>" <?php echo $disabled; ?>>
+					</div>
+					<div class="form-group full">
+						<label class="bold-with-color" for="updatearrangement">Arrangement</label>
+						<input class="form-control" type="text" name="updatearrangement" value="<?php echo $isNew ? "" : "$editWork[arrangement]";?>" <?php echo $disabled; ?>>
+					</div>
+					<div class="form-group full">
+						<label class="bold-with-color" for="updategrouping">Grouping</label>
+						(Available Groupings: 
+						<?php
+						$groupingsResult = selectQuery($db, "DISTINCT grouping", "imageData", "1", "1");
+						if(!$groupingsResult) {
+							echo ("couldn't find grouping");
+						} else {
+							while($group = mysqli_fetch_array($groupingsResult)) {
+								echo " ${group[0]} ";
+							}
+						}							
+						?>
+						)
+						<input class="form-control" type="text" name="updategrouping" value="<?php echo $isNew ? "" : "$editWork[grouping]";?>" <?php echo $disabled; ?>>
+					</div>
+					<div class="form-group full">
+						<label class="bold-with-color" for="updateprice">Price</label>
+						<input class="form-control" type="text" name="updateprice" value="<?php echo $isNew ? "" : "$editWork[price]";?>" <?php echo $disabled; ?>>
+					</div>
+					<div class="form-group full">
+						<label class="bold-with-color" for="updatebuyer">Buyer</label>
+						<select class="form-control" name="updatebuyer" <?php echo " $disabled "; ?>>
 							<option value="">Select...</option>
 							<?php 
 							$contactResults = selectQuery($db, "c_id,c_name,c_lastname", "contacts", "1", "c_name");
@@ -205,20 +179,16 @@ if(!$artworkResult) {
 								}
 							}							
 							?>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<th>Sale Date</th>
-					</tr>
-					<tr>
-						<td><input type="date" name="updatesaledate" value="<?php echo $isNew ? "" : "$editWork[saleDate]";?>" <?php echo $disabled; ?>></td>
-					</tr>
-					<tr>
-						<td>
-							<input type="checkbox" name="ishomepage" <?php echo $editWork['isHomePage'] ? "Checked" : ""; echo " $disabled "; ?>>Put on homepage
-						</td>
-					</tr>
+						</select>
+					</div>
+					<div class="form-group full">
+						<label class="bold-with-color" for="updatesaledate">Sale Date</label>
+						<input class="form-control" type="date" name="updatesaledate" value="<?php echo $isNew ? "" : "$editWork[saleDate]";?>" <?php echo $disabled; ?>>
+					</div>
+					<div class="form-group full">
+						<input class="form-control" type="checkbox" name="ishomepage" <?php echo $editWork['isHomePage'] ? "Checked" : ""; echo " $disabled "; ?>>
+						<label class="bold-with-color" for="ishomepage">Put on homepage</label>	
+					</div>
 					<?php 
 					$ok = "	<tr>
 								<td><small class='errorText'>Selecting \"Delete\" will remove this piece from the database.</small></td>
@@ -232,19 +202,14 @@ if(!$artworkResult) {
 						$name = "updatework";
 					}
 					?>
-					<tr>
-						<td><input type="submit" value="<?php echo "$value"; ?>" name="<?php echo "$name"; ?>"></td>
-					</tr>
-					<tr>
-						<td>
-							<input type="hidden" name="artworkid" value="<?php echo $workID; ?>">
-							<input type="hidden" name="oldtitle" value="<?php echo $editWork['title']; ?>">
-							<input type="hidden" name="oldfilename" value="<?php echo $editWork['filename']; ?>">
-							<input type="hidden" name="isnew" value="<?php echo $isNew; ?>">
-						</td>
-						
-					</tr>
-				</table>
+					<div class="form-group full">
+						<input class="form-control" type="submit" value="<?php echo "$value"; ?>" name="<?php echo "$name"; ?>">
+					</div>
+					<input type="hidden" name="artworkid" value="<?php echo $workID; ?>">
+					<input type="hidden" name="oldtitle" value="<?php echo $editWork['title']; ?>">
+					<input type="hidden" name="oldfilename" value="<?php echo $editWork['filename']; ?>">
+					<input type="hidden" name="isnew" value="<?php echo $isNew; ?>">
+				</div>
 			</form>
 			<?php		
 			} 

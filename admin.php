@@ -13,7 +13,7 @@ if(isset($_POST['login'])) {
 	// Password
 	$password = "";
 	if(!empty($_POST['password'])) {
-		$password = addslashes(trim(($_POST['password'])));
+		$password = addslashes(($_POST['password']));
 		/* Debugging Password Hash /
 			echo $password . "<br>";
 			echo password_hash($password, PASSWORD_DEFAULT);
@@ -24,7 +24,7 @@ if(isset($_POST['login'])) {
 	} 
 	
 	// Check them
-	//if($username===$adminU) { // For local testing
+	// if($username===$adminU) { // For local testing
 	if($username===$adminU && password_verify($password, $adminP)) {
 		$_SESSION['artsiteusername'] = $username;
 	}
@@ -255,8 +255,8 @@ $(document).ready(function() {
 });
 </script>
 
-<div class='container-fluid'>
-	<div class='row'>
+	<div class='row no-gutters container-fluid'>
+		<div class="col-lg-10 offset-lg-1">
 		<h1 id='contactHeading' class="center-it"><strong>Admin Page</strong></h1>
 		<div id='success'>
 			<div class='row'>
@@ -265,14 +265,19 @@ $(document).ready(function() {
 				if(!isLoggedIn()) { 
 				?>
 				<form id="login" method="post" action="" autocomplete='off'>
-					<table align="center">
-						<tr><td>Username</td></tr>
-						<tr><td><input type="text" name="artsiteusername"></td></tr>						
-						<tr><td>Password</td></tr>
-						<tr><td><input type="password" name="password"></td></tr>
-						<tr><td>&nbsp;</td></tr>
-						<tr><td><input type="submit" name="login" value="Log In"></td></tr>							
-					</table>
+					<div class="form-row justify-content-center col-lg-12 offset-lg-2">
+						<div class="form-group full">
+							<label for="artsiteusername">Username</label>
+							<input type="text" name="artsiteusername">
+						</div>
+						<div class="form-group full">
+							<label for="password">Password</label>
+							<input type="password" name="password">
+						</div>
+						<div class="form-group full">
+							<input type="submit" name="login" value="Log In">
+						</div>
+					</div>
 				</form>
 				<?php 
 				} else { 
@@ -283,7 +288,7 @@ $(document).ready(function() {
 				?>
 				&nbsp;
 				<div class="row container-fluid">
-					<div class="col-md-8 col-md-offset-2">						
+					<div class="col-lg-8 offset-lg-2">						
 						<div><strong>emails</strong></div>
 						<button class="showPeeps">SHOW emails</button>
 						<div style="display:none;" class="peeps"></div>
@@ -292,7 +297,7 @@ $(document).ready(function() {
 				<hr>
 				<div class="row container-fluid">
 					<!-- Sales -->
-					<div class="col-md-2 col-md-offset-2">						
+					<div class="col-lg-2 offset-lg-2">						
 						<div id="sales-header"><strong>sales</strong></div>
 						<form method="get" name="saleYearForm"> 
 							<div>Period Beginning<br><input type="date" name="periodBegin" value="<?php if(isset($_GET['periodBegin'])) echo $_GET['periodBegin']; ?>"/></div>
@@ -300,13 +305,13 @@ $(document).ready(function() {
 							<br><input type="submit" class="showSales" value="Show Sales"/>
 						</form>
 					</div>
-					<div class="col-md-7 col-md-offset-1">						
+					<div class="col-lg-7 offset-lg-1">						
 						<div class="sales"></div>
 					</div>
 				</div>
 				<hr>
 				<div class="row container-fluid">
-					<div class="col-md-8 col-md-offset-2">
+					<div class="col-lg-8 offset-lg-2">
 						<!--
 							create table expenses (
 								expenseId int not null AUTO_INCREMENT,
@@ -366,7 +371,7 @@ $(document).ready(function() {
 		</div>
 	</div>
 	<!-- <div class='row'>-->
-		<div class='col-md-2 col-md-offset-8 center-it'>
+		<div class='col-lg-2 offset-lg-8 center-it'>
 			<form method="post" action="">
 				<table>
 					<tr><td>&nbsp;</td></tr>
