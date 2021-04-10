@@ -55,7 +55,9 @@ include "header.php";
 			</div>
 			<div class="cv-items" id="group">
 				<p>
-					<span class="show-titles">Rolling On</span> Studio Place Arts, Barre, VT, Jan-Mar 2021
+					<span class="show-titles">Here Comes the Sun (to benefit OpenDoors of Asheville</span> blu29, Asheville, NC, Apr-May 2021
+					<br><span class="show-titles">Up & Away</span> Studio Place Arts, Barre, VT, Mar-May 2021
+					<br><span class="show-titles">Rolling On</span> Studio Place Arts, Barre, VT, Jan-Mar 2021
 					<br><span class="show-titles">Screen Time</span> River Arts, Morrisville, VT, Nov 2020-Jan 2021
 					<br><span class="show-titles">Futures</span> Studio Place Arts, Barre, VT, 2020
 					<br><span class="show-titles">Contemporary American Regionalism: Vermont Perspectives</span> Southern Vermont Art Center, Manchester, VT, 2019
