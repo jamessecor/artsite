@@ -17,29 +17,29 @@ function getEmailAddr() {
 }
 
 function getSales() {
-	$sales = "";
+	$sales = array();
 	if(isLoggedIn()) {
 		global $db;
-		$query = "SELECT price, title, c_name, c_lastname, saleDate, imgID, taxStatus
-					FROM imageData i
-					INNER JOIN contacts c
-						ON i.buyerID = c.c_id
-					WHERE buyerID is not null ";
+		$query = "SELECT COALESCE(salePrice, price) as salePrice, COALESCE(saleRevenue, salePrice, price) as saleRevenue, title, concat(c_name, ' ', c_lastname) as fullname, saleDate, imgID, taxStatus
+			FROM imageData i INNER JOIN contacts c ON i.buyerID = c.c_id WHERE buyerID is not null ";
 		if(!empty($_GET['periodBegin']) && !empty($_GET['periodEnd'])) {
 			$query .= "and saleDate between '$_GET[periodBegin]' and '$_GET[periodEnd]'";
 		}		
 		$query .= " ORDER BY saleDate;";
 		$result = mysqli_query($db, $query);
 		while($sale = mysqli_fetch_assoc($result)) {
-			if($sale['taxStatus'] == null) {
-				$sale['taxStatus'] = "none";
-			}
-			if($sale['title'] != null && $sale['price'] != null && ($sale['c_name'] != null || $sale['c_lastname'] != null)) {
-				$sales .= addslashes("$sale[title]__$sale[price]__$sale[c_name] $sale[c_lastname]__$sale[saleDate]__$sale[imgID]__$sale[taxStatus]___");			
-			}		
+			$sales[] = array(
+				'title' => $sale['title'],
+				'imgID' => $sale['imgID'],
+				'saleDate' => $sale['saleDate'],
+				'saleRevenue' => $sale['saleRevenue'],
+				'salePrice' => $sale['salePrice'],
+				'fullname' => $sale['fullname'],
+				'taxStatus' => $sale['taxStatus']
+			);
 		}
 	}
-	return $sales;
+	return json_encode($sales);
 }
 
 function getExpenses() {

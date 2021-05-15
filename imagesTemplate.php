@@ -52,6 +52,18 @@ if(isLoggedIn()) {
 			$updates[] = " price = '$newPrice'"; 
 		}		
 		
+		// Sale Price (what it actually sold for)
+		if(isset($_GET['new-salePrice'])) {
+			$newSalePrice = mysqli_real_escape_string($db, $_GET['new-salePrice']);
+			$updates[] = " salePrice = '$newSalePrice'"; 
+		}		
+		
+		// Sale Revenue (my cut of the sale)
+		if(isset($_GET['new-saleRevenue'])) {
+			$newSaleRevenue = mysqli_real_escape_string($db, $_GET['new-saleRevenue']);
+			$updates[] = " saleRevenue = '$newSaleRevenue'"; 
+		}		
+		
 		// Position
 		if(isset($_GET['new-position'])) {
 			$newArrangement = mysqli_real_escape_string($db, $_GET['new-position']);
@@ -101,7 +113,7 @@ if(isLoggedIn()) {
 	{
 		global $db;
 		// Database Retrieval of Titles/Filenames
-		$query = "SELECT imgID, title, yearCreated, media, filename, buyerID, price, saleDate, arrangement FROM imageData WHERE " . $whereClause . ";";
+		$query = "SELECT imgID, title, yearCreated, media, filename, buyerID, price, salePrice, saleRevenue, saleDate, arrangement FROM imageData WHERE " . $whereClause . ";";
 		$data = mysqli_query($db, $query);
 		if(!$data) {
 			print "Images could not be retrieved.";
@@ -147,6 +159,8 @@ if(isLoggedIn()) {
 									<input type="text" name="new-year" value="<?php echo $row['yearCreated']; ?>" />
 									<input type="text" name="new-medium" value="<?php echo $row['media']; ?>" />
 									<input type="text" name="new-price" value="<?php echo $row['price']; ?>" />
+									<input type="text" placeholder="salePrice" name="new-salePrice" value="<?php echo $row['salePrice']; ?>" />
+									<input type="text" placeholder="saleRevenue (my cut)" name="new-saleRevenue" value="<?php echo $row['saleRevenue']; ?>" />
 									<input type="text" name="new-position" value="<?php echo $row['arrangement']; ?>" />
 									<select name="new-buyer">
 										<option value="">Select...</option>

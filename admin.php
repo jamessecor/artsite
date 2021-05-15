@@ -71,38 +71,24 @@ if((isset($_POST['receiptexpenseid']) && is_numeric($_POST['receiptexpenseid']))
 function updateSales() {
 	var totalSales = 0;
 	var taxesUnpaid = 0;
-	var sales = '<?php echo getSales(); ?>';
-	
-	// This is an array of individual sales
-	var salesSplit = sales.split("___");
+	// This is an array of individual sales as json objects
+	var sales = <?php echo getSales(); ?>;
+	console.log(sales);
 
-	var titles = new Array(salesSplit.length);
-	var prices = new Array(salesSplit.length);	
-	var names = new Array(salesSplit.length);
-	var saleDates = new Array(salesSplit.length);	
-	var ids = new Array(salesSplit.length);	
-	var taxStatus = new Array(salesSplit.length);	
 	var taxCss = "";
 	var salesString = "<div class='cv-text'>";
 	
 	// length - 1 because the last element is empty	
-	for(var i = 0; i < salesSplit.length - 1; i++) {
-		var titlePriceNameArray = salesSplit[i].split("__");
-		totalSales += parseInt(titlePriceNameArray[1]);
-		titles[i] = titlePriceNameArray[0];
-		prices[i] = titlePriceNameArray[1];
-		names[i] = titlePriceNameArray[2];
-		saleDates[i] = titlePriceNameArray[3];
-		ids[i] = titlePriceNameArray[4];
-		taxStatus[i] = titlePriceNameArray[5];
-		if(taxStatus[i] == 'none') {
-			taxesUnpaid += parseInt(titlePriceNameArray[1]);
+	for(var i = 0; i < sales.length - 1; i++) {
+		let sale = sales[i];
+		totalSales += parseInt(sale.saleRevenue);
+		if(sale['taxStatus'] !== "paid") {
+			taxesUnpaid += parseInt(sale.saleRevenue);
 		}
 		taxCss = "";
-		console.log(taxStatus[i]);
-		taxCss = updateSalePriceCss(taxStatus[i]);
+		taxCss = sale.taxStatus == 'paid' ? "background-color:#4a4;color:#7ff" : "background-color:red;color:#7ff"
 		// on click add paid
-		salesString += "<span><input type=\"hidden\" value=\"" + ids[i] + "\"><strong><span id=\"sales-title\">" + titles[i] + "</span></strong> (" + names[i] + ", " + saleDates[i] + "): <span id='sales-price' style='"+taxCss+";'><strong>" + prices[i] + "</strong></span></span><br>";
+		salesString += "<span><input type=\"hidden\" value=\"" + sale.imgID + "\"><strong><span id=\"sales-title\">" + sale.title + "</span></strong> (" + sale.fullname + ", " + sale.saleDate + "): <span id='sales-price' style='"+taxCss+";'><strong>" + sale.salePrice + "</strong></span></span><br>";
 	}
 	salesString += "<br><strong>Total</strong>: " + totalSales + "<br>";
 	salesString += "<strong>Total Unpaid Taxes</strong>: " + taxesUnpaid + "<br>";
@@ -110,18 +96,6 @@ function updateSales() {
 	taxesDue = Math.round(taxesDue * 100)/100;
 	salesString += "Taxes Due: <span style='background-color:red;color:#7ff';>" + taxesDue + "</span></div>";
 	$(".sales").html(salesString);
-}
-
-function updateSalePriceCss(status) {
-	var taxCss = "";
-	if(status == 'none') {
-		taxCss = "background-color:red;color:#7ff";
-	} else if(status == 'front') {
-		taxCss = "background-color:#55f;color:#7ff";
-	} else if(status == 'paid') {
-		taxCss = "background-color:#4a4;color:#7ff";
-	}
-	return taxCss;
 }
 
 function updateExpenses() {
