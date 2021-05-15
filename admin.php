@@ -79,7 +79,7 @@ function updateSales() {
 	var salesString = "<div class='cv-text'>";
 	
 	// length - 1 because the last element is empty	
-	for(var i = 0; i < sales.length - 1; i++) {
+	for(var i = 0; i < sales.length; i++) {
 		let sale = sales[i];
 		totalSales += parseInt(sale.saleRevenue);
 		if(sale['taxStatus'] !== "paid") {
@@ -99,47 +99,29 @@ function updateSales() {
 }
 
 function updateExpenses() {
-	var expenses = '<?php echo getExpenses(); ?>';
-	var totalExpenses = 0;
-	// This is an array of individual sales
-	var expensesSplit = expenses.split("___");
-	var ids = new Array(expensesSplit.length);	
-	var descs = new Array(expensesSplit.length);
-	var costs = new Array(expensesSplit.length);	
-	var dates = new Array(expensesSplit.length);	
-	var filenames = new Array(expensesSplit.length);
-	var expensesString = "";
-	<?php
-	// Add receipt img
-	if(isset($_GET['expenseId'])) {
-		echo "var formExpenseId = " . $_GET['expenseId'] . ";";		
-	}
-	?>
-	// length - 1 because the last element is empty
-	for(var i = 0; i < expensesSplit.length - 1; i++) {
-		var descCostDateArray = expensesSplit[i].split("__");
-		totalExpenses += parseFloat(descCostDateArray[2]);
-		ids[i] = descCostDateArray[0];
-		descs[i] = descCostDateArray[1];
-		costs[i] = descCostDateArray[2];
-		dates[i] = descCostDateArray[3];
-		filenames[i] = descCostDateArray[4];
+	let expenses = <?php echo getExpenses(); ?>;
+	let totalExpenses = 0;
+	let expensesString = "";
+	console.log(expenses);
+	// Loop over expenses
+	$.each(expenses, function(i, expense) {
+		totalExpenses += parseFloat(expense.cost);
 		if(i==0) {
 			expensesString += "<tr><th>Desc(view img)</th><th>Amount(upload/delete)</th><th>Date</th></tr>";	
 		}		
 		// TODO: Add image on hover or click
-		if(filenames[i] !== ' ') {
+		if(expense.expenseFilename !== null) {
 			expensesString += "<tr id='expense-row-" + i + "'>"
-				+ "<td><a href='#expense-receipt-" + i + "' rel='modal:open'>" + descs[i] + "</a></td>"
-				+ "<td><a href='#expense-modal-" + i + "' rel='modal:open'>" + costs[i] + "</a></td>"
-				+ "<td>" + dates[i] + "</a></td></tr>";
+				+ "<td><a data-toggle='modal' data-target='#expense-receipt-" + i + "'>" + expense.expenseDesc + "</a></td>"
+				+ "<td><a data-toggle='modal' data-target='#expense-modal-" + i + "'>" + expense.cost + "</a></td>"
+				+ "<td>" + expense.expenseDates + "</a></td></tr>";
 		} else {
 			expensesString += "<tr id='expense-row-" + i + "'>"
-				+ "<td>" + descs[i] + "</td>"
-				+ "<td><a href='#expense-modal-" + i + "' rel='modal:open'>" + costs[i] + "</a></td>"
-				+ "<td>" + dates[i] + "</td></tr>";
+				+ "<td>" + expense.expenseDesc + "</td>"
+				+ "<td><a data-toggle='modal' data-target='#expense-modal-" + i + "'>" + expense.cost + "</a></td>"
+				+ "<td>" + expense.expenseDate + "</td></tr>";
 		}		
-	}
+	});
 	expensesString += "<tr><td>Total</td><td>" + Math.round(totalExpenses*100)/100 + "</td></tr>";
 	expensesString = "<table id='expenses-table'>" + expensesString + "</table>";
 	$("#expenses").html(expensesString);
@@ -309,32 +291,44 @@ $(document).ready(function() {
 				</div>
 				<div class='row'>
 				<?php
-				$expenses = getExpenses();
-				$exSplit = explode("___", $expenses);
-				for($i = 0; $i < count($exSplit) - 1; $i++) { ?>
-					<div id="<?php echo "expense-modal-$i";?>" class="modal">
-						<a href="#close-modal" rel="modal:close" class="close-modal ">Close</a>
-						<strong>Add Receipt Image</strong><br/>
-						<?php 
-						$exData = explode("__", $exSplit[$i]);
-						echo "$exData[1] $exData[2] $exData[3]";
-						?>
-						<form name='add-expense-image' method='post' onsubmit="return confirm('Continue?');" class="center-it" action="" enctype="multipart/form-data">
-							<input type="file" name="receiptfile"/>
-							<input type="hidden" name="periodBegin" value="<?php if(isset($_GET['periodBegin'])) echo $_GET['periodBegin']; ?>"/>
-							<input type="hidden" name="periodEnd" value="<?php if(isset($_GET['periodEnd'])) echo $_GET['periodEnd']; ?>"/>
-							<input type="hidden" name="desc" value="<?php echo $exData[1]; ?>"/>
-							<div>&nbsp;</div>
-							<div>
-								<button name="receiptexpenseid" value="<?php echo $exData[0]; ?>">Submit Receipt</button>							
-								<button name="deleteExpense" value="<?php echo $exData[0]; ?>">Delete Expense</button>
+				$expenses = json_decode(getExpenses(), true);
+				for($i = 0; $i < count($expenses); $i++) { ?>
+					<div class="modal fade" id="<?php echo "expense-modal-$i";?>" tabindex="-1" aria-labelledby="<?php echo "expense-modal-$i-label";?>" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="p-2 modal-content">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								<strong>Add Receipt Image</strong><br/>
+								<?php 
+								$expense = $expenses[$i];
+								echo "$expense[expenseDesc] $expense[cost] $expense[expenseDate]";
+								?>
+								<form name='add-expense-image' method='post' onsubmit="return confirm('Continue?');" class="center-it" action="" enctype="multipart/form-data">
+									<input type="file" name="receiptfile"/>
+									<input type="hidden" name="periodBegin" value="<?php if(isset($_GET['periodBegin'])) echo $_GET['periodBegin']; ?>"/>
+									<input type="hidden" name="periodEnd" value="<?php if(isset($_GET['periodEnd'])) echo $_GET['periodEnd']; ?>"/>
+									<input type="hidden" name="desc" value="<?php echo $expense[1]; ?>"/>
+									<div>&nbsp;</div>
+									<div>
+										<button name="receiptexpenseid" value="<?php echo $expense['expenseId']; ?>">Submit Receipt</button>							
+										<button name="deleteExpense" value="<?php echo $expense['expenseId']; ?>">Delete Expense</button>
+									</div>
+								</form>
 							</div>
-						</form>
+						</div>
 					</div>
-					<div id="<?php echo "expense-receipt-$i";?>" class="modal">
-						<a href="#close-modal" rel="modal:close" class="close-modal">Close</a>
-						<span><?php echo "$exData[1] $exData[2] $exData[3]";?></span>
-						<img class="img-responsive" src="./receipts/<?php echo $exData[4];?>" alt="Receipt unavailable"/>
+					<div class="modal fade" id="<?php echo "expense-receipt-$i";?>" tabindex="-1" aria-labelledby="<?php echo "expense-receipt-$i-label";?>" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="p-2 modal-content">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								<div><?php echo "$expense[expenseDesc] $expense[cost] $expense[expenseDate]";?></div>
+								<div><?php echo "$expense[expenseFilename]";?></div>
+								<img class="img-responsive" src="./receipts/<?php echo $expense['expenseFilename'];?>" alt="Receipt unavailable"/>
+							</div>
+						</div>
 					</div>
 				<?php } ?>
 					

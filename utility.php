@@ -53,17 +53,10 @@ function getExpenses() {
 		}
 		$query .= " ORDER BY expenseDate;";
 		$result = mysqli_query($db, $query);
-		while($expense = mysqli_fetch_assoc($result)) {
-			if($expense['expenseDesc'] != null && $expense['cost'] != null && $expense['expenseDate'] != null) {
-				$expensesFilename = $expense['expenseFilename'];
-				if($expensesFilename == null) {
-					$expensesFilename = " ";
-				}
-				$expenses .= "$expense[expenseId]__$expense[expenseDesc]__$expense[cost]__$expense[expenseDate]__${expensesFilename}___";
-			}		
-		}
+		// Fetch all
+		$expenses = json_encode(mysqli_fetch_all($result, MYSQLI_ASSOC));
 	}
-	return addslashes($expenses);
+	return $expenses;
 }
 
 function addExpense($desc, $cost, $eDate) {
