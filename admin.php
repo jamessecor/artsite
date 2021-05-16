@@ -68,6 +68,7 @@ if((isset($_POST['receiptexpenseid']) && is_numeric($_POST['receiptexpenseid']))
 }
 ?>
 <script>
+/*
 function updateSales() {
 	var totalSales = 0;
 	var taxesUnpaid = 0;
@@ -209,6 +210,7 @@ $(document).ready(function() {
 		}		
 	});
 });
+*/
 </script>
 
 	<div class='row no-gutters container-fluid'>
