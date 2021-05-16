@@ -44,7 +44,7 @@ function getSales() {
 
 function getExpenses() {
 	$expenses = "";
-	if(isLoggedIn()) {
+	if(false && isLoggedIn()) {
 		global $db;
 		$query = "SELECT expenseId, expenseDesc, cost, expenseDate, expenseFilename FROM expenses";
 		// Add date range if dates are set
