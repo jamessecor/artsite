@@ -318,7 +318,7 @@ $(document).ready(function() {
 							</div>
 						</div>
 					</div>
-					<?php if($expense['expenseFilename'] != null) { ?>
+					<?php if(!is_null($expense['expenseFilename'])) { ?>
 						<div class="modal fade" id="<?php echo "expense-receipt-$i";?>" tabindex="-1" aria-labelledby="<?php echo "expense-receipt-$i-label";?>" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="p-2 modal-content">
