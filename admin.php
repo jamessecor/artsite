@@ -318,18 +318,20 @@ $(document).ready(function() {
 							</div>
 						</div>
 					</div>
-					<div class="modal fade" id="<?php echo "expense-receipt-$i";?>" tabindex="-1" aria-labelledby="<?php echo "expense-receipt-$i-label";?>" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="p-2 modal-content">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-								<div><?php echo "$expense[expenseDesc] $expense[cost] $expense[expenseDate]";?></div>
-								<div><?php echo "$expense[expenseFilename]";?></div>
-								<img class="img-responsive" src="./receipts/<?php echo $expense['expenseFilename'];?>" alt="Receipt unavailable"/>
+					<?php if($expense['expenseFilename'] != null) { ?>
+						<div class="modal fade" id="<?php echo "expense-receipt-$i";?>" tabindex="-1" aria-labelledby="<?php echo "expense-receipt-$i-label";?>" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="p-2 modal-content">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<div><?php echo "$expense[expenseDesc] $expense[cost] $expense[expenseDate]";?></div>
+									<div><?php echo "$expense[expenseFilename]";?></div>
+									<img class="img-responsive" src="./receipts/<?php echo $expense['expenseFilename'];?>" alt="Receipt unavailable"/>
+								</div>
 							</div>
 						</div>
-					</div>
+					<?php } ?>
 				<?php } ?>
 					
 				</div>
