@@ -237,6 +237,7 @@ $(document).ready(function() {
 				</form>
 				<?php 
 				} else { 
+					echo phpversion();
 				// Logged In
 				include "editartwork.php";
 				print "<hr>";
