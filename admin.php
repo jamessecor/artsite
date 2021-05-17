@@ -88,7 +88,7 @@ function updateSales() {
 		taxCss = "";
 		taxCss = sale.taxStatus == 'paid' ? "background-color:#4a4;color:#7ff" : "background-color:red;color:#7ff"
 		// on click add paid
-		salesString += "<span><input type=\"hidden\" value=\"" + sale.imgID + "\"><strong><span id=\"sales-title\">" + sale.title + "</span></strong> (" + sale.fullname + ", " + sale.saleDate + "): <span id='sales-price' style='"+taxCss+";'><strong>" + sale.salePrice + "</strong></span></span><br>";
+		salesString += "<span><input type=\"hidden\" value=\"" + sale.imgID + "\"><strong><span id=\"sales-title\">" + sale.title + "</span></strong> (" + sale.fullname + ", " + sale.saleDate + "): <span id='sales-price' style='"+taxCss+";'><strong>" + sale.saleRevenue + "(" + sale.salePrice + ")" + "</strong></span></span><br>";
 	}
 	salesString += "<br><strong>Total</strong>: " + totalSales + "<br>";
 	salesString += "<strong>Total Unpaid Taxes</strong>: " + taxesUnpaid + "<br>";
