@@ -88,23 +88,23 @@ if(isLoggedIn()) {
 
 		// Generate Update Statement
 		$imgID = $_GET['imgID'];
-		$updateArrangement = "UPDATE imageData SET ";
+		$updateQuery = "UPDATE imageData SET ";
 		$first = true;
 		$updateStr = "";
 		foreach($updates as $update) {
 			if($first) {
 				$first = false;
 			} else {
-				$updateArrangement .= ", ";
+				$updateQuery .= ", ";
 			}			
-			$updateArrangement .= $update;
+			$updateQuery .= $update;
 		}		
-		$updateArrangement .= " WHERE imgID='$imgID';";
-		$result = mysqli_query($db, $updateArrangement);
+		$updateQuery .= " WHERE imgID='$imgID';";
+		$result = mysqli_query($db, $updateQuery);
 		if(!$result)
-			die("unable to update arrangement");	
+			die("unable to complete request" . $updateQuery);	
 		
-		print($updateArrangement);
+		print($updateQuery);
 	}
 	// ================== End Update Processing ======================
 }
