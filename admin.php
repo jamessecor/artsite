@@ -112,17 +112,17 @@ function updateExpenses() {
 		// TODO: Add image on hover or click
 		if(expense.expenseFilename !== null) {
 			expensesString += "<tr id='expense-row-" + i + "'>"
-				+ "<td><a data-toggle='modal' data-target='#expense-receipt-" + i + "'>" + expense.expenseDesc + "</a></td>"
-				+ "<td><a data-toggle='modal' data-target='#expense-modal-" + i + "'>" + expense.cost + "</a></td>"
+				+ "<td><a class='badge badge-success text-light' data-toggle='modal' data-target='#expense-receipt-" + i + "'>" + expense.expenseDesc + "</a></td>"
+				+ "<td><a class='badge badge-secondary text-light' data-toggle='modal' data-target='#expense-modal-" + i + "'>" + expense.cost + "</a></td>"
 				+ "<td>" + expense.expenseDates + "</a></td></tr>";
 		} else {
 			expensesString += "<tr id='expense-row-" + i + "'>"
 				+ "<td>" + expense.expenseDesc + "</td>"
-				+ "<td><a data-toggle='modal' data-target='#expense-modal-" + i + "'>" + expense.cost + "</a></td>"
+				+ "<td><a class='badge badge-success text-light' data-toggle='modal' data-target='#expense-modal-" + i + "'>" + expense.cost + "</a></td>"
 				+ "<td>" + expense.expenseDate + "</td></tr>";
 		}		
 	});
-	expensesString += "<tr><td>Total</td><td>" + Math.round(totalExpenses*100)/100 + "</td></tr>";
+	expensesString += "<tr><td><span class='badge badge-primary text-light'>Total</span></td><td><span class='badge badge-primary text-light'>" + Math.round(totalExpenses*100)/100 + "</span></td></tr>";
 	expensesString = "<table id='expenses-table'>" + expensesString + "</table>";
 	$("#expenses").html(expensesString);
 }
@@ -269,15 +269,6 @@ $(document).ready(function() {
 				<hr>
 				<div class="row container-fluid">
 					<div class="col-lg-8 offset-lg-2">
-						<!--
-							create table expenses (
-								expenseId int not null AUTO_INCREMENT,
-								expenseDesc varchar(150) not null,
-								cost double not null,
-								expenseDate date not null,
-								PRIMARY KEY(expenseId)
-							);
-						-->
 						<div id="expenses-header"><strong>expenses</strong></div>
 						<form method="get" name="expensesForm">
 							<input type="text" name="expense-description" placeholder="Drawing Board supplies"/>
