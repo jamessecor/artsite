@@ -18,7 +18,7 @@ function getEmailAddr() {
 
 function getSales() {
 	$sales = array();
-	if(false && isLoggedIn()) {
+	if(isLoggedIn()) {
 		global $db;
 		$query = "SELECT COALESCE(salePrice, price) as salePrice, COALESCE(saleRevenue, salePrice, price) as saleRevenue, title, concat(c_name, ' ', c_lastname) as fullname, saleDate, imgID, taxStatus
 			FROM imageData i INNER JOIN contacts c ON i.buyerID = c.c_id WHERE buyerID is not null ";
@@ -43,7 +43,7 @@ function getSales() {
 }
 
 function getExpenses() {
-	$expenses = "";
+	$expenses = array();
 	if(false && isLoggedIn()) {
 		global $db;
 		$query = "SELECT expenseId, expenseDesc, cost, expenseDate, expenseFilename FROM expenses";
@@ -53,10 +53,17 @@ function getExpenses() {
 		}
 		$query .= " ORDER BY expenseDate;";
 		$result = mysqli_query($db, $query);
-		// Fetch all
-		$expenses = json_encode(mysqli_fetch_all($result, MYSQLI_ASSOC));
+		while($expense = mysqli_fetch_assoc($result)) {
+			$expenses[] = array(
+				'expenseId' => $expense['expenseId'],
+				'expenseDesc' => $expense['expenseDesc'],
+				'cost' => $expense['cost'],
+				'expenseDate' => $expense['expenseDate'],
+				'expenseFilename' => $expense['expenseFilename']
+			);
+		}
 	}
-	return $expenses;
+	return json_encode($expenses);
 }
 
 function addExpense($desc, $cost, $eDate) {
