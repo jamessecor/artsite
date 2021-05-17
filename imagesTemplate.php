@@ -53,13 +53,13 @@ if(isLoggedIn()) {
 		}		
 		
 		// Sale Price (what it actually sold for)
-		if(isset($_GET['new-salePrice'])) {
+		if(isset($_GET['new-salePrice']) && $_GET['new-salePrice'] != '') {
 			$newSalePrice = mysqli_real_escape_string($db, $_GET['new-salePrice']);
 			$updates[] = " salePrice = '$newSalePrice'"; 
 		}		
 		
 		// Sale Revenue (my cut of the sale)
-		if(isset($_GET['new-saleRevenue'])) {
+		if(isset($_GET['new-saleRevenue']) && $_GET['new-saleRevenue'] != '') {
 			$newSaleRevenue = mysqli_real_escape_string($db, $_GET['new-saleRevenue']);
 			$updates[] = " saleRevenue = '$newSaleRevenue'"; 
 		}		
