@@ -18,7 +18,7 @@ function getEmailAddr() {
 
 function getSales() {
 	$sales = array();
-	if(isLoggedIn()) {
+	if(false && isLoggedIn()) {
 		global $db;
 		$query = "SELECT COALESCE(salePrice, price) as salePrice, COALESCE(saleRevenue, salePrice, price) as saleRevenue, title, concat(c_name, ' ', c_lastname) as fullname, saleDate, imgID, taxStatus
 			FROM imageData i INNER JOIN contacts c ON i.buyerID = c.c_id WHERE buyerID is not null ";
