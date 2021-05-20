@@ -252,19 +252,23 @@ $(document).ready(function() {
 					</div>
 				</div>
 				<hr>
-				<div class="row container-fluid">
-					<!-- Sales -->
-					<div class="col-lg-2 offset-lg-2">						
-						<div id="sales-header"><strong>sales</strong></div>
-						<form method="get" name="saleYearForm"> 
-							<div>Period Beginning<br><input type="date" name="periodBegin" value="<?php if(isset($_GET['periodBegin'])) echo $_GET['periodBegin']; ?>"/></div>
-							<div>Period Ending<br><input type="date" name="periodEnd" value="<?php if(isset($_GET['periodEnd'])) echo $_GET['periodEnd']; ?>"/></div>
-							<br><input type="submit" class="showSales" value="Show Sales"/>
-						</form>
-					</div>
-					<div class="col-lg-7 offset-lg-1">						
-						<div class="sales"></div>
-					</div>
+				<div class="d-flex justify-content-center">
+					<form method="get" name="saleYearForm"> 
+						<label for="periodBegin">Period Beginning</label>
+						<input type="date" name="periodBegin" value="<?php if(isset($_GET['periodBegin'])) echo $_GET['periodBegin']; ?>"/>
+					
+						<label for="periodEnd">Period Ending</label>
+						<input type="date" name="periodEnd" value="<?php if(isset($_GET['periodEnd'])) echo $_GET['periodEnd']; ?>"/>
+
+						<input type="submit" class="showSales" value="Show Sales"/>
+					</form>
+				</div>
+				<!-- Sales -->
+				<div class="d-flex justify-content-center w-100">
+					<div id="sales-header"><strong>sales</strong></div>
+				</div>
+				<div class="d-flex justify-content-center">
+					<div class="sales"></div>
 				</div>
 				<hr>
 				<div class="row container-fluid">
