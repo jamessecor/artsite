@@ -7,13 +7,15 @@ function selectQuery($db, $columns, $table, $where, $orderBy) {
 
 // Returns an array of email addresses
 function getEmailAddr() {
-	global $db;
-	$query = "SELECT c_email FROM contacts;";
-	$result = mysqli_query($db, $query);
 	$emails = "";
-	while($email = mysqli_fetch_array($result))
-		$emails .= "$email[0]; ";	
-	return $emails;
+	if(isLoggedIn()) {
+		global $db;
+		$query = "SELECT c_email FROM contacts;";
+		$result = mysqli_query($db, $query);
+		while($email = mysqli_fetch_array($result))
+			$emails .= "$email[0]; ";	
+		return $emails;
+	}
 }
 
 function getSales() {
