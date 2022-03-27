@@ -30,6 +30,7 @@
 					<a class="dropdown-item" href="../imagesNomophobia.php">#nomophobia</a>
 					<a class="dropdown-item" href="../imagesAsNotSeen.php">As Not Seen</a>
 					<a class="dropdown-item" href="../imagesDigitallyEdited.php">Digital Edits</a>						
+					<a class="dropdown-item" href="../images2022.php">2022</a>
 					<a class="dropdown-item" href="../images2021.php">2021</a>
 					<a class="dropdown-item" href="../images2020.php">2020</a>
 					<a class="dropdown-item" href="../images2019.php">2019</a>

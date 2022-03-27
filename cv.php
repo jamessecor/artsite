@@ -36,7 +36,8 @@ include "header.php";
 			</div>
 			<div class="cv-items" id="solo">
 				<p>
-					<span class="show-titles">Peanut Butter Garlic Toast</span> <a href="https://www.morseblockdeli.com/" class="press-links" target="blank">Morse Block Deli</a> - Barre, VT Dec 2019-Sept 2020				
+					<span class="show-titles">animal mug, dish, and glass</span> <a href="https://www.drawingboardvt.com/" class="press-links" target="blank">The Drawing Board</a> - Montpelier, VT Jan-Feb 2022					
+					<br><span class="show-titles">Peanut Butter Garlic Toast</span> <a href="https://www.morseblockdeli.com/" class="press-links" target="blank">Morse Block Deli</a> - Barre, VT Dec 2019-Sept 2020				
 					<br><span class="show-titles">animal mug, dish, and glass, etc</span> <a href="https://www.norwichlibrary.org/nplexhibits/" class="press-links" target="blank">Norwich Public Library</a> - Norwich, VT Dec 2019-
 					<br><span class="show-titles">As Not Seen</span> <a href="https://cal-vt.org/" class="press-links" target="blank">Center for Arts and Learning</a> - Montpelier, VT Dec 2018-Jan 2019
 					<br><span class="show-titles">Driving Up a Chimney</span> Brown Library - Craftsbury, VT, Nov 2018-Jan 2019
